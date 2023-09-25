@@ -1,0 +1,272 @@
+{
+    "farmer_profile_form" : [
+        {
+          "label": "Farmer Name",
+          "value": "",
+          "key": "farmer_name",
+          "type": "input"
+        },
+        {
+          "label": "Father's Name",
+          "value": "",
+          "key": "father_name",
+          "type": "input"
+        },
+        {
+          "label": "Grand Father's Name",
+          "value": "",
+          "key": "grand_father_name",
+          "type": "input"
+        },
+        {
+          "label": "Date of birth",
+          "value": "",
+          "key": "date_of_birth",
+          "type": "date"
+        },
+        {
+          "label": "Gender",
+          "value": "",
+          "key": "gender",
+          "type": "select",
+          "select_option": ["Male", "Female"]
+        },
+        {
+          "label": "Select region",
+          "value": "",
+          "key": "region",
+          "type": "select",
+          "select_option": ["Bihar", "Karnataka", "Rajasthan"]
+        },
+        {
+          "label": "Marital status",
+          "value": "",
+          "key": "marrital_status",
+          "type": "select",
+          "select_option": ["Yes", "No"]
+        },
+        {
+          "label": "Priority crop",
+          "value": "",
+          "key": "crops",
+          "type": "checkbox",
+          "select_option": [
+            "Barley",
+            "Wheat",
+            "Sunflower",
+            "Corn",
+            "Rice",
+            "Soybean",
+            "Oats",
+            "Potato",
+            "Cotton",
+            "Peanuts",
+            "Sorghum",
+            "Canola",
+            "Flax",
+            "Millet",
+            "Rye",
+            "Tobacco",
+            "Tea",
+            "Coffee",
+            "Alfalfa",
+            "Cabbage",
+            "Carrots",
+            "Broccoli",
+            "Kale",
+            "Cauliflower",
+            "Spinach",
+            "Lettuce",
+            "Cucumber",
+            "Tomato",
+            "Pepper",
+            "Eggplant"
+          ]
+        }
+      ],
+      "land_details_form": [
+        {
+          "label": "Land Area (in acres)",
+          "value": "",
+          "key": "land_area",
+          "type": "input"
+        },
+        {
+          "label": "Land Type",
+          "value": "",
+          "key": "land_type",
+          "type": "select",
+          "select_option": ["Agricultural", "Residential", "Commercial"]
+        },
+        {
+          "label": "Irrigation Type",
+          "value": "",
+          "key": "irrigation_type",
+          "type": "select",
+          "select_option": ["Drip Irrigation", "Sprinkler Irrigation", "Flood Irrigation"]
+        },
+        {
+          "label": "Crop Rotation",
+          "value": [],
+          "key": "crop_rotation",
+          "type": "checkbox",
+          "select_option": ["Corn", "Wheat", "Soybean", "Rice", "Barley"]
+        },
+        {
+          "label": "Soil Type",
+          "value": "",
+          "key": "soil_type",
+          "type": "select",
+          "select_option": ["Clay", "Loam", "Sandy", "Silt", "Peat"]
+        },
+        {
+          "label": "Average Annual Rainfall (in inches)",
+          "value": "",
+          "key": "average_rainfall",
+          "type": "input"
+        },
+        {
+          "label": "Previous Year's Crop Yield (in bushels/acre)",
+          "value": "",
+          "key": "previous_yield",
+          "type": "input"
+        },
+        {
+          "label": "Pest Control Measures",
+          "value": "",
+          "key": "pest_control",
+          "type": "textarea"
+        },
+        {
+          "label": "Fertilization Methods",
+          "value": "",
+          "key": "fertilization",
+          "type": "textarea"
+        },
+        {
+          "label": "Equipment and Machinery",
+          "value": [],
+          "key": "equipment",
+          "type": "checkbox",
+          "select_option": ["Tractor", "Plow", "Seeder", "Harvester", "Irrigation System"]
+        }
+      ],
+      "livestock_form": [
+        {
+          "label": "Livestock Type",
+          "value": "",
+          "key": "livestock_type",
+          "type": "select",
+          "select_option": ["Cattle", "Sheep", "Goats", "Pigs", "Horses", "Poultry", "Other"]
+        },
+        {
+          "label": "Number of Livestock",
+          "value": "",
+          "key": "livestock_count",
+          "type": "input"
+        },
+        {
+          "label": "Livestock Health Status",
+          "value": "",
+          "key": "health_status",
+          "type": "select",
+          "select_option": ["Healthy", "Sick", "Vaccinated", "Not Vaccinated"]
+        },
+        {
+          "label": "Livestock Feed Type",
+          "value": "",
+          "key": "feed_type",
+          "type": "select",
+          "select_option": ["Grass", "Hay", "Grain", "Silage", "Concentrates", "Other"]
+        },
+        {
+          "label": "Livestock Shelter Type",
+          "value": "",
+          "key": "shelter_type",
+          "type": "select",
+          "select_option": ["Barn", "Stable", "Pasture", "Shed", "Open Field", "Other"]
+        },
+        {
+          "label": "Livestock Breeding Method",
+          "value": "",
+          "key": "breeding_method",
+          "type": "select",
+          "select_option": ["Natural", "Artificial Insemination", "Selective Breeding"]
+        },
+        {
+          "label": "Livestock Vaccination Schedule",
+          "value": "",
+          "key": "vaccination_schedule",
+          "type": "textarea"
+        },
+        {
+          "label": "Livestock Medical History",
+          "value": "",
+          "key": "medical_history",
+          "type": "textarea"
+        },
+        {
+          "label": "Livestock Special Care Instructions",
+          "value": "",
+          "key": "special_care_instructions",
+          "type": "textarea"
+        },
+        {
+          "label": "Livestock Additional Comments",
+          "value": "",
+          "key": "additional_comments",
+          "type": "textarea"
+        }
+      ],
+      "feedback_form_normal": [
+        {
+          "label": "Overall Satisfaction",
+          "value": "",
+          "key": "overall_satisfaction",
+          "type": "select",
+          "select_option": ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very Dissatisfied"]
+        },
+        {
+          "label": "Service Quality",
+          "value": "",
+          "key": "service_quality",
+          "type": "select",
+          "select_option": ["Excellent", "Good", "Average", "Poor", "Very Poor"]
+        },
+        {
+          "label": "Communication",
+          "value": "",
+          "key": "communication",
+          "type": "select",
+          "select_option": ["Excellent", "Good", "Average", "Poor", "Very Poor"]
+        },
+        {
+          "label": "Response Time",
+          "value": "",
+          "key": "response_time",
+          "type": "select",
+          "select_option": ["Very Fast", "Fast", "Average", "Slow", "Very Slow"]
+        },
+        {
+          "label": "Problem Resolution",
+          "value": "",
+          "key": "problem_resolution",
+          "type": "select",
+          "select_option": ["Resolved Completely", "Mostly Resolved", "Partially Resolved", "Not Resolved"]
+        },
+        {
+          "label": "Would You Recommend Us?",
+          "value": "",
+          "key": "recommendation",
+          "type": "select",
+          "select_option": ["Definitely Yes", "Yes", "No"]
+        },
+        {
+          "label": "General Comments",
+          "value": "",
+          "key": "general_comments",
+          "type": "textarea"
+        }
+      ]
+      
+}
