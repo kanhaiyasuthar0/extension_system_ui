@@ -75,7 +75,8 @@ function App() {
           <Route index element={<AdvisoryDissemination />}></Route>
           <Route path=":type" element={<Feedback />}></Route>
         </Route>
-        <Route path="*" element={<Feedback />}></Route>
+        <Route path="/" element={<>Welcome!</>}></Route>
+        <Route path="*" element={<>Not found</>}></Route>
       </Routes>
     </>
   );
