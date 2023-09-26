@@ -74,6 +74,14 @@ function Root() {
   return (
     <Routes>
       <Route path="/farmer-profile" element={<FarmerProfile />} />
+      <Route path="/farmer-profile/feedback" element={<Feedback />} />
+      <Route path="/adoption" element={<Adoption />} />
+      <Route path="/adoption/feedback" element={<Feedback />} />
+      <Route
+        path="/advisory-dissemination"
+        element={<AdvisoryDissemination />}
+      />
+      <Route path="/advisory-dissemination/feedback" element={<Feedback />} />
       <Route path="/feedback" element={<Feedback />} />
     </Routes>
   );

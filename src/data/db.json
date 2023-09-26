@@ -267,6 +267,115 @@
           "key": "general_comments",
           "type": "textarea"
         }
-      ]
+      ],
+      
+      "advisory_form": [
+  {
+      "label": "Date",
+      "value": "",
+      "key": "date",
+      "type": "date"
+  },
+  {
+      "label": "Location",
+      "value": "",
+      "key": "location",
+      "type": "input"
+  },
+  {
+      "label": "Executive Name",
+      "value": "",
+      "key": "executive_name",
+      "type": "input"
+  },
+  {
+      "label": "Number of Farmers Expected",
+      "value": "",
+      "key": "expected_farmers",
+      "type": "input"
+  },
+  {
+      "label": "Number of Farmers Attended",
+      "value": "",
+      "key": "attended_farmers",
+      "type": "input"
+  },
+  {
+      "label": "List of Farmers Expected",
+      "value": [],
+      "key": "farmers_expected",
+      "type": "checkbox",
+      "select_option": ["Farmer 1", "Farmer 2", "Farmer 3", "Farmer 4"]
+  },
+  {
+      "label": "List of Farmers Attended",
+      "value": [],
+      "key": "farmers_attended",
+      "type": "checkbox",
+      "select_option": ["Farmer 1", "Farmer 2", "Farmer 3", "Farmer 4"]
+  },
+  {
+      "label": "Number of Farmers Interested in Adoption",
+      "value": "",
+      "key": "interested_farmers",
+      "type": "input"
+  },
+  {
+      "label": "List of Farmers Interested",
+      "value": [],
+      "key": "farmers_interested",
+      "type": "checkbox",
+      "select_option": ["Farmer 1", "Farmer 2", "Farmer 3", "Farmer 4"]
+  },
+  {
+      "label": "Advisory Given",
+      "value": "",
+      "key": "advisory_given",
+      "type": "textarea"
+  },
+  {
+      "label": "Overall Satisfaction",
+      "value": "",
+      "key": "overall_satisfaction",
+      "type": "select",
+      "select_option": ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very Dissatisfied"]
+  },
+  {
+      "label": "Relevance of Advisory",
+      "value": "",
+      "key": "advisory_relevance",
+      "type": "select",
+      "select_option": ["Very Relevant", "Relevant", "Somewhat Relevant", "Not Relevant"]
+  },
+  {
+      "label": "Would You Recommend the Advisory?",
+      "value": "",
+      "key": "recommendation",
+      "type": "select",
+      "select_option": ["Definitely Yes", "Yes", "No"]
+  },
+  {
+      "label": "What specific aspects of the advisory were most helpful?",
+      "value": "",
+      "key": "helpful_aspects",
+      "type": "textarea"
+  },
+  {
+      "label": "What areas of the advisory can be improved?",
+      "value": "",
+      "key": "improvement_areas",
+      "type": "textarea"
+  },
+  {
+      "label": "General Comments",
+      "value": "",
+      "key": "general_comments",
+      "type": "textarea"
+  }
+]
+
+
+
+      
       
 }
