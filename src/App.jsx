@@ -3,7 +3,7 @@ import FarmerProfile from "./views/FarmerProfile";
 import Adoption from "./views/Adoption";
 import AdvisoryDissemination from "./views/AdvisoryDissemination";
 import "./components/styles/common.css";
-import { Routes } from "react-router-dom";
+import { Link, Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import Feedback from "./views/Feedback";
 import { useEffect } from "react";
@@ -59,19 +59,22 @@ function App() {
   // ]);
 
   return (
-    <Routes>
-      <Route path="/farmer-profile" element={<FarmerProfile />} />
-      <Route path="/" element={<FarmerProfile />} />
-      <Route path="/farmer-profile/feedback" element={<Feedback />} />
-      <Route path="/adoption" element={<Adoption />} />
-      <Route path="/adoption/feedback" element={<Feedback />} />
-      <Route
-        path="/advisory-dissemination"
-        element={<AdvisoryDissemination />}
-      />
-      <Route path="/advisory-dissemination/feedback" element={<Feedback />} />
-      <Route path="/feedback" element={<Feedback />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route exact path="/farmer-profile" element={<FarmerProfile />} />
+        <Route exact path="/" element={<FarmerProfile />} />
+        <Route path="/farmer-profile/feedback" element={<Feedback />} />
+        <Route path="/adoption" element={<Adoption />} />
+        <Route path="/adoption/feedback" element={<Feedback />} />
+        <Route
+          path="/advisory-dissemination"
+          element={<AdvisoryDissemination />}
+        />
+        <Route path="/advisory-dissemination/feedback" element={<Feedback />} />
+        <Route path="/feedback" element={<Feedback />} />
+      </Routes>
+      <Link to={"/farmer-profile"}>Farmer profile</Link>
+    </>
   );
 }
 
