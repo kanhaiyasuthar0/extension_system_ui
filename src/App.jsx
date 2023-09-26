@@ -1,3 +1,4 @@
+"use client";
 import "./App.css";
 import FarmerProfile from "./views/FarmerProfile";
 import Adoption from "./views/Adoption";
