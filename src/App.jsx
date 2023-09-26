@@ -1,13 +1,8 @@
 import "./App.css";
-import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import FarmerProfile from "./views/FarmerProfile";
 import Adoption from "./views/Adoption";
 import AdvisoryDissemination from "./views/AdvisoryDissemination";
-import InputsCollection from "./views/InputsCollection";
 import "./components/styles/common.css";
-import ContentRenderer from "./components/generic/ContentRenderer";
-import database from "../src/data/db.json";
-import { useRoutes } from "react-router-dom";
 import { Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import Feedback from "./views/Feedback";
@@ -16,7 +11,6 @@ import { useEffect } from "react";
 // 3️⃣ Router singleton created
 
 function App() {
-  const router = createBrowserRouter([{ path: "*", Component: Root }]);
   const tele = window.Telegram.WebApp;
   useEffect(() => {
     console.log("TELEGRAM", window.Telegram);
@@ -64,13 +58,6 @@ function App() {
   //   },
   // ]);
 
-  return <RouterProvider router={router} />;
-}
-
-// 1️⃣ Changed from App to Root
-function Root() {
-  // 2️⃣ `BrowserRouter` component removed, but the <Routes>/<Route>
-  // component below are unchanged
   return (
     <Routes>
       <Route path="/farmer-profile" element={<FarmerProfile />} />
@@ -86,4 +73,5 @@ function Root() {
     </Routes>
   );
 }
+
 export default App;
