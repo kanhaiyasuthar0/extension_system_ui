@@ -61,6 +61,7 @@ function App() {
   return (
     <Routes>
       <Route path="/farmer-profile" element={<FarmerProfile />} />
+      <Route path="/" element={<FarmerProfile />} />
       <Route path="/farmer-profile/feedback" element={<Feedback />} />
       <Route path="/adoption" element={<Adoption />} />
       <Route path="/adoption/feedback" element={<Feedback />} />
