@@ -1,4 +1,3 @@
-import ContentRenderer from "../components/generic/ContentRenderer";
 import FormWithTabs from "../components/generic/FormWithTabs";
 import database from "../data/db.json";
 
