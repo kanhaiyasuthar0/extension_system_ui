@@ -62,19 +62,21 @@ function App() {
   return (
     <>
       <Routes>
-        <Route exact path="/farmer-profile" element={<FarmerProfile />} />
-        <Route exact path="/" element={<FarmerProfile />} />
-        <Route path="/farmer-profile/feedback" element={<Feedback />} />
-        <Route path="/adoption" element={<Adoption />} />
-        <Route path="/adoption/feedback" element={<Feedback />} />
-        <Route
-          path="/advisory-dissemination"
-          element={<AdvisoryDissemination />}
-        />
-        <Route path="/advisory-dissemination/feedback" element={<Feedback />} />
-        <Route path="/feedback" element={<Feedback />} />
+        <Route path="/farmer-profile">
+          <Route index element={<FarmerProfile />}></Route>
+          <Route path=":type" element={<Feedback />}></Route>
+        </Route>
+
+        <Route path="/adoption">
+          <Route index element={<Adoption />}></Route>
+          <Route path=":type" element={<Feedback />}></Route>
+        </Route>
+        <Route path="/advisory-dissemination">
+          <Route index element={<AdvisoryDissemination />}></Route>
+          <Route path=":type" element={<Feedback />}></Route>
+        </Route>
+        <Route path="*" element={<Feedback />}></Route>
       </Routes>
-      <Link to={"/farmer-profile"}>Farmer profile</Link>
     </>
   );
 }
