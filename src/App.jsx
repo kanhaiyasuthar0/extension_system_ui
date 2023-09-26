@@ -14,9 +14,9 @@ import Feedback from "./views/Feedback";
 import { useEffect } from "react";
 
 // 3️⃣ Router singleton created
-const router = createBrowserRouter([{ path: "*", Component: Root }]);
 
 function App() {
+  const router = createBrowserRouter([{ path: "*", Component: Root }]);
   const tele = window.Telegram.WebApp;
   useEffect(() => {
     console.log("TELEGRAM", window.Telegram);
