@@ -171,7 +171,7 @@ const ContentRenderer = (props) => {
                   onData={onData}
                   onStop={onStop}
                   strokeColor="#000000"
-                  backgroundColor="#FF4081"
+                  backgroundColor="#FFF"
                 />
                 <button type="button" onClick={startRecording}>
                   Start Recording
