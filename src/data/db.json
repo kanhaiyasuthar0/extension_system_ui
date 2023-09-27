@@ -4,7 +4,8 @@
           "label": "Farmer Name",
           "value": "",
           "key": "farmer_name",
-          "type": "input"
+          "type": "input",
+          "required" : "true"
         },
         {
           "label": "Father's Name",
@@ -272,19 +273,19 @@
       "advisory_form": [
   {
       "label": "Date",
-      "value": "",
+      "value": "2023-09-27",
       "key": "date",
       "type": "date"
   },
   {
       "label": "Location",
-      "value": "",
+      "value": "india",
       "key": "location",
       "type": "input"
   },
   {
       "label": "Executive Name",
-      "value": "",
+      "value": "Imran Shaik",
       "key": "executive_name",
       "type": "input"
   },
@@ -371,11 +372,90 @@
       "value": "",
       "key": "general_comments",
       "type": "textarea"
+  },
+  {
+      "label": "Recording",
+      "value": "",
+      "key": "record",
+      "type": "audio"
   }
-]
-
-
+  
+],
+ "form_farmer_personal_data_form" : {
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "farmer_name": { "type": "string", "title": "Farmer Name", "default": "" },
+      "father_name": { "type": "string", "title": "Father's Name", "default": "" },
+      "grand_father_name": { "type": "string", "title": "Grand Father's Name", "default": "" },
+      "date_of_birth": { "type": "string", "title": "Date of Birth", "format": "date" },
+      "gender": {
+        "type": "string",
+        "title": "Gender",
+        "enum": ["Male", "Female"],
+        "default": ""
+      },
+      "region": {
+        "type": "string",
+        "title": "Select Region",
+        "enum": ["Bihar", "Karnataka", "Rajasthan"],
+        "default": ""
+      },
+      "marrital_status": {
+        "type": "string",
+        "title": "Marital Status",
+        "enum": ["Yes", "No"],
+        "default": ""
+      },
+      "crops": {
+        "type": "array",
+        "title": "Priority Crop",
+        "items": {
+          "type": "string",
+          "enum": [
+            "Barley",
+            "Wheat",
+            "Sunflower",
+            "Corn",
+            "Rice",
+            "Soybean",
+            "Oats",
+            "Potato",
+            "Cotton",
+            "Peanuts",
+            "Sorghum",
+            "Canola",
+            "Flax",
+            "Millet",
+            "Rye",
+            "Tobacco",
+            "Tea",
+            "Coffee",
+            "Alfalfa",
+            "Cabbage",
+            "Carrots",
+            "Broccoli",
+            "Kale",
+            "Cauliflower",
+            "Spinach",
+            "Lettuce",
+            "Cucumber",
+            "Tomato",
+            "Pepper",
+            "Eggplant"
+          ],
+          "default": []
+        }
+      }
+    }
+  }
+}
 
       
       
 }
+
+
+
+

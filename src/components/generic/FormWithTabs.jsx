@@ -1,20 +1,29 @@
-import { Tabs } from "antd";
-import { useEffect, useState } from "react";
+import {Tabs} from "antd";
+import { useState } from "react";
 import { useMyContext } from "../../contexts/ExtensionSysytemContext";
 import ContentRenderer from "./ContentRenderer";
 
 const FormWithTabs = ({ data }) => {
-  const { allValues, setAllValues } = useMyContext();
-  console.log(
-    "🚀 ~ file: FormWithTabs.jsx:10 ~ FormWithTabs ~ count:",
-    allValues
-  );
+  //the values are stored in the context
+  const { allValues, setAllValues, setAudioBlob, setAudio, audio } =
+    useMyContext();
   const [tabValueSelected, setTabValueSelected] = useState("1");
   const buttonsSecond = [
-    { label: "Back", value: "back", onClick: () => handleNextOrSubmit(-1, 0) },
-    { label: "Clear All", value: "clear", onClick: () => handleClearAll(1, 0) },
-    { label: "Next", value: "next", onClick: () => handleNextOrSubmit(1, 1) },
+    tabValueSelected == "1"
+      ? { label: "", value: "", onClick: () => handleNextOrSubmit(-1) }
+      : {
+          label: "Back",
+          value: "back",
+          onClick: () => handleNextOrSubmit(-1),
+        },
+    { label: "Clear All", value: "clear", onClick: () => handleClearAll(0) },
+    {
+      label: tabValueSelected == data.length ? "Submit" : "Next",
+      value: "next",
+      onClick: () => handleNextOrSubmit(1),
+    },
   ];
+
   const mapping = {
     input: "input",
     date_field: "date",
@@ -26,19 +35,28 @@ const FormWithTabs = ({ data }) => {
     // Implement your clear logic here
   };
 
-  const handleNextOrSubmit = (first, second) => {
-    if (first === 2) {
+  const handleNextOrSubmit = (first) => {
+    if (tabValueSelected == data.length) {
       alert("Form submitted successfully!");
     } else {
-      setTabValueSelected((prevValue) => (parseInt(prevValue) + 1).toString());
+      setTabValueSelected((prevValue) =>
+        (parseInt(prevValue) + first).toString()
+      );
     }
+  };
+  const handleSubmit = (values) => {
+    console.log(values);
   };
 
   const handleChangeTyping = (e, name, type, value) => {
     setAllValues((prev) => {
       if (type === "checkbox") {
         let exist = prev[name] ?? {};
-        exist[value] = e.target.checked;
+        if (exist[value]) {
+          delete exist[value];
+        } else {
+          exist[value] = e.target.checked;
+        }
         return {
           ...prev,
           [name]: exist,
@@ -48,6 +66,9 @@ const FormWithTabs = ({ data }) => {
           ...prev,
           [name]: value,
         };
+      } else if (type == "audio") {
+        console.log("value", value);
+        setAudio(value);
       } else {
         return {
           ...prev,
@@ -64,6 +85,7 @@ const FormWithTabs = ({ data }) => {
         buttons={buttonsSecond}
         handleChangeTyping={handleChangeTyping}
         allValues={allValues}
+        submit={() => handleSubmit()}
       />
     </Tabs.TabPane>
   ));

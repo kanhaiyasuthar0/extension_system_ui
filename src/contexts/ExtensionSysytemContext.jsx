@@ -7,13 +7,18 @@ const MyContext = createContext();
 function MyContextProvider({ children }) {
   // Define the state or data you want to share
   const [allValues, setAllValues] = useState({});
-
+  const [audio, setAudio] = useState({
+    isRecording: false,
+    audioBlob: null,
+  });
   // Define functions or methods to update the state
 
   // Create a context value object containing the state and methods
   const contextValue = {
     allValues,
     setAllValues,
+    audio,
+    setAudio,
   };
 
   // Provide the context value to the components in the tree

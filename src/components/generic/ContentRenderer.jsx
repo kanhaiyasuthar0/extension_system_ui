@@ -1,13 +1,44 @@
 /* eslint-disable react/prop-types */
 import { Form, Input, DatePicker, Select, Checkbox, Button } from "antd";
 const { Option } = Select;
-
+import dayjs from "dayjs";
+import { useMyContext } from "../../contexts/ExtensionSysytemContext";
+import { ReactMic } from "react-mic";
+import { useRef } from "react";
 const ContentRenderer = (props) => {
+  const formRef = useRef();
+
+  const { audio, setAudio } = useMyContext();
+  const startRecording = () => {
+    setAudio({ ...audio, isRecording: true });
+  };
+
+  const stopRecording = () => {
+    setAudio({ ...audio, isRecording: false });
+  };
+
+  const onData = (recordedBlob) => {
+    // setAudio({...audio, audioBlob: recordedBlob });
+  };
+
+  const onStop = (recordedBlob) => {
+    setAudio({ ...audio, audioBlob: recordedBlob });
+  };
+  const resetAll = () => {
+    formRef.current?.resetFields();
+  };
   console.log(props.allValues, props.buttonsFirst);
 
   return (
     <>
-      <Form layout="vertical" style={{ textAlign: "left" }} scrollToFirstError>
+      <Form
+        ref={formRef}
+        onFinish={props.submit}
+        onReset={resetAll}
+        layout="vertical"
+        style={{ textAlign: "left" }}
+        scrollToFirstError
+      >
         {/* The JSON array representing the form elements */}
         {props.data.map((element, index) => (
           <Form.Item
@@ -17,7 +48,7 @@ const ContentRenderer = (props) => {
             // initialValue={props.searchParams.get(`${element.key}`)}
             rules={[
               {
-                required: true,
+                required: element.required,
                 message: `Please enter ${element.label}!`,
               },
             ]}
@@ -35,18 +66,21 @@ const ContentRenderer = (props) => {
                   )
                 }
                 name={element.key}
+                defaultValue={element.value}
               />
             ) : element.type === "date" ? (
               <DatePicker
                 format="YYYY-MM-DD"
-                onChange={(date, dateString) =>
+                onChange={(date, dateString) => {
+                  console.log(date, "Date", dateString);
                   props.handleChangeTyping(
                     "",
                     element.key,
                     element.type,
                     dateString
-                  )
-                }
+                  );
+                }}
+                defaultValue={dayjs(element.value)}
               />
             ) : element.type === "select" ? (
               <Select
@@ -130,22 +164,48 @@ const ContentRenderer = (props) => {
                   )
                 }
               />
+            ) : element.type == "audio" ? (
+              <div>
+                <ReactMic
+                  record={audio.isRecording}
+                  onData={onData}
+                  onStop={onStop}
+                  strokeColor="#000000"
+                  backgroundColor="#FF4081"
+                />
+                <button type="button" onClick={startRecording}>
+                  Start Recording
+                </button>
+                <button type="button" onClick={stopRecording}>
+                  Stop Recording
+                </button>
+                {audio.audioBlob && (
+                  <audio controls src={audio.audioBlob.blobURL} />
+                )}
+              </div>
             ) : null}
           </Form.Item>
         ))}
+        <Form.Item>
+          <div style={{ marginTop: "20px" }}>
+            {props.buttons.map((button, index) =>
+              button.label ? (
+                <Button
+                  key={index}
+                  type={button.value == "next" ? "primary" : "button"}
+                  style={{ marginRight: "10px" }}
+                  htmlType="submit"
+                  // onClick={button.value == "next" ? () => null : button.onClick}
+                >
+                  {button.label}
+                </Button>
+              ) : (
+                ""
+              )
+            )}
+          </div>
+        </Form.Item>
       </Form>
-      <div style={{ marginTop: "20px" }}>
-        {props.buttons.map((button, index) => (
-          <Button
-            key={index}
-            type="primary"
-            style={{ marginRight: "10px" }}
-            onClick={button.onClick}
-          >
-            {button.label}
-          </Button>
-        ))}
-      </div>
     </>
   );
 };

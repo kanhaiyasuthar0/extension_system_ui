@@ -1,97 +1,19 @@
-import { Tabs } from "antd";
-import { useEffect, useState } from "react";
-import ContentRenderer from "../components/generic/ContentRenderer";
 import database from "../data/db.json";
-import { useSearchParams } from "react-router-dom";
+
+import FormWithTabs from "../components/generic/FormWithTabs";
 
 const Feedback = () => {
-  const [tabsAvailable, setTabsAvailable] = useState([]);
-  const [tabValueSelected, setTabValueSelected] = useState("1");
-  const [allValues, setAllValues] = useState({});
-  const mapping = {
-    input: "input",
-    date_field: "date",
-    select: "select",
-    checkbox: "checkbox",
-  };
-
-  // const location = useLocation();
-  const [searchParams, setSearchParams] = useSearchParams({
-    tab: 1,
-  });
-  const handleClearAll = (first, second) => {};
-
-  const handleNextOrSubmit = (first, second) => {
-    // console.log("clicked");
-    if (first == 2) {
-      alert("Form submitted successfully!");
-    } else {
-      setTabValueSelected(+first + 2);
-    }
-  };
-
-  const handleChangeTyping = (e, name, type, value) => {
-    setAllValues((prev) => {
-      if (type == "checkbox") {
-        let exist = prev[name] ?? {};
-        exist[value] = e.target.checked;
-        return {
-          ...prev,
-          [name]: exist,
-        };
-      } else if (type == "date") {
-        return {
-          ...prev,
-          [name]: value,
-        };
-      } else {
-        return {
-          ...prev,
-          [name]: value,
-        };
-      }
-    });
-  };
-  const buttonsFirst = [
-    { label: "Clear All", value: "clear", onClick: () => handleClearAll(0, 0) },
-    { label: "Next", value: "next", onClick: () => handleNextOrSubmit(0, 1) },
+  const items = [
+    {
+      key: "1",
+      label: "FEEDBACK",
+      data: database.feedback_form_normal,
+    },
   ];
-
-  const onChange = (value) => {
-    // console.log(value);
-  };
-
-  console.log(allValues);
-
-  useEffect(() => {
-    const items = [
-      {
-        key: "1",
-        label: "FEEDBACK",
-        children: (
-          <ContentRenderer
-            data={database.feedback_form_normal}
-            buttons={buttonsFirst}
-            handleChangeTyping={handleChangeTyping}
-            searchParams={searchParams}
-            allValues={allValues}
-          />
-        ),
-      },
-    ];
-    setTabsAvailable(items);
-  }, []);
 
   return (
     <>
-      <div className="farmer_profile_main_box">
-        <Tabs
-          defaultActiveKey={tabValueSelected}
-          activeKey={`${tabValueSelected}`}
-          items={tabsAvailable}
-          onChange={onChange}
-        />
-      </div>
+      <FormWithTabs data={items} />
     </>
   );
 };

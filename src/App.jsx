@@ -4,7 +4,7 @@ import FarmerProfile from "./views/FarmerProfile";
 import Adoption from "./views/Adoption";
 import AdvisoryDissemination from "./views/AdvisoryDissemination";
 import "./components/styles/common.css";
-import { Link, Routes } from "react-router-dom";
+import { Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import Feedback from "./views/Feedback";
 import { useEffect } from "react";
@@ -76,7 +76,7 @@ function App() {
           <Route path=":type" element={<Feedback />}></Route>
         </Route>
         <Route path="/" element={<>Welcome!</>}></Route>
-        <Route path="*" element={<>Not found</>}></Route>
+        <Route path="*" element={<>Page not found</>}></Route>
       </Routes>
     </>
   );
