@@ -1,7 +1,7 @@
 import FormWithTabs from "../components/generic/FormWithTabs";
 import database from "../data/db.json";
 
-const Adoption = () => {
+const Adoption = (props) => {
   const items = [
     {
       key: "1",
@@ -12,7 +12,7 @@ const Adoption = () => {
 
   return (
     <>
-      <FormWithTabs data={items} />
+      <FormWithTabs data={items} tele={props.tele} />
     </>
   );
 };

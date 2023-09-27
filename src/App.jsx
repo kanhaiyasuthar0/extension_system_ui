@@ -63,16 +63,16 @@ function App() {
     <>
       <Routes>
         <Route path="/farmer-profile">
-          <Route index element={<FarmerProfile />}></Route>
+          <Route index element={<FarmerProfile tele={tele} />}></Route>
           <Route path=":type" element={<Feedback />}></Route>
         </Route>
 
         <Route path="/adoption">
-          <Route index element={<Adoption />}></Route>
+          <Route index element={<Adoption tele={tele} />}></Route>
           <Route path=":type" element={<Feedback />}></Route>
         </Route>
         <Route path="/advisory-dissemination">
-          <Route index element={<AdvisoryDissemination />}></Route>
+          <Route index element={<AdvisoryDissemination tele={tele} />}></Route>
           <Route path=":type" element={<Feedback />}></Route>
         </Route>
         <Route path="/" element={<>Welcome!</>}></Route>

@@ -1,7 +1,7 @@
 import FormWithTabs from "../components/generic/FormWithTabs";
 import database from "../data/db.json";
 
-const AdvisoryDissemination = () => {
+const AdvisoryDissemination = ({ tele }) => {
   const items = [
     {
       key: "1",
@@ -11,7 +11,7 @@ const AdvisoryDissemination = () => {
   ];
   return (
     <>
-      <FormWithTabs data={items} />
+      <FormWithTabs data={items} tele={tele} />
     </>
   );
 };

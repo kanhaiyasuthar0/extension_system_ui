@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useMyContext } from "../../contexts/ExtensionSysytemContext";
 import ContentRenderer from "./ContentRenderer";
 
-const FormWithTabs = ({ data }) => {
+const FormWithTabs = ({ data, tele }) => {
   //the values are stored in the context
   const { allValues, setAllValues, setAudioBlob, setAudio, audio } =
     useMyContext();
@@ -37,7 +37,7 @@ const FormWithTabs = ({ data }) => {
 
   const handleNextOrSubmit = (first) => {
     if (tabValueSelected == data.length) {
-      alert("Form submitted successfully!");
+      tele.sendData(JSON.stringify("Form Submitted Successfully!"));
     } else {
       setTabValueSelected((prevValue) =>
         (parseInt(prevValue) + first).toString()

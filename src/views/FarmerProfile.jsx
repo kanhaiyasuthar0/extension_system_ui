@@ -1,7 +1,7 @@
 import FormWithTabs from "../components/generic/FormWithTabs";
 import database from "../data/db.json";
 
-const FarmerProfile = () => {
+const FarmerProfile = (props) => {
   const items = [
     {
       key: "1",
@@ -23,7 +23,7 @@ const FarmerProfile = () => {
 
   return (
     <>
-      <FormWithTabs data={items} />
+      <FormWithTabs data={items} tele={props.tele} />
     </>
   );
 };

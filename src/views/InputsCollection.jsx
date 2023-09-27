@@ -1,7 +1,7 @@
 import FormWithTabs from "../components/generic/FormWithTabs";
 import database from "../data/db.json";
 
-const InputsCollection = () => {
+const InputsCollection = ({ tele }) => {
   const items = [
     {
       key: "1",
@@ -9,7 +9,7 @@ const InputsCollection = () => {
       data: database.advisory_form,
     },
   ];
-  return <FormWithTabs data={items} />;
+  return <FormWithTabs data={items} tele={tele} />;
 };
 
 export default InputsCollection;
