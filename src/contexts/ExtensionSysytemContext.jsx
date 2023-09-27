@@ -21,7 +21,7 @@ function MyContextProvider({ children }) {
     setAudio,
   };
 
-  // Provide the context value to the components in the tree
+  // Provide the context value to the components in the tree`
   return (
     <MyContext.Provider value={contextValue}>{children}</MyContext.Provider>
   );
