@@ -47,7 +47,7 @@ const FormWithTabs = ({ data, tele }) => {
   const handleSubmit = (values) => {
     console.log(values);
     if (tabValueSelected == data.length) {
-      alert("Form submitted successfully!");
+      tele.sendData(JSON.stringify("Form Submitted Successfully!"));
     } else {
       setTabValueSelected((prevValue) => (parseInt(prevValue) + 1).toString());
     }
