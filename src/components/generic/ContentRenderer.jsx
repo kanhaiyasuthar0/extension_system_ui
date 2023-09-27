@@ -165,7 +165,7 @@ const ContentRenderer = (props) => {
                 }
               />
             ) : element.type == "audio" ? (
-              <div>
+              <div style={{ maxWidth: "100%" }}>
                 <ReactMic
                   record={audio.isRecording}
                   onData={onData}

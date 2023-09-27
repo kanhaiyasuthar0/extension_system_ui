@@ -1,4 +1,4 @@
-import {Tabs} from "antd";
+import { Tabs } from "antd";
 import { useState } from "react";
 import { useMyContext } from "../../contexts/ExtensionSysytemContext";
 import ContentRenderer from "./ContentRenderer";
@@ -46,6 +46,11 @@ const FormWithTabs = ({ data }) => {
   };
   const handleSubmit = (values) => {
     console.log(values);
+    if (tabValueSelected == data.length) {
+      alert("Form submitted successfully!");
+    } else {
+      setTabValueSelected((prevValue) => (parseInt(prevValue) + 1).toString());
+    }
   };
 
   const handleChangeTyping = (e, name, type, value) => {
