@@ -23,6 +23,9 @@ dependencies:
   '@rjsf/core':
     specifier: ^5.13.0
     version: 5.13.0(@rjsf/utils@5.13.0)(react@18.2.0)
+  '@vercel/analytics':
+    specifier: ^1.0.2
+    version: 1.0.2
   antd:
     specifier: ^5.9.2
     version: 5.9.2(react-dom@18.2.0)(react@18.2.0)
@@ -1270,6 +1273,10 @@ packages:
 
   /@types/warning@3.0.0:
     resolution: {integrity: sha512-t/Tvs5qR47OLOr+4E9ckN8AmP2Tf16gWq+/qA4iUGS/OOyHVO8wv2vjJuX8SNOUTJyWb+2t7wJm6cXILFnOROA==}
+    dev: false
+
+  /@vercel/analytics@1.0.2:
+    resolution: {integrity: sha512-BZFxVrv24VbNNl5xMxqUojQIegEeXMI6rX3rg1uVLYUEXsuKNBSAEQf4BWEcjQDp/8aYJOj6m8V4PUA3x/cxgg==}
     dev: false
 
   /@vitejs/plugin-react@4.0.3(vite@4.4.5):

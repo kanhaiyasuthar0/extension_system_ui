@@ -8,7 +8,7 @@ import { Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import Feedback from "./views/Feedback";
 import { useEffect } from "react";
-
+import { Analytics } from "@vercel/analytics/react";
 // 3️⃣ Router singleton created
 
 function App() {
@@ -78,6 +78,7 @@ function App() {
         <Route path="/" element={<>Welcome!</>}></Route>
         <Route path="*" element={<>Page not found</>}></Route>
       </Routes>
+      <Analytics />
     </>
   );
 }
