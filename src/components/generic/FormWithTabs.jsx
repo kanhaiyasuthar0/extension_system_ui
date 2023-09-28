@@ -42,7 +42,6 @@ const FormWithTabs = ({ data, tele }) => {
 
   const handleNextOrSubmit = (first) => {
     if (tabValueSelected == data.length) {
-      console.log(chatid, "chatid", bot, "bot");
       axios
         .post(
           `https://api.telegram.org/bot${queryParams.get("bot")}/sendMessage`,
