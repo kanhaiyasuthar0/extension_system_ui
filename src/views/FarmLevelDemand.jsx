@@ -5,19 +5,8 @@ const FarmLevelDemand = (props) => {
   const items = [
     {
       key: "1",
-      label: "PROFILE",
-      data: database.farmer_profile_form,
-    },
-    {
-      key: "2",
-      label: "LAND",
-
-      data: database.land_details_form,
-    },
-    {
-      key: "3",
-      label: "LIVESTOCK",
-      data: database.livestock_form,
+      label: "FARM LEVEL DEMAND",
+      data: database.farm_level_demand,
     },
   ];
 

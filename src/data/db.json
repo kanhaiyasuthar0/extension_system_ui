@@ -1,225 +1,227 @@
 {
-    "farmer_profile_form" : [
-        {
-          "label": "Farmer Name",
-          "value": "",
-          "key": "farmer_name",
-          "type": "input",
-          "required" : "true"
-        },
-        {
-          "label": "Father's Name",
-          "value": "",
-          "key": "father_name",
-          "type": "input"
-        },
-        {
-          "label": "Grand Father's Name",
-          "value": "",
-          "key": "grand_father_name",
-          "type": "input"
-        },
-        {
-          "label": "Date of birth",
-          "value": "",
-          "key": "date_of_birth",
-          "type": "date"
-        },
-        {
-          "label": "Gender",
-          "value": "",
-          "key": "gender",
-          "type": "select",
-          "select_option": ["Male", "Female"]
-        },
-        {
-          "label": "Select region",
-          "value": "",
-          "key": "region",
-          "type": "select",
-          "select_option": ["Bihar", "Karnataka", "Rajasthan"]
-        },
-        {
-          "label": "Marital status",
-          "value": "",
-          "key": "marrital_status",
-          "type": "select",
-          "select_option": ["Yes", "No"]
-        },
-        {
-          "label": "Priority crop",
-          "value": "",
-          "key": "crops",
-          "type": "checkbox",
-          "select_option": [
-            "Barley",
-            "Wheat",
-            "Sunflower",
-            "Corn",
-            "Rice",
-            "Soybean",
-            "Oats",
-            "Potato",
-            "Cotton",
-            "Peanuts",
-            "Sorghum",
-            "Canola",
-            "Flax",
-            "Millet",
-            "Rye",
-            "Tobacco",
-            "Tea",
-            "Coffee",
-            "Alfalfa",
-            "Cabbage",
-            "Carrots",
-            "Broccoli",
-            "Kale",
-            "Cauliflower",
-            "Spinach",
-            "Lettuce",
-            "Cucumber",
-            "Tomato",
-            "Pepper",
-            "Eggplant"
-          ]
-        }
-      ],
-      "land_details_form": [
-        {
-          "label": "Land Area (in acres)",
-          "value": "",
-          "key": "land_area",
-          "type": "input"
-        },
-        {
-          "label": "Land Type",
-          "value": "",
-          "key": "land_type",
-          "type": "select",
-          "select_option": ["Agricultural", "Residential", "Commercial"]
-        },
-        {
-          "label": "Irrigation Type",
-          "value": "",
-          "key": "irrigation_type",
-          "type": "select",
-          "select_option": ["Drip Irrigation", "Sprinkler Irrigation", "Flood Irrigation"]
-        },
-        {
-          "label": "Crop Rotation",
-          "value": [],
-          "key": "crop_rotation",
-          "type": "checkbox",
-          "select_option": ["Corn", "Wheat", "Soybean", "Rice", "Barley"]
-        },
-        {
-          "label": "Soil Type",
-          "value": "",
-          "key": "soil_type",
-          "type": "select",
-          "select_option": ["Clay", "Loam", "Sandy", "Silt", "Peat"]
-        },
-        {
-          "label": "Average Annual Rainfall (in inches)",
-          "value": "",
-          "key": "average_rainfall",
-          "type": "input"
-        },
-        {
-          "label": "Previous Year's Crop Yield (in bushels/acre)",
-          "value": "",
-          "key": "previous_yield",
-          "type": "input"
-        },
-        {
-          "label": "Pest Control Measures",
-          "value": "",
-          "key": "pest_control",
-          "type": "textarea"
-        },
-        {
-          "label": "Fertilization Methods",
-          "value": "",
-          "key": "fertilization",
-          "type": "textarea"
-        },
-        {
-          "label": "Equipment and Machinery",
-          "value": [],
-          "key": "equipment",
-          "type": "checkbox",
-          "select_option": ["Tractor", "Plow", "Seeder", "Harvester", "Irrigation System"]
-        }
-      ],
-      "livestock_form": [
-        {
-          "label": "Livestock Type",
-          "value": "",
-          "key": "livestock_type",
-          "type": "select",
-          "select_option": ["Cattle", "Sheep", "Goats", "Pigs", "Horses", "Poultry", "Other"]
-        },
-        {
-          "label": "Number of Livestock",
-          "value": "",
-          "key": "livestock_count",
-          "type": "input"
-        },
-        {
-          "label": "Livestock Health Status",
-          "value": "",
-          "key": "health_status",
-          "type": "select",
-          "select_option": ["Healthy", "Sick", "Vaccinated", "Not Vaccinated"]
-        },
-        {
-          "label": "Livestock Feed Type",
-          "value": "",
-          "key": "feed_type",
-          "type": "select",
-          "select_option": ["Grass", "Hay", "Grain", "Silage", "Concentrates", "Other"]
-        },
-        {
-          "label": "Livestock Shelter Type",
-          "value": "",
-          "key": "shelter_type",
-          "type": "select",
-          "select_option": ["Barn", "Stable", "Pasture", "Shed", "Open Field", "Other"]
-        },
-        {
-          "label": "Livestock Breeding Method",
-          "value": "",
-          "key": "breeding_method",
-          "type": "select",
-          "select_option": ["Natural", "Artificial Insemination", "Selective Breeding"]
-        },
-        {
-          "label": "Livestock Vaccination Schedule",
-          "value": "",
-          "key": "vaccination_schedule",
-          "type": "textarea"
-        },
-        {
-          "label": "Livestock Medical History",
-          "value": "",
-          "key": "medical_history",
-          "type": "textarea"
-        },
-        {
-          "label": "Livestock Special Care Instructions",
-          "value": "",
-          "key": "special_care_instructions",
-          "type": "textarea"
-        },
-        {
-          "label": "Livestock Additional Comments",
-          "value": "",
-          "key": "additional_comments",
-          "type": "textarea"
-        }
-      ],
-      "feedback_form_normal": [
+  "farmer_profile_form": [
+    {
+      "label": "Farmer Name (किसान का नाम)",
+      "value": "",
+      "key": "farmer_name",
+      "type": "input"
+    },
+    {
+      "label": "Father's Name (पिता का नाम)",
+      "value": "",
+      "key": "father_name",
+      "type": "input"
+    },
+    {
+      "label": "Grand Father's Name (दादा का नाम)",
+      "value": "",
+      "key": "grand_father_name",
+      "type": "input"
+    },
+    {
+      "label": "Date of Birth (जन्म की तारीख)",
+      "value": "2023-12-20",
+      "key": "date_of_birth",
+      "type": "date"
+    },
+    {
+      "label": "Gender (लिंग)",
+      "value": "",
+      "key": "gender",
+      "type": "select",
+      "select_option": ["Male (पुरुष)", "Female (महिला)"]
+    },
+    {
+      "label": "Select Region (क्षेत्र चुनें)",
+      "value": "",
+      "key": "region",
+      "type": "select",
+      "select_option": ["Bihar (बिहार)", "Karnataka (कर्नाटक)", "Rajasthan (राजस्थान)"]
+    },
+    {
+      "label": "Marital Status (वैवाहिक स्थिति)",
+      "value": "",
+      "key": "marital_status",
+      "type": "select",
+      "select_option": ["Yes (हां)", "No (नहीं)"]
+    },
+    {
+      "label": "Priority Crop (प्राथमिक फसल)",
+      "value": [],
+      "key": "crops",
+      "type": "checkbox",
+      "select_option": [
+        "Barley (जौ)",
+        "Wheat (गेहूँ)",
+        "Sunflower (सूरजमुखी)",
+        "Corn (मक्का)",
+        "Rice (चावल)",
+        "Soybean (सोयाबीन)",
+        "Oats (जई)",
+        "Potato (आलू)",
+        "Cotton (कपास)",
+        "Peanuts (मूँगफली)",
+        "Sorghum (ज्वार)",
+        "Canola (केनोला)",
+        "Flax (अलसी)",
+        "Millet (बाजरा)",
+        "Rye (राई)",
+        "Tobacco (तमाकू)",
+        "Tea (चाय)",
+        "Coffee (कॉफी)",
+        "Alfalfa (अल्फाल्फा)",
+        "Cabbage (पत्तागोभी)",
+        "Carrots (गाजर)",
+        "Broccoli (ब्रोकली)",
+        "Kale (केला)",
+        "Cauliflower (फूलगोभी)",
+        "Spinach (पालक)",
+        "Lettuce (लेट्यूस)",
+        "Cucumber (खीरा)",
+        "Tomato (टमाटर)",
+        "Pepper (मिर्च)",
+        "Eggplant (बैंगन)"
+      ]
+    }
+  ],
+  
+  "land_details_form": [
+    {
+      "label": "Land Area (in acres) (ज़मीन क्षेत्रफल - एकड़ में)",
+      "value": "",
+      "key": "land_area",
+      "type": "input"
+    },
+    {
+      "label": "Land Type (ज़मीन का प्रकार)",
+      "value": "",
+      "key": "land_type",
+      "type": "select",
+      "select_option": ["Agricultural (कृषि)", "Residential (रहने के लिए)", "Commercial (वाणिज्यिक)"]
+    },
+    {
+      "label": "Irrigation Type (सिंचाई प्रकार)",
+      "value": "",
+      "key": "irrigation_type",
+      "type": "select",
+      "select_option": ["Drip Irrigation (ड्रिप सिंचाई)", "Sprinkler Irrigation (स्प्रिंकलर सिंचाई)", "Flood Irrigation (बाढ़ सिंचाई)"]
+    },
+    {
+      "label": "Crop Rotation (फसल चक्रण)",
+      "value": [],
+      "key": "crop_rotation",
+      "type": "checkbox",
+      "select_option": ["Corn (मक्का)", "Wheat (गेहूँ)", "Soybean (सोयाबीन)", "Rice (चावल)", "Barley (जौ)"]
+    },
+    {
+      "label": "Soil Type (मृदा प्रकार)",
+      "value": "",
+      "key": "soil_type",
+      "type": "select",
+      "select_option": ["Clay (मिट्टी)", "Loam (लोम)", "Sandy (रेतीला)", "Silt (कीचड़ी)", "Peat (टर्फ)"]
+    },
+    {
+      "label": "Average Annual Rainfall (in inches) (औसत वार्षिक वर्षा - इंच में)",
+      "value": "",
+      "key": "average_rainfall",
+      "type": "input"
+    },
+    {
+      "label": "Previous Year's Crop Yield (in bushels/acre) (पिछले साल की फसल उत्पादन - एकड़ प्रति कुप्पी)",
+      "value": "",
+      "key": "previous_yield",
+      "type": "input"
+    },
+    {
+      "label": "Pest Control Measures (कीट प्रबंधन के उपाय)",
+      "value": "",
+      "key": "pest_control",
+      "type": "textarea"
+    },
+    {
+      "label": "Fertilization Methods (उर्वरक विधियाँ)",
+      "value": "",
+      "key": "fertilization",
+      "type": "textarea"
+    },
+    {
+      "label": "Equipment and Machinery (उपकरण और मशीनरी)",
+      "value": [],
+      "key": "equipment",
+      "type": "checkbox",
+      "select_option": ["Tractor (ट्रैक्टर)", "Plow (हल)", "Seeder (बोना यंत्र)", "Harvester (कटाईयाँ)", "Irrigation System (सिंचाई प्रणाली)"]
+    }
+  ]
+,  
+  "livestock_form": [
+    {
+      "label": "Livestock Type (पशु प्रकार)",
+      "value": "",
+      "key": "livestock_type",
+      "type": "select",
+      "select_option": ["Cattle (पशुओं)", "Sheep (भेड़)", "Goats (बकरी)", "Pigs (सूअर)", "Horses (घोड़े)", "Poultry (पोल्ट्री)", "Other (अन्य)"]
+    },
+    {
+      "label": "Number of Livestock (पशुओं की संख्या)",
+      "value": "",
+      "key": "livestock_count",
+      "type": "input"
+    },
+    {
+      "label": "Livestock Health Status (पशु स्वास्थ्य स्थिति)",
+      "value": "",
+      "key": "health_status",
+      "type": "select",
+      "select_option": ["Healthy (स्वस्थ)", "Sick (बीमार)", "Vaccinated (टीका लगाया गया)", "Not Vaccinated (टीका नहीं लगाया गया)"]
+    },
+    {
+      "label": "Livestock Feed Type (पशु खाद प्रकार)",
+      "value": "",
+      "key": "feed_type",
+      "type": "select",
+      "select_option": ["Grass (घास)", "Hay (सूखी घास)", "Grain (अनाज)", "Silage (साइलेज)", "Concentrates (कंसेंट्रेट्स)", "Other (अन्य)"]
+    },
+    {
+      "label": "Livestock Shelter Type (पशु आवास प्रकार)",
+      "value": "",
+      "key": "shelter_type",
+      "type": "select",
+      "select_option": ["Barn (बाड़)", "Stable (गोदाम)", "Pasture (पशुधन)", "Shed (शेड)", "Open Field (खुली जगह)", "Other (अन्य)"]
+    },
+    {
+      "label": "Livestock Breeding Method (पशु प्रजनन विधि)",
+      "value": "",
+      "key": "breeding_method",
+      "type": "select",
+      "select_option": ["Natural (प्राकृतिक)", "Artificial Insemination (कृत्रिम प्रवसन)", "Selective Breeding (चयनात्मक प्रजनन)"]
+    },
+    {
+      "label": "Livestock Vaccination Schedule (पशु टीकाकरण अनुसूची)",
+      "value": "",
+      "key": "vaccination_schedule",
+      "type": "textarea"
+    },
+    {
+      "label": "Livestock Medical History (पशु चिकित्सा इतिहास)",
+      "value": "",
+      "key": "medical_history",
+      "type": "textarea"
+    },
+    {
+      "label": "Livestock Special Care Instructions (पशु विशेष देखभाल निर्देश)",
+      "value": "",
+      "key": "special_care_instructions",
+      "type": "textarea"
+    },
+    {
+      "label": "Livestock Additional Comments (पशु अतिरिक्त टिप्पणियाँ)",
+      "value": "",
+      "key": "additional_comments",
+      "type": "textarea"
+    }
+  ]
+,
+  "feedback_form_normal": [
         {
           "label": "Overall Satisfaction",
           "value": "",
@@ -268,251 +270,271 @@
           "key": "general_comments",
           "type": "textarea"
         }
-      ],
+  ],
       
-      "advisory_form": [
-  {
-      "label": "Date",
-      "value": "2023-09-27",
-      "key": "date",
-      "type": "date"
-  },
-  {
-      "label": "Location",
-      "value": "india",
-      "key": "location",
-      "type": "input"
-  },
-  {
-      "label": "Executive Name",
-      "value": "Imran Shaik",
-      "key": "executive_name",
-      "type": "input"
-  },
-  {
-      "label": "Number of Farmers Expected",
-      "value": "",
-      "key": "expected_farmers",
-      "type": "input"
-  },
-  {
-      "label": "Number of Farmers Attended",
-      "value": "",
-      "key": "attended_farmers",
-      "type": "input"
-  },
-  {
-      "label": "List of Farmers Expected",
-      "value": [],
-      "key": "farmers_expected",
-      "type": "checkbox",
-      "select_option": ["Farmer 1", "Farmer 2", "Farmer 3", "Farmer 4"]
-  },
-  {
-      "label": "List of Farmers Attended",
-      "value": [],
-      "key": "farmers_attended",
-      "type": "checkbox",
-      "select_option": ["Farmer 1", "Farmer 2", "Farmer 3", "Farmer 4"]
-  },
-  {
-      "label": "Number of Farmers Interested in Adoption",
-      "value": "",
-      "key": "interested_farmers",
-      "type": "input"
-  },
-  {
-      "label": "List of Farmers Interested",
-      "value": [],
-      "key": "farmers_interested",
-      "type": "checkbox",
-      "select_option": ["Farmer 1", "Farmer 2", "Farmer 3", "Farmer 4"]
-  },
-  {
-      "label": "Advisory Given",
-      "value": "",
-      "key": "advisory_given",
-      "type": "textarea"
-  },
-  {
-      "label": "Overall Satisfaction",
-      "value": "",
-      "key": "overall_satisfaction",
-      "type": "select",
-      "select_option": ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very Dissatisfied"]
-  },
-  {
-      "label": "Relevance of Advisory",
-      "value": "",
-      "key": "advisory_relevance",
-      "type": "select",
-      "select_option": ["Very Relevant", "Relevant", "Somewhat Relevant", "Not Relevant"]
-  },
-  {
-      "label": "Would You Recommend the Advisory?",
-      "value": "",
-      "key": "recommendation",
-      "type": "select",
-      "select_option": ["Definitely Yes", "Yes", "No"]
-  },
-  {
-      "label": "What specific aspects of the advisory were most helpful?",
-      "value": "",
-      "key": "helpful_aspects",
-      "type": "textarea"
-  },
-  {
-      "label": "What areas of the advisory can be improved?",
-      "value": "",
-      "key": "improvement_areas",
-      "type": "textarea"
-  },
-  {
-      "label": "General Comments",
-      "value": "",
-      "key": "general_comments",
-      "type": "textarea"
-  },
-  {
-      "label": "Recording",
-      "value": "",
-      "key": "record",
-      "type": "audio"
-  }
-  
-],
- "form_farmer_personal_data_form" : {
-  "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
-      "farmer_name": { "type": "string", "title": "Farmer Name", "default": "" },
-      "father_name": { "type": "string", "title": "Father's Name", "default": "" },
-      "grand_father_name": { "type": "string", "title": "Grand Father's Name", "default": "" },
-      "date_of_birth": { "type": "string", "title": "Date of Birth", "format": "date" },
-      "gender": {
-        "type": "string",
-        "title": "Gender",
-        "enum": ["Male", "Female"],
-        "default": ""
-      },
-      "region": {
-        "type": "string",
-        "title": "Select Region",
-        "enum": ["Bihar", "Karnataka", "Rajasthan"],
-        "default": ""
-      },
-      "marrital_status": {
-        "type": "string",
-        "title": "Marital Status",
-        "enum": ["Yes", "No"],
-        "default": ""
-      },
-      "crops": {
-        "type": "array",
-        "title": "Priority Crop",
-        "items": {
+  "advisory_form": [
+        {
+          "label": "Date (तारीख)",
+          "value": "2023-09-27",
+          "key": "date",
+          "type": "date"
+        },
+        {
+          "label": "Location (स्थान)",
+          "value": "India (भारत)",
+          "key": "location",
+          "type": "input"
+        },
+        {
+          "label": "Executive Name (कार्यकारी नाम)",
+          "value": "Imran Shaik (इमरान शेख)",
+          "key": "executive_name",
+          "type": "input"
+        },
+        {
+          "label": "Number of Farmers Expected (अपेक्षित किसानों की संख्या)",
+          "value": "",
+          "key": "expected_farmers",
+          "type": "input"
+        },
+        {
+          "label": "Number of Farmers Attended (उपस्थित किसानों की संख्या)",
+          "value": "",
+          "key": "attended_farmers",
+          "type": "input"
+        },
+        {
+          "label": "List of Farmers Expected (अपेक्षित किसानों की सूची)",
+          "value": [],
+          "key": "farmers_expected",
+          "type": "checkbox",
+          "select_option": ["Farmer 1 (किसान 1)", "Farmer 2 (किसान 2)", "Farmer 3 (किसान 3)", "Farmer 4 (किसान 4)"]
+        },
+        {
+          "label": "List of Farmers Attended (उपस्थित किसानों की सूची)",
+          "value": [],
+          "key": "farmers_attended",
+          "type": "checkbox",
+          "select_option": ["Farmer 1 (किसान 1)", "Farmer 2 (किसान 2)", "Farmer 3 (किसान 3)", "Farmer 4 (किसान 4)"]
+        },
+        {
+          "label": "Number of Farmers Interested in Adoption (गोद लेने के इच्छुक किसानों की संख्या)",
+          "value": "",
+          "key": "interested_farmers",
+          "type": "input"
+        },
+        {
+          "label": "List of Farmers Interested (इच्छुक किसानों की सूची)",
+          "value": [],
+          "key": "farmers_interested",
+          "type": "checkbox",
+          "select_option": ["Farmer 1 (किसान 1)", "Farmer 2 (किसान 2)", "Farmer 3 (किसान 3)", "Farmer 4 (किसान 4)"]
+        },
+        {
+          "label": "Advisory Given (सलाह दी गई)",
+          "value": "",
+          "key": "advisory_given",
+          "type": "textarea"
+        },
+        {
+          "label": "Overall Satisfaction (समग्र संतोष)",
+          "value": "",
+          "key": "overall_satisfaction",
+          "type": "select",
+          "select_option": ["Very Satisfied (बहुत ही संतुष्ट)", "Satisfied (संतुष्ट)", "Neutral (तटस्थ)", "Dissatisfied (असंतुष्ट)", "Very Dissatisfied (बहुत ही असंतुष्ट)"]
+        },
+        {
+          "label": "Relevance of Advisory (सलाह का संबंध)",
+          "value": "",
+          "key": "advisory_relevance",
+          "type": "select",
+          "select_option": ["Very Relevant (बहुत ही प्रासंगिक)", "Relevant (प्रासंगिक)", "Somewhat Relevant (कुछ हद तक प्रासंगिक)", "Not Relevant (अप्रासंगिक)"]
+        },
+        {
+          "label": "Would You Recommend the Advisory? (क्या आप सलाह सिफारिश करेंगे?)",
+          "value": "",
+          "key": "recommendation",
+          "type": "select",
+          "select_option": ["Definitely Yes (निश्चित हां)", "Yes (हां)", "No (नहीं)"]
+        },
+        {
+          "label": "What specific aspects of the advisory were most helpful? (सलाह के कौनसे विशिष्ट पहलु सबसे अधिक मददगार थे?)",
+          "value": "",
+          "key": "helpful_aspects",
+          "type": "textarea"
+        },
+        {
+          "label": "What areas of the advisory can be improved? (सलाह के कौनसे क्षेत्र सुधारे जा सकते हैं?)",
+          "value": "",
+          "key": "improvement_areas",
+          "type": "textarea"
+        },
+        {
+          "label": "General Comments (सामान्य टिप्पणियां)",
+          "value": "",
+          "key": "general_comments",
+          "type": "textarea"
+        },
+        {
+          "label": "Recording (रिकॉर्डिंग)",
+          "value": "",
+          "key": "record",
+          "type": "audio"
+        }
+  ]
+,      
+  "form_farmer_personal_data_form" : {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "farmer_name": { "type": "string", "title": "Farmer Name", "default": "" },
+        "father_name": { "type": "string", "title": "Father's Name", "default": "" },
+        "grand_father_name": { "type": "string", "title": "Grand Father's Name", "default": "" },
+        "date_of_birth": { "type": "string", "title": "Date of Birth", "format": "date" },
+        "gender": {
           "type": "string",
-          "enum": [
-            "Barley",
-            "Wheat",
-            "Sunflower",
-            "Corn",
-            "Rice",
-            "Soybean",
-            "Oats",
-            "Potato",
-            "Cotton",
-            "Peanuts",
-            "Sorghum",
-            "Canola",
-            "Flax",
-            "Millet",
-            "Rye",
-            "Tobacco",
-            "Tea",
-            "Coffee",
-            "Alfalfa",
-            "Cabbage",
-            "Carrots",
-            "Broccoli",
-            "Kale",
-            "Cauliflower",
-            "Spinach",
-            "Lettuce",
-            "Cucumber",
-            "Tomato",
-            "Pepper",
-            "Eggplant"
-          ],
-          "default": []
+          "title": "Gender",
+          "enum": ["Male", "Female"],
+          "default": ""
+        },
+        "region": {
+          "type": "string",
+          "title": "Select Region",
+          "enum": ["Bihar", "Karnataka", "Rajasthan"],
+          "default": ""
+        },
+        "marrital_status": {
+          "type": "string",
+          "title": "Marital Status",
+          "enum": ["Yes", "No"],
+          "default": ""
+        },
+        "crops": {
+          "type": "array",
+          "title": "Priority Crop",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Barley",
+              "Wheat",
+              "Sunflower",
+              "Corn",
+              "Rice",
+              "Soybean",
+              "Oats",
+              "Potato",
+              "Cotton",
+              "Peanuts",
+              "Sorghum",
+              "Canola",
+              "Flax",
+              "Millet",
+              "Rye",
+              "Tobacco",
+              "Tea",
+              "Coffee",
+              "Alfalfa",
+              "Cabbage",
+              "Carrots",
+              "Broccoli",
+              "Kale",
+              "Cauliflower",
+              "Spinach",
+              "Lettuce",
+              "Cucumber",
+              "Tomato",
+              "Pepper",
+              "Eggplant"
+            ],
+            "default": []
+          }
         }
       }
     }
-  }
-},
-"assessment" : [
-  {
-    "label": "What are some of the challenges faced by women in agriculture as highlighted in the discussion? | चर्चा में कृषि क्षेत्र में महिलाओं के सामने आने वाली कुछ चुनौतियाँ क्या हैं?",
-    "type": "input",
-    "value": "",
-    "key": "What_are_some_of_the_challenges_faced_by_women_in_agriculture_as_highlighted_in_the_discussion?"
   },
-  {
-    "label": "In the discussion, why is it mentioned that women often do not receive equal wages for the same work as men? | चर्चा में यह क्यों बताया गया कि महिलाओं को अक्सर पुरुषों के समान काम के लिए समान वेतन नहीं मिलता है?",
-    "type": "input",
-    "value": "",
-    "key": "In_the_discussion_why_is_it_mentioned_that_women_often_do_not_receive_equal_wages_for_the_same_work_as_men?"
-  },
-  {
-    "label": "According to the discussion, what are some reasons why women in agriculture lack access to digital tools and information? | चर्चा के अनुसार, ऐसे कौन से कारण हैं जिनकी वजह से कृषि क्षेत्र में महिलाओं की डिजिटल उपकरणों और सूचनाओं तक पहुंच नहीं है?",
-    "type": "input",
-    "value": "",
-    "key": "According_to_the_discussion_what_are_some_reasons_why_women_in_agriculture_lack_access_to_digital_tools_and_information?"
-  },
-  {
-    "label": "What roles and responsibilities of women in farming are mentioned in the conversation? | बातचीत में खेती में महिलाओं की किन भूमिकाओं और जिम्मेदारियों का उल्लेख किया गया है?",
-    "type": "input",
-    "value": "",
-    "key": "What_roles_and_responsibilities_of_women_in_farming_are_mentioned_in_the_conversation?"
-  },
-  {
-    "label": "How does the discussion emphasize the importance of recognizing women's contributions to agriculture? | चर्चा कृषि में महिलाओं के योगदान को पहचानने के महत्व पर कैसे जोर देती है?",
-    "type": "input",
-    "value": "",
-    "key": "How_does_the_discussion_emphasize_the_importance_of_recognizing_women's_contributions_to_agriculture?"
-  },
-  {
-    "label": "What are some key points made about women's participation in decision-making processes related to agriculture? | कृषि से संबंधित निर्णय लेने की प्रक्रियाओं में महिलाओं की भागीदारी के बारे में कुछ प्रमुख बिंदु क्या हैं?",
-    "type": "input",
-    "value": "",
-    "key": "What_are_some_key_points_made_about_women's_participation_in_decision-making_processes_related_to_agriculture?"
-  },
-  {
-    "label": "What do the participants suggest as potential solutions to improve the status of women in agriculture? | कृषि में महिलाओं की स्थिति में सुधार के लिए प्रतिभागी संभावित समाधान के रूप में क्या सुझाव देते हैं?",
-    "type": "input",
-    "value": "",
-    "key": "What_do_the_participants_suggest_as_potential_solutions_to_improve_the_status_of_women_in_agriculture?"
-  },
-  {
-    "label": "How do the participants envision the future role of women in agriculture as discussed in the transcript? | जैसा कि प्रतिलेख में चर्चा की गई है, प्रतिभागी कृषि में महिलाओं की भविष्य की भूमिका की कल्पना कैसे करते हैं?",
-    "type": "input",
-    "value": "",
-    "key": "How_do_the_participants_envision_the_future_role_of_women_in_agriculture_as_discussed_in_the_transcript?"
-  },
-  {
-    "label": "According to the discussion, what is the significance of society becoming aware of the equal contributions of men and women in agriculture? | चर्चा के अनुसार, कृषि में पुरुषों और महिलाओं के समान योगदान के प्रति समाज के जागरूक होने का क्या महत्व है?",
-    "type": "input",
-    "value": "",
-    "key": "According_to_the_discussion_what_is_the_significance_of_society_becoming_aware_of_the_equal_contributions_of_men_and_women_in_agriculture?"
-  },
-  {
-    "label": "In the context of the conversation, what is meant by \"the true identity of a woman\"? | चर्चा के संदर्भ में, \"एक महिला की असली पहचान\" का क्या मतलब है?",
-    "type": "input",
-    "value": "",
-    "key": "In_the_context_of_the_conversation_what_is_meant_by_the_true_identity_of_a_woman?"
-  }
-]
+  "assessment" : [
+    {
+      "label": "What are some of the challenges faced by women in agriculture as highlighted in the discussion? | चर्चा में कृषि क्षेत्र में महिलाओं के सामने आने वाली कुछ चुनौतियाँ क्या हैं?",
+      "type": "input",
+      "value": "",
+      "key": "What_are_some_of_the_challenges_faced_by_women_in_agriculture_as_highlighted_in_the_discussion?"
+    },
+    {
+      "label": "In the discussion, why is it mentioned that women often do not receive equal wages for the same work as men? | चर्चा में यह क्यों बताया गया कि महिलाओं को अक्सर पुरुषों के समान काम के लिए समान वेतन नहीं मिलता है?",
+      "type": "input",
+      "value": "",
+      "key": "In_the_discussion_why_is_it_mentioned_that_women_often_do_not_receive_equal_wages_for_the_same_work_as_men?"
+    },
+    {
+      "label": "According to the discussion, what are some reasons why women in agriculture lack access to digital tools and information? | चर्चा के अनुसार, ऐसे कौन से कारण हैं जिनकी वजह से कृषि क्षेत्र में महिलाओं की डिजिटल उपकरणों और सूचनाओं तक पहुंच नहीं है?",
+      "type": "input",
+      "value": "",
+      "key": "According_to_the_discussion_what_are_some_reasons_why_women_in_agriculture_lack_access_to_digital_tools_and_information?"
+    },
+    {
+      "label": "What roles and responsibilities of women in farming are mentioned in the conversation? | बातचीत में खेती में महिलाओं की किन भूमिकाओं और जिम्मेदारियों का उल्लेख किया गया है?",
+      "type": "input",
+      "value": "",
+      "key": "What_roles_and_responsibilities_of_women_in_farming_are_mentioned_in_the_conversation?"
+    },
+    {
+      "label": "How does the discussion emphasize the importance of recognizing women's contributions to agriculture? | चर्चा कृषि में महिलाओं के योगदान को पहचानने के महत्व पर कैसे जोर देती है?",
+      "type": "input",
+      "value": "",
+      "key": "How_does_the_discussion_emphasize_the_importance_of_recognizing_women's_contributions_to_agriculture?"
+    },
+    {
+      "label": "What are some key points made about women's participation in decision-making processes related to agriculture? | कृषि से संबंधित निर्णय लेने की प्रक्रियाओं में महिलाओं की भागीदारी के बारे में कुछ प्रमुख बिंदु क्या हैं?",
+      "type": "input",
+      "value": "",
+      "key": "What_are_some_key_points_made_about_women's_participation_in_decision-making_processes_related_to_agriculture?"
+    },
+    {
+      "label": "What do the participants suggest as potential solutions to improve the status of women in agriculture? | कृषि में महिलाओं की स्थिति में सुधार के लिए प्रतिभागी संभावित समाधान के रूप में क्या सुझाव देते हैं?",
+      "type": "input",
+      "value": "",
+      "key": "What_do_the_participants_suggest_as_potential_solutions_to_improve_the_status_of_women_in_agriculture?"
+    },
+    {
+      "label": "How do the participants envision the future role of women in agriculture as discussed in the transcript? | जैसा कि प्रतिलेख में चर्चा की गई है, प्रतिभागी कृषि में महिलाओं की भविष्य की भूमिका की कल्पना कैसे करते हैं?",
+      "type": "input",
+      "value": "",
+      "key": "How_do_the_participants_envision_the_future_role_of_women_in_agriculture_as_discussed_in_the_transcript?"
+    },
+    {
+      "label": "According to the discussion, what is the significance of society becoming aware of the equal contributions of men and women in agriculture? | चर्चा के अनुसार, कृषि में पुरुषों और महिलाओं के समान योगदान के प्रति समाज के जागरूक होने का क्या महत्व है?",
+      "type": "input",
+      "value": "",
+      "key": "According_to_the_discussion_what_is_the_significance_of_society_becoming_aware_of_the_equal_contributions_of_men_and_women_in_agriculture?"
+    },
+    {
+      "label": "In the context of the conversation, what is meant by \"the true identity of a woman\"? | चर्चा के संदर्भ में, \"एक महिला की असली पहचान\" का क्या मतलब है?",
+      "type": "input",
+      "value": "",
+      "key": "In_the_context_of_the_conversation_what_is_meant_by_the_true_identity_of_a_woman?"
+    }
+  ],
+  "farm_level_demand" : [
+    {
+      "label": "What are the key farm-level demands identified by extension workers? | किसान क्षेत्र की मांगों की पहचान करने वाले क्षेत्र सहायकों द्वारा पहचानी गई मुख्य कृषि क्षेत्र की मांगें क्या हैं?",
+      "type": "input",
+      "value": "",
+      "key": "What_are_the_key_farm_level_demands_identified_by_extension_workers?"
+    },
+    {
+      "label": "What challenges do farmers face in meeting these demands? | इन मांगों को पूरा करने में किसानों का सामना किस प्रकार की चुनौतियों से होता है?",
+      "type": "input",
+      "value": "",
+      "key": "What_challenges_do_farmers_face_in_meeting_these_demands?"
+    },
+    {
+      "label": "What strategies can extension workers use to address these farm-level demands effectively? | इन कृषि क्षेत्र की मांगों को प्रभावी तरीके से कैसे पूरा करने के लिए क्षेत्र सहायक क्या रणनीतियाँ अपना सकते हैं?",
+      "type": "input",
+      "value": "",
+      "key": "What_strategies_can_extension_workers_use_to_address_these_farm_level_demands_effectively?"
+    }
+  ]
 
 
       

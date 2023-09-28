@@ -14,14 +14,14 @@ const FormWithTabs = ({ data, tele }) => {
 
   const [tabValueSelected, setTabValueSelected] = useState("1");
   const buttonsSecond = [
-    tabValueSelected == "1"
-      ? { label: "", value: "", onClick: () => handleNextOrSubmit(-1) }
-      : {
-          label: "Back",
-          value: "back",
-          onClick: () => handleNextOrSubmit(-1),
-        },
-    { label: "Clear All", value: "clear", onClick: () => handleClearAll(0) },
+    // tabValueSelected == "1"
+    //   ? { label: "", value: "", onClick: () => handleNextOrSubmit(-1) }
+    //   : {
+    //       label: "Back",
+    //       value: "back",
+    //       onClick: () => handleNextOrSubmit(-1),
+    //     },
+    // { label: "Clear All", value: "clear", onClick: () => handleClearAll(0) },
     {
       label: tabValueSelected == data.length ? "Submit" : "Next",
       value: "next",
