@@ -67,10 +67,13 @@ const FormWithTabs = ({ data, tele }) => {
     console.log(values);
     if (tabValueSelected == data.length) {
       axios
-        .post(`https://api.telegram.org/bot${bot}/sendMessage`, {
-          chat_id: chatid,
-          text: "Form submitted successfully!",
-        })
+        .post(
+          `https://api.telegram.org/bot${queryParams.get("bot")}/sendMessage`,
+          {
+            chat_id: queryParams.get("chatid"),
+            text: "Form submitted successfully!",
+          }
+        )
         .then(() => {
           console.log(tele.close());
         })
