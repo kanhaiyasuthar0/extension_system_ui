@@ -80,7 +80,6 @@ const FormWithTabs = ({ data, tele }) => {
         .catch(() => {
           alert("Some error occured!");
         });
-      tele.close();
     } else {
       setTabValueSelected((prevValue) => (parseInt(prevValue) + 1).toString());
     }
