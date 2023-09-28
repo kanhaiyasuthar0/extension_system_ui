@@ -4,12 +4,14 @@ import { useMyContext } from "../../contexts/ExtensionSysytemContext";
 import ContentRenderer from "./ContentRenderer";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const FormWithTabs = ({ data, tele }) => {
   //the values are stored in the context
   const { allValues, setAllValues, setAudioBlob, setAudio, audio } =
     useMyContext();
-  const { bot, chatid } = useParams();
+  const [queryParams, setSearchParams] = useSearchParams();
+
   const [tabValueSelected, setTabValueSelected] = useState("1");
   const buttonsSecond = [
     tabValueSelected == "1"
@@ -42,10 +44,13 @@ const FormWithTabs = ({ data, tele }) => {
     if (tabValueSelected == data.length) {
       console.log(chatid, "chatid", bot, "bot");
       axios
-        .post(`https://api.telegram.org/bot${bot}/sendMessage`, {
-          chat_id: chatid,
-          text: "Form submitted successfully!",
-        })
+        .post(
+          `https://api.telegram.org/bot${queryParams.get("bot")}/sendMessage`,
+          {
+            chat_id: queryParams.get("chatid"),
+            text: "Form submitted successfully!",
+          }
+        )
         .then(() => {
           console.log(tele.close());
         })
