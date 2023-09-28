@@ -8,6 +8,11 @@ const FarmLevelDemand = (props) => {
       label: "FARM LEVEL DEMAND",
       data: database.farm_level_demand,
     },
+    {
+      key: "2",
+      label: "FEEDBACK",
+      data: database.feedback_form_normal,
+    },
   ];
 
   return (
