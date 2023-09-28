@@ -9,6 +9,7 @@ import { Route } from "react-router-dom";
 import Feedback from "./views/Feedback";
 import { useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
+import Assessment from "./views/Assessment";
 // 3️⃣ Router singleton created
 
 function App() {
@@ -79,6 +80,11 @@ function App() {
           <Route index element={<AdvisoryDissemination tele={tele} />}></Route>
           <Route path=":type" element={<Feedback />}></Route>
         </Route>
+        <Route path="/assessment">
+          <Route index element={<Assessment tele={tele} />}></Route>
+          <Route path=":type" element={<Feedback />}></Route>
+        </Route>
+
         <Route path="/" element={<>Welcome!</>}></Route>
         <Route path="*" element={<>Page not found</>}></Route>
       </Routes>
