@@ -48,7 +48,18 @@ const FormWithTabs = ({ data, tele }) => {
   const handleSubmit = (values) => {
     console.log(values);
     if (tabValueSelected == data.length) {
-      tele.sendData(JSON.stringify("Form Submitted Successfully!"));
+      tele.WebApp.answerWebAppQuery(WebApp.initDataUnsafe?.query_id, "done");
+      //     axios
+      //   .post(`https://api.telegram.org/bot${BOT_TOKEN}/answerWebAppQuery`, {
+      //     chat_id: props.tele.initDataUnsafe.user.id || "1465932798",
+      //     text: "Thanks for giving feedback!",
+      //   })
+      //   .then(() => {
+      //     console.log(props.tele.close());
+      //   })
+      //   .catch(() => {
+      //     alert("Some error occured!");
+      //   });
       tele.close();
     } else {
       setTabValueSelected((prevValue) => (parseInt(prevValue) + 1).toString());
