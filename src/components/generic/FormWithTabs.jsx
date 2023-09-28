@@ -61,26 +61,13 @@ const FormWithTabs = ({ data, tele }) => {
   const handleSubmit = (values) => {
     console.log(values);
     if (tabValueSelected == data.length) {
-      //   tele.sendData(JSON.stringify("hello"));
-
-      let BOT_TOKEN = import.meta.env.VITE_REACT_APP_BOT_TOKEN;
-      console.log(
-        "🚀 ~ file: FormWithTabs.jsx:54 ~ handleSubmit ~ BOT_TOKEN:",
-        BOT_TOKEN
-      );
-
       axios
-        .post(`https://api.telegram.org/bot${BOT_TOKEN}/answerWebAppQuery`, {
-          web_app_query_id: tele.initDataUnsafe.query_ids,
-          result: {
-            description: "hello",
-            type: "article",
-            input_message_content: {},
-            id: "122312232324",
-          },
+        .post(`https://api.telegram.org/bot${bot}/sendMessage`, {
+          chat_id: chatid,
+          text: "Form submitted successfully!",
         })
         .then(() => {
-          tele.close();
+          console.log(tele.close());
         })
         .catch(() => {
           alert("Some error occured!");
