@@ -48,7 +48,7 @@ const FormWithTabs = ({ data, tele }) => {
   const handleSubmit = (values) => {
     console.log(values);
     if (tabValueSelected == data.length) {
-      tele.WebApp.answerWebAppQuery(WebApp.initDataUnsafe?.query_id, "done");
+      tele.answerWebAppQuery(tele.initDataUnsafe?.user?.query_id, "done");
       //     axios
       //   .post(`https://api.telegram.org/bot${BOT_TOKEN}/answerWebAppQuery`, {
       //     chat_id: props.tele.initDataUnsafe.user.id || "1465932798",

@@ -66,6 +66,10 @@ function App() {
           <Route index element={<FarmerProfile tele={tele} />}></Route>
           <Route path=":type" element={<Feedback />}></Route>
         </Route>
+        <Route path="/farm-level-demand">
+          <Route index element={<FarmerProfile tele={tele} />}></Route>
+          <Route path=":type" element={<Feedback />}></Route>
+        </Route>
 
         <Route path="/adoption">
           <Route index element={<Adoption tele={tele} />}></Route>
