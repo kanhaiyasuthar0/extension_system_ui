@@ -2,11 +2,14 @@ import { Tabs } from "antd";
 import { useState } from "react";
 import { useMyContext } from "../../contexts/ExtensionSysytemContext";
 import ContentRenderer from "./ContentRenderer";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const FormWithTabs = ({ data, tele }) => {
   //the values are stored in the context
   const { allValues, setAllValues, setAudioBlob, setAudio, audio } =
     useMyContext();
+  const { bot, chatid } = useParams();
   const [tabValueSelected, setTabValueSelected] = useState("1");
   const buttonsSecond = [
     tabValueSelected == "1"
@@ -37,7 +40,17 @@ const FormWithTabs = ({ data, tele }) => {
 
   const handleNextOrSubmit = (first) => {
     if (tabValueSelected == data.length) {
-      tele.sendData(JSON.stringify("Form Submitted Successfully!"));
+      axios
+        .post(`https://api.telegram.org/bot${bot}/sendMessage`, {
+          chat_id: chatid,
+          text: "Form submitted successfully!",
+        })
+        .then(() => {
+          console.log(tele.close());
+        })
+        .catch(() => {
+          alert("Some error occured!");
+        });
       tele.close();
     } else {
       setTabValueSelected((prevValue) =>
@@ -48,19 +61,30 @@ const FormWithTabs = ({ data, tele }) => {
   const handleSubmit = (values) => {
     console.log(values);
     if (tabValueSelected == data.length) {
-      tele.sendData(JSON.stringify("hello"));
-      //   tele.answerWebAppQuery(tele.initDataUnsafe?.user?.query_id, "done");
-      //     axios
-      //   .post(`https://api.telegram.org/bot${BOT_TOKEN}/answerWebAppQuery`, {
-      //     chat_id: props.tele.initDataUnsafe.user.id || "1465932798",
-      //     text: "Thanks for giving feedback!",
-      //   })
-      //   .then(() => {
-      //     console.log(props.tele.close());
-      //   })
-      //   .catch(() => {
-      //     alert("Some error occured!");
-      //   });
+      //   tele.sendData(JSON.stringify("hello"));
+
+      let BOT_TOKEN = import.meta.env.VITE_REACT_APP_BOT_TOKEN;
+      console.log(
+        "🚀 ~ file: FormWithTabs.jsx:54 ~ handleSubmit ~ BOT_TOKEN:",
+        BOT_TOKEN
+      );
+
+      axios
+        .post(`https://api.telegram.org/bot${BOT_TOKEN}/answerWebAppQuery`, {
+          web_app_query_id: tele.initDataUnsafe.query_ids,
+          result: {
+            description: "hello",
+            type: "article",
+            input_message_content: {},
+            id: "122312232324",
+          },
+        })
+        .then(() => {
+          tele.close();
+        })
+        .catch(() => {
+          alert("Some error occured!");
+        });
       tele.close();
     } else {
       setTabValueSelected((prevValue) => (parseInt(prevValue) + 1).toString());
