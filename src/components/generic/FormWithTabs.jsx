@@ -77,13 +77,25 @@ const FormWithTabs = ({ data, tele }) => {
   };
   const handleSubmit = (values) => {
     console.log(values);
+    const pathname = window.location.pathname;
+
+    let message =
+      "फ़ॉर्म सफलतापूर्वक प्रस्तुत किया गया | Form submitted successfully!";
+
+    // Check if the pathname contains "/assessment"
+    if (pathname.includes("/assessment")) {
+      // Perform your task or logic here
+      message =
+        "मूल्यांकन सफलतापूर्वक प्रस्तुत किया गया | (Assessment submitted successfully)";
+      // You can add your logic here
+    }
     if (tabValueSelected == data.length) {
       axios
         .post(
           `https://api.telegram.org/bot${queryParams.get("bot")}/sendMessage`,
           {
             chat_id: queryParams.get("chatid"),
-            text: "Form submitted successfully!",
+            text: message,
           }
         )
         .then(() => {
