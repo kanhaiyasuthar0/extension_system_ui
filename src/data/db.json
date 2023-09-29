@@ -460,7 +460,36 @@
     "value": "",
     "key": "other_feedback"
   }
+],
+"farm_level_demand_feedback_form": [
+  {
+    "label": "How would you rate your overall experience collecting farm-level demand data? (आपके कृषि क्षेत्र की मांग डेटा जमा करने के अनुभव का आपका दर्जा क्या है?)",
+    "type": "select",
+    "select_option": ["Excellent (बहुत अच्छा)", "Good (अच्छा)", "Fair (उचित)", "Poor (खराब)"],
+    "value": "",
+    "key": "experience_rating"
+  },
+  {
+    "label": "Were there any challenges you encountered during the data collection process? (क्या डेटा संग्रहण प्रक्रिया के दौरान आपको कोई चुनौतियाँ आई?)",
+    "type": "textarea",
+    "value": "",
+    "key": "challenges_encountered"
+  },
+  {
+    "label": "Did you find the data collection tools easy to use and efficient? (क्या आपको डेटा संग्रहण उपकरणों का उपयोग करने में और कुशलक्षेमकर्षण करने में कोई समस्या आई?)",
+    "type": "select",
+    "select_option": ["Yes (हां)", "No (नहीं)"],
+    "value": "",
+    "key": "tools_efficiency"
+  },
+  {
+    "label": "Were there any technical issues with the tools that need attention? (क्या उपकरणों में कोई तकनीकी समस्याएँ थीं जिन्हें ध्यान में रखना चाहिए?)",
+    "type": "textarea",
+    "value": "",
+    "key": "technical_issues"
+  }
 ]
+
 
 
 
