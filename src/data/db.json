@@ -432,6 +432,35 @@
       "key": "input_distribution"
     }
 ]
+,"advisory_feedback_form": [
+  {
+    "label": "Is the advisory relevant? (क्या सलाह प्रासंगिक है?)",
+    "type": "select",
+    "select_option": ["Yes (हां)", "No (नहीं)"],
+    "value": "",
+    "key": "advisory_relevance"
+  },
+  {
+    "label": "Is the advisory easy to understand? (क्या सलाह समझने में आसान है?)",
+    "type": "select",
+    "select_option": ["Yes (हां)", "No (नहीं)"],
+    "value": "",
+    "key": "advisory_understandability"
+  },
+  {
+    "label": "Is the advisory easy to implement? (क्या सलाह को लागू करना आसान है?)",
+    "type": "select",
+    "select_option": ["Yes (हां)", "No (नहीं)"],
+    "value": "",
+    "key": "advisory_feasibility"
+  },
+  {
+    "label": "Any other feedback (कोई और प्रतिक्रिया)",
+    "type": "textarea",
+    "value": "",
+    "key": "other_feedback"
+  }
+]
 
 
 

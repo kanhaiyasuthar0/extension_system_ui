@@ -11,7 +11,7 @@ const AdvisoryDissemination = ({ tele }) => {
     {
       key: "2",
       label: "FEEDBACK",
-      data: database.feedback_form_normal,
+      data: database.advisory_feedback_form,
     },
   ];
   return (
