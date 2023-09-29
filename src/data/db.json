@@ -476,14 +476,7 @@
     "key": "challenges_encountered"
   },
   {
-    "label": "Did you find the data collection tools easy to use and efficient? (क्या आपको डेटा संग्रहण उपकरणों का उपयोग करने में और कुशलक्षेमकर्षण करने में कोई समस्या आई?)",
-    "type": "select",
-    "select_option": ["Yes (हां)", "No (नहीं)"],
-    "value": "",
-    "key": "tools_efficiency"
-  },
-  {
-    "label": "Were there any technical issues with the tools that need attention? (क्या उपकरणों में कोई तकनीकी समस्याएँ थीं जिन्हें ध्यान में रखना चाहिए?)",
+    "label": "Were there any technical issues with the app? (क्या ऐप में कोई तकनीकी समस्याएँ थीं?)",
     "type": "textarea",
     "value": "",
     "key": "technical_issues"
