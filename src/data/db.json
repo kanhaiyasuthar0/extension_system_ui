@@ -358,66 +358,77 @@
   },
   "assessment" : [
     {
-      "label": "What are some of the challenges faced by women in agriculture as highlighted in the discussion? | चर्चा में कृषि क्षेत्र में महिलाओं के सामने आने वाली कुछ चुनौतियाँ क्या हैं?",
-      "type": "input",
-      "value": "",
-      "key": "What_are_some_of_the_challenges_faced_by_women_in_agriculture_as_highlighted_in_the_discussion?"
+        "label": "What are some of the challenges faced by women in agriculture as highlighted in the discussion? | चर्चा में कृषि क्षेत्र में महिलाओं के सामने आने वाली कुछ चुनौतियाँ क्या हैं?",
+        "type": "checkbox",
+        "value": [],
+        "key": "What_are_some_of_the_challenges_faced_by_women_in_agriculture_as_highlighted_in_the_discussion?",
+        "select_option": ["A", "B", "C", "D"]
     },
     {
-      "label": "In the discussion, why is it mentioned that women often do not receive equal wages for the same work as men? | चर्चा में यह क्यों बताया गया कि महिलाओं को अक्सर पुरुषों के समान काम के लिए समान वेतन नहीं मिलता है?",
-      "type": "input",
-      "value": "",
-      "key": "In_the_discussion_why_is_it_mentioned_that_women_often_do_not_receive_equal_wages_for_the_same_work_as_men?"
+        "label": "In the discussion, why is it mentioned that women often do not receive equal wages for the same work as men? | चर्चा में यह क्यों बताया गया कि महिलाओं को अक्सर पुरुषों के समान काम के लिए समान वेतन नहीं मिलता है?",
+        "type": "checkbox",
+        "value": [],
+        "key": "In_the_discussion_why_is_it_mentioned_that_women_often_do_not_receive_equal_wages_for_the_same_work_as_men?",
+        "select_option": ["A", "B", "C", "D"]
     },
     {
-      "label": "According to the discussion, what are some reasons why women in agriculture lack access to digital tools and information? | चर्चा के अनुसार, ऐसे कौन से कारण हैं जिनकी वजह से कृषि क्षेत्र में महिलाओं की डिजिटल उपकरणों और सूचनाओं तक पहुंच नहीं है?",
-      "type": "input",
-      "value": "",
-      "key": "According_to_the_discussion_what_are_some_reasons_why_women_in_agriculture_lack_access_to_digital_tools_and_information?"
+        "label": "According to the discussion, what are some reasons why women in agriculture lack access to digital tools and information? | चर्चा के अनुसार, ऐसे कौन से कारण हैं जिनकी वजह से कृषि क्षेत्र में महिलाओं की डिजिटल उपकरणों और सूचनाओं तक पहुंच नहीं है?",
+        "type": "checkbox",
+        "value": [],
+        "key": "According_to_the_discussion_what_are_some_reasons_why_women_in_agriculture_lack_access_to_digital_tools_and_information?",
+        "select_option": ["A", "B", "C", "D"]
     },
     {
-      "label": "What roles and responsibilities of women in farming are mentioned in the conversation? | बातचीत में खेती में महिलाओं की किन भूमिकाओं और जिम्मेदारियों का उल्लेख किया गया है?",
-      "type": "input",
-      "value": "",
-      "key": "What_roles_and_responsibilities_of_women_in_farming_are_mentioned_in_the_conversation?"
+        "label": "What roles and responsibilities of women in farming are mentioned in the conversation? | बातचीत में खेती में महिलाओं की किन भूमिकाओं और जिम्मेदारियों का उल्लेख किया गया है?",
+        "type": "checkbox",
+        "value": [],
+        "key": "What_roles_and_responsibilities_of_women_in_farming_are_mentioned_in_the_conversation?",
+        "select_option": ["A", "B", "C", "D"]
     },
     {
-      "label": "How does the discussion emphasize the importance of recognizing women's contributions to agriculture? | चर्चा कृषि में महिलाओं के योगदान को पहचानने के महत्व पर कैसे जोर देती है?",
-      "type": "input",
-      "value": "",
-      "key": "How_does_the_discussion_emphasize_the_importance_of_recognizing_women's_contributions_to_agriculture?"
+        "label": "How does the discussion emphasize the importance of recognizing women's contributions to agriculture? | चर्चा कृषि में महिलाओं के योगदान को पहचानने के महत्व पर कैसे जोर देती है?",
+        "type": "checkbox",
+        "value": [],
+        "key": "How_does_the_discussion_emphasize_the_importance_of_recognizing_women's_contributions_to_agriculture?",
+        "select_option": ["A", "B", "C", "D"]
     },
     {
-      "label": "What are some key points made about women's participation in decision-making processes related to agriculture? | कृषि से संबंधित निर्णय लेने की प्रक्रियाओं में महिलाओं की भागीदारी के बारे में कुछ प्रमुख बिंदु क्या हैं?",
-      "type": "input",
-      "value": "",
-      "key": "What_are_some_key_points_made_about_women's_participation_in_decision-making_processes_related_to_agriculture?"
+        "label": "What are some key points made about women's participation in decision-making processes related to agriculture? | कृषि से संबंधित निर्णय लेने की प्रक्रियाओं में महिलाओं की भागीदारी के बारे में कुछ प्रमुख बिंदु क्या हैं?",
+        "type": "checkbox",
+        "value": [],
+        "key": "What_are_some_key_points_made_about_women's_participation_in_decision-making_processes_related_to_agriculture?",
+        "select_option": ["A", "B", "C", "D"]
     },
     {
-      "label": "What do the participants suggest as potential solutions to improve the status of women in agriculture? | कृषि में महिलाओं की स्थिति में सुधार के लिए प्रतिभागी संभावित समाधान के रूप में क्या सुझाव देते हैं?",
-      "type": "input",
-      "value": "",
-      "key": "What_do_the_participants_suggest_as_potential_solutions_to_improve_the_status_of_women_in_agriculture?"
+        "label": "What do the participants suggest as potential solutions to improve the status of women in agriculture? | कृषि में महिलाओं की स्थिति में सुधार के लिए प्रतिभागी संभावित समाधान के रूप में क्या सुझाव देते हैं?",
+        "type": "checkbox",
+        "value": [],
+        "key": "What_do_the_participants_suggest_as_potential_solutions_to_improve_the_status_of_women_in_agriculture?",
+        "select_option": ["A", "B", "C", "D"]
     },
     {
-      "label": "How do the participants envision the future role of women in agriculture as discussed in the transcript? | जैसा कि प्रतिलेख में चर्चा की गई है, प्रतिभागी कृषि में महिलाओं की भविष्य की भूमिका की कल्पना कैसे करते हैं?",
-      "type": "input",
-      "value": "",
-      "key": "How_do_the_participants_envision_the_future_role_of_women_in_agriculture_as_discussed_in_the_transcript?"
+        "label": "How do the participants envision the future role of women in agriculture as discussed in the transcript? | जैसा कि प्रतिलेख में चर्चा की गई है, प्रतिभागी कृषि में महिलाओं की भविष्य की भूमिका की कल्पना कैसे करते हैं?",
+        "type": "checkbox",
+        "value": [],
+        "key": "How_do_the_participants_envision_the_future_role_of_women_in_agriculture_as_discussed_in_the_transcript?",
+        "select_option": ["A", "B", "C", "D"]
     },
     {
-      "label": "According to the discussion, what is the significance of society becoming aware of the equal contributions of men and women in agriculture? | चर्चा के अनुसार, कृषि में पुरुषों और महिलाओं के समान योगदान के प्रति समाज के जागरूक होने का क्या महत्व है?",
-      "type": "input",
-      "value": "",
-      "key": "According_to_the_discussion_what_is_the_significance_of_society_becoming_aware_of_the_equal_contributions_of_men_and_women_in_agriculture?"
+        "label": "According to the discussion, what is the significance of society becoming aware of the equal contributions of men and women in agriculture? | चर्चा के अनुसार, कृषि में पुरुषों और महिलाओं के समान योगदान के प्रति समाज के जागरूक होने का क्या महत्व है?",
+        "type": "checkbox",
+        "value": [],
+        "key": "According_to_the_discussion_what_is_the_significance_of_society_becoming_aware_of_the_equal_contributions_of_men_and_women_in_agriculture?",
+        "select_option": ["A", "B", "C", "D"]
     },
     {
-      "label": "In the context of the conversation, what is meant by \"the true identity of a woman\"? | चर्चा के संदर्भ में, \"एक महिला की असली पहचान\" का क्या मतलब है?",
-      "type": "input",
-      "value": "",
-      "key": "In_the_context_of_the_conversation_what_is_meant_by_the_true_identity_of_a_woman?"
+        "label": "In the context of the conversation, what is meant by \"the true identity of a woman\"? | चर्चा के संदर्भ में, \"एक महिला की असली पहचान\" का क्या मतलब है?",
+        "type": "checkbox",
+        "value": [],
+        "key": "In_the_context_of_the_conversation_what_is_meant_by_the_true_identity_of_a_woman?",
+        "select_option": ["A", "B", "C", "D"]
     }
-  ],
+]
+,
   "farm_level_demand" : [
     {
       "label": "Enter the input demand (कृपया इनपुट मांग दर्ज करें)",

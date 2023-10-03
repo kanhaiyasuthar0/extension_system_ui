@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 
 const FormWithTabs = ({ data, tele }) => {
+  console.log("🚀 ~ file: FormWithTabs.jsx:10 ~ FormWithTabs ~ data:", data);
   //the values are stored in the context
   const { allValues, setAllValues, setAudioBlob, setAudio, audio } =
     useMyContext();

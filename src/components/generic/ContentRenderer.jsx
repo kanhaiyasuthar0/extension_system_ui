@@ -6,6 +6,10 @@ import { useMyContext } from "../../contexts/ExtensionSysytemContext";
 import { ReactMic } from "react-mic";
 import { useRef } from "react";
 const ContentRenderer = (props) => {
+  console.log(
+    "🚀 ~ file: ContentRenderer.jsx:9 ~ ContentRenderer ~ props:",
+    props
+  );
   const formRef = useRef();
 
   const { audio, setAudio } = useMyContext();
