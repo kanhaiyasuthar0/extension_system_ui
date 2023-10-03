@@ -44,13 +44,13 @@ const FormWithTabs = ({ data, tele }) => {
   const handleNextOrSubmit = (first) => {
     const pathname = window.location.pathname;
     let message =
-      "फ़ॉर्म सफलतापूर्वक प्रस्तुत किया गया | Form submitted successfully!";
+      "आपका उत्तर सबमिट किया गया है! धन्यवाद आपके सहयोग के लिए, यह हमारे कार्यक्रम को और भी बेहतर बनाने में मदद करेगा।";
 
     // Check if the pathname contains "/assessment"
     if (pathname.includes("/assessment")) {
       // Perform your task or logic here
       message =
-        "मूल्यांकन सफलतापूर्वक प्रस्तुत किया गया | (Assessment submitted successfully)";
+        "आपका उत्तर सबमिट किया गया है! धन्यवाद आपके सहयोग के लिए, यह हमारे कार्यक्रम को और भी बेहतर बनाने में मदद करेगा।";
       // You can add your logic here
     }
 

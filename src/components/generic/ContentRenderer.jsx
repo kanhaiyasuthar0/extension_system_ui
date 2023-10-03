@@ -204,7 +204,11 @@ const ContentRenderer = (props) => {
                 <Button
                   key={index}
                   type={button.value == "next" ? "primary" : "button"}
-                  style={{ marginRight: "10px" }}
+                  style={{
+                    marginRight: "10px",
+                    margin: "auto",
+                    display: "block",
+                  }}
                   htmlType="submit"
                   // onClick={button.value == "next" ? () => null : button.onClick}
                 >
