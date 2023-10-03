@@ -5,7 +5,7 @@ const Assessment = (props) => {
   const items = [
     {
       key: "1",
-      label: "ASSESSMENT",
+      label: "मूल्यांकन",
       data: database.assessment,
     },
   ];

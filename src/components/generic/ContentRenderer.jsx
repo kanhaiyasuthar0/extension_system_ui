@@ -101,58 +101,65 @@ const ContentRenderer = (props) => {
               </Select>
             ) : element.type === "checkbox" ? (
               <div style={{ maxHeight: "300px", overflow: "auto" }}>
-                {element.select_option.map((option, optionIndex) => (
-                  <div
-                    style={{
-                      width: "100%",
-                    }}
-                    key={optionIndex}
-                  >
-                    {/* <Form.Item
-                      name={`${element.key}_${option + "-" + optionIndex}`}
-                      valuePropName="checked"
-                      // initialValue={props.searchParams
-                      //   .get(element.key)
-                      //   .replace(/[\[\]']/g, "")
-                      //   .split(",")
-                      //   .includes(option)}
-                      onClick={(e) =>
-                        props.handleChangeTyping(
-                          e,
-                          element.key,
-                          element.type,
-                          option
-                        )
-                      }
-                    > */}
-                    {/* {console.log(props.allValues[element.key], "all")} */}
-                    <Checkbox
-                      name={element.key}
-                      key={option}
-                      defaultChecked={
-                        props.allValues[element.key]
-                          ? props.allValues[element.key][element.key]
-                          : false
-                      }
-                      // checked={
-                      //   props.allValues[element.key]
-                      //     ? props.allValues[element.key][element.key]
-                      //     : false
-                      // }
-                      onChange={(e) =>
-                        props.handleChangeTyping(
-                          e,
-                          element.key,
-                          element.type,
-                          option
-                        )
-                      }
+                {element.select_option.map((option, optionIndex) => {
+                  return (
+                    <div
+                      style={{
+                        width: element.mode === "examination" ? "50%" : "100%",
+                        display:
+                          element.mode === "examination"
+                            ? "inline-block"
+                            : "block",
+                        overflow: "hidden",
+                      }}
+                      key={optionIndex}
                     >
-                      {option}
-                    </Checkbox>
-                    {/* </Form.Item>{" "} */}
-                  </div>
-                ))}
+                      {/* <Form.Item
+    name={`${element.key}_${option + "-" + optionIndex}`}
+    valuePropName="checked"
+    // initialValue={props.searchParams
+    //   .get(element.key)
+    //   .replace(/[\[\]']/g, "")
+    //   .split(",")
+    //   .includes(option)}
+    onClick={(e) =>
+      props.handleChangeTyping(
+        e,
+        element.key,
+        element.type,
+        option
+      )
+    }
+  > */}
+                      {/* {console.log(props.allValues[element.key], "all")} */}
+                      <Checkbox
+                        name={element.key}
+                        key={option}
+                        defaultChecked={
+                          props.allValues[element.key]
+                            ? props.allValues[element.key][element.key]
+                            : false
+                        }
+                        // checked={
+                        //   props.allValues[element.key]
+                        //     ? props.allValues[element.key][element.key]
+                        //     : false
+                        // }
+                        onChange={(e) =>
+                          props.handleChangeTyping(
+                            e,
+                            element.key,
+                            element.type,
+                            option
+                          )
+                        }
+                      >
+                        {option}
+                      </Checkbox>
+                      {/* </Form.Item>{" "} */}
+                    </div>
+                  );
+                })}
               </div>
             ) : element.type === "textarea" ? (
               <Input.TextArea
