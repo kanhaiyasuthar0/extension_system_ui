@@ -5,26 +5,26 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 const Assessment = (props) => {
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(2);
   const [items, setItem] = useState([]);
   const { id } = useParams();
   console.log("🚀 ~ file: Assessment.jsx:6 ~ Assessment ~ id:", id);
 
   useEffect(() => {
-    if (id) {
-      setIndex(id);
-      setItem([
-        {
-          key: "1",
-          label: "मूल्यांकन",
-          data: database.assessment[id],
-        },
-      ]);
-    }
+    // if (id) {
+    //   setIndex(id);
+    setItem([
+      {
+        key: "1",
+        label: "मूल्यांकन",
+        data: database.assessment[2],
+      },
+    ]);
+    // }
   }, []);
   return (
     <>
-      {id == 1 ? (
+      {/* {id == 1 ? (
         <strong>No assessment</strong>
       ) : (
         <>
@@ -39,10 +39,10 @@ const Assessment = (props) => {
               उपयोग करें। उत्तर सुधारने के लिए प्रश्न पर वापस जाएं और 'सबमिट'
               करने के लिए अंत में 'सबमिट (Submit)' बटन दबाएं।
             </div>
-          </h6>
-          <FormWithTabs data={items} tele={props.tele} />
-        </>
-      )}
+          </h6> */}
+      <FormWithTabs data={items} tele={props.tele} />
+      {/* </>
+      )} */}
     </>
   );
 };
