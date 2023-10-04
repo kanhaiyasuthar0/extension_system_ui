@@ -28,7 +28,7 @@ const Assessment = (props) => {
         <strong>No assessment</strong>
       ) : (
         <>
-          <h6 style={{ textAlign: "left" }}>
+          <h6 style={{ textAlign: "left", fontSize: "14px" }}>
             निर्देश:
             <div>
               1. कृपया वीडियो पूरा देखें और सभी प्रश्नों के उत्तर दें। समय सीमा

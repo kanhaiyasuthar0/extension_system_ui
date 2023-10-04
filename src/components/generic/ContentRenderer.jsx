@@ -208,6 +208,7 @@ const ContentRenderer = (props) => {
                     marginRight: "10px",
                     margin: "auto",
                     display: "block",
+                    width: "100%",
                   }}
                   htmlType="submit"
                   // onClick={button.value == "next" ? () => null : button.onClick}
