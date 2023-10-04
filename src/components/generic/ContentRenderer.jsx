@@ -47,7 +47,7 @@ const ContentRenderer = (props) => {
         {props.data.map((element, index) => (
           <Form.Item
             key={index}
-            label={element.label}
+            label={index + 1 + ". " + element.label}
             name={element.key}
             // initialValue={props.searchParams.get(`${element.key}`)}
             rules={[

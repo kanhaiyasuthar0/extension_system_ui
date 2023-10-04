@@ -17,14 +17,14 @@ const Assessment = (props) => {
       {
         key: "1",
         label: "मूल्यांकन",
-        data: database.assessment[2],
+        data: database.assessment[id ?? 4],
       },
     ]);
     // }
   }, []);
   return (
     <>
-      {/* {id == 1 ? (
+      {id == 1 ? (
         <strong>No assessment</strong>
       ) : (
         <>
@@ -39,10 +39,10 @@ const Assessment = (props) => {
               उपयोग करें। उत्तर सुधारने के लिए प्रश्न पर वापस जाएं और 'सबमिट'
               करने के लिए अंत में 'सबमिट (Submit)' बटन दबाएं।
             </div>
-          </h6> */}
-      <FormWithTabs data={items} tele={props.tele} />
-      {/* </>
-      )} */}
+          </h6>
+          <FormWithTabs data={items} tele={props.tele} />
+        </>
+      )}
     </>
   );
 };

@@ -81,13 +81,9 @@ function App() {
           <Route index element={<AdvisoryDissemination tele={tele} />}></Route>
           <Route path=":type" element={<Feedback />}></Route>
         </Route>
-        {/* <Route path="/assessment/:id">
-          <Route index element={<Assessment tele={tele} />}></Route>
-          <Route path=":type" element={<Feedback />}></Route>
-        </Route> */}
         <Route path="/assessment/">
           <Route index element={<Assessment tele={tele} />}></Route>
-          <Route path=":type" element={<Feedback />}></Route>
+          <Route path=":id" element={<Assessment tele={tele} />}></Route>
         </Route>
 
         <Route path="/" element={<>Welcome!</>}></Route>
