@@ -103,7 +103,8 @@ const FormWithTabs = ({ data, tele }) => {
           console.log(tele.close());
         })
         .catch(() => {
-          alert("Some error occured!");
+          // alert("Some error occured!");
+          console.log("error");
         });
 
       if (window.androidButton) {
