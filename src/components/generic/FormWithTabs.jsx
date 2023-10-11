@@ -105,6 +105,10 @@ const FormWithTabs = ({ data, tele }) => {
         .catch(() => {
           alert("Some error occured!");
         });
+
+      if (window.androidButton) {
+        window.androidButton.onCapturedButtonClicked();
+      }
     } else {
       setTabValueSelected((prevValue) => (parseInt(prevValue) + 1).toString());
     }
