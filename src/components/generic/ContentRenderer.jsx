@@ -202,6 +202,7 @@ const ContentRenderer = (props) => {
             {props.buttons.map((button, index) =>
               button.label ? (
                 <Button
+                  id="main_form_button"
                   key={index}
                   type={button.value == "next" ? "primary" : "button"}
                   style={{
