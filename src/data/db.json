@@ -283,6 +283,13 @@
     "value": "",
     "key": "farmers_adopted",
     "type": "input"
+  },
+  {
+    "label": "Gender",
+    "value": "",
+    "key": "gender",
+    "type": "radio",
+    "select_option" : ["Male", "Female"]
   }
   ]
 ,      

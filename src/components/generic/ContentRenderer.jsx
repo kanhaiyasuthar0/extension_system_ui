@@ -1,15 +1,12 @@
 /* eslint-disable react/prop-types */
-import { Form, Input, DatePicker, Select, Checkbox, Button } from "antd";
+import { Form, Input, DatePicker, Select, Checkbox, Radio, Space } from "antd";
 const { Option } = Select;
-import dayjs from "dayjs";
+// import dayjs from "dayjs";
 import { useMyContext } from "../../contexts/ExtensionSysytemContext";
 import { ReactMic } from "react-mic";
 import { useRef } from "react";
+import CustomButton from "./CustomButton";
 const ContentRenderer = (props) => {
-  console.log(
-    "🚀 ~ file: ContentRenderer.jsx:9 ~ ContentRenderer ~ props:",
-    props
-  );
   const formRef = useRef();
 
   const { audio, setAudio } = useMyContext();
@@ -31,7 +28,6 @@ const ContentRenderer = (props) => {
   const resetAll = () => {
     formRef.current?.resetFields();
   };
-  console.log(props.allValues, props.buttonsFirst);
 
   return (
     <>
@@ -52,7 +48,7 @@ const ContentRenderer = (props) => {
             // initialValue={props.searchParams.get(`${element.key}`)}
             rules={[
               {
-                required: element.required,
+                required: element.required == "TRUE",
                 message: `Please enter ${element.label}!`,
               },
             ]}
@@ -76,7 +72,6 @@ const ContentRenderer = (props) => {
               <DatePicker
                 format="YYYY-MM-DD"
                 onChange={(date, dateString) => {
-                  console.log(date, "Date", dateString);
                   props.handleChangeTyping(
                     "",
                     element.key,
@@ -84,7 +79,7 @@ const ContentRenderer = (props) => {
                     dateString
                   );
                 }}
-                defaultValue={dayjs(element.value)}
+                // defaultValue={dayjs(element.value)}
               />
             ) : element.type === "select" ? (
               <Select
@@ -93,73 +88,55 @@ const ContentRenderer = (props) => {
                   props.handleChangeTyping(e, element.key, element.type, e)
                 }
               >
-                {element.select_option.map((option, optionIndex) => (
-                  <Option key={optionIndex} value={option}>
-                    {option}
-                  </Option>
-                ))}
+                {JSON.parse(element.select_option).map(
+                  (option, optionIndex) => (
+                    <Option key={optionIndex} value={option}>
+                      {option}
+                    </Option>
+                  )
+                )}
               </Select>
             ) : element.type === "checkbox" ? (
               <div style={{ maxHeight: "300px", overflow: "auto" }}>
-                {element.select_option.map((option, optionIndex) => {
-                  return (
-                    <div
-                      style={{
-                        width: element.mode === "examination" ? "50%" : "100%",
-                        display:
-                          element.mode === "examination"
-                            ? "inline-block"
-                            : "block",
-                        overflow: "hidden",
-                      }}
-                      key={optionIndex}
-                    >
-                      {/* <Form.Item
-    name={`${element.key}_${option + "-" + optionIndex}`}
-    valuePropName="checked"
-    // initialValue={props.searchParams
-    //   .get(element.key)
-    //   .replace(/[\[\]']/g, "")
-    //   .split(",")
-    //   .includes(option)}
-    onClick={(e) =>
-      props.handleChangeTyping(
-        e,
-        element.key,
-        element.type,
-        option
-      )
-    }
-  > */}
-                      {/* {console.log(props.allValues[element.key], "all")} */}
-                      <Checkbox
-                        name={element.key}
-                        key={option}
-                        defaultChecked={
-                          props.allValues[element.key]
-                            ? props.allValues[element.key][element.key]
-                            : false
-                        }
-                        // checked={
-                        //   props.allValues[element.key]
-                        //     ? props.allValues[element.key][element.key]
-                        //     : false
-                        // }
-                        onChange={(e) =>
-                          props.handleChangeTyping(
-                            e,
-                            element.key,
-                            element.type,
-                            option
-                          )
-                        }
+                {JSON.parse(element.select_option).map(
+                  (option, optionIndex) => {
+                    return (
+                      <div
+                        style={{
+                          width:
+                            element.mode === "examination" ? "50%" : "100%",
+                          display:
+                            element.mode === "examination"
+                              ? "inline-block"
+                              : "block",
+                          overflow: "hidden",
+                        }}
+                        key={optionIndex}
                       >
-                        {option}
-                      </Checkbox>
-                      {/* </Form.Item>{" "} */}
-                    </div>
-                  );
-                })}
+                        <Checkbox
+                          name={element.key}
+                          key={option}
+                          defaultChecked={
+                            props.allValues[element.key]
+                              ? props.allValues[element.key][element.key]
+                              : false
+                          }
+                          onChange={(e) =>
+                            props.handleChangeTyping(
+                              e,
+                              element.key,
+                              element.type,
+                              option
+                            )
+                          }
+                        >
+                          {option}
+                        </Checkbox>
+                        {/* </Form.Item>{" "} */}
+                      </div>
+                    );
+                  }
+                )}
               </div>
             ) : element.type === "textarea" ? (
               <Input.TextArea
@@ -194,6 +171,63 @@ const ContentRenderer = (props) => {
                   <audio controls src={audio.audioBlob.blobURL} />
                 )}
               </div>
+            ) : element?.type == "radio" ? (
+              <div style={{ maxHeight: "300px", overflow: "auto" }}>
+                <Radio.Group
+                  onChange={(e) =>
+                    props.handleChangeTyping(
+                      e,
+                      element?.key,
+                      element?.type,
+                      e.target?.value
+                    )
+                  }
+                  // value={value}
+                >
+                  <Space direction="vertical">
+                    {JSON.parse(element.select_option).map(
+                      (option, optionIndex) => {
+                        return (
+                          <Radio value={option}>{option}</Radio>
+
+                          // <div
+                          //   style={{
+                          //     width: element.mode === "examination" ? "50%" : "100%",
+                          //     display:
+                          //       element.mode === "examination"
+                          //         ? "inline-block"
+                          //         : "block",
+                          //     overflow: "hidden",
+                          //   }}
+                          //   key={optionIndex}
+                          // >
+
+                          //   <Checkbox
+                          //     name={element.key}
+                          //     key={option}
+                          //     defaultChecked={
+                          //       props.allValues[element.key]
+                          //         ? props.allValues[element.key][element.key]
+                          //         : false
+                          //     }
+                          //     onChange={(e) =>
+                          //       props.handleChangeTyping(
+                          //         e,
+                          //         element.key,
+                          //         element.type,
+                          //         option
+                          //       )
+                          //     }
+                          //   >
+                          //     {option}
+                          //   </Checkbox>
+                          // </div>
+                        );
+                      }
+                    )}
+                  </Space>
+                </Radio.Group>
+              </div>
             ) : null}
           </Form.Item>
         ))}
@@ -201,22 +235,30 @@ const ContentRenderer = (props) => {
           <div style={{ marginTop: "20px" }}>
             {props.buttons.map((button, index) =>
               button.label ? (
-                <Button
-                  id="main_form_button"
-                  key={index}
+                <CustomButton
                   type={button.value == "next" ? "primary" : "button"}
-                  style={{
-                    marginRight: "10px",
-                    margin: "auto",
-                    display: "block",
-                    width: "100%",
-                  }}
-                  htmlType="submit"
-                  // onClick={button.value == "next" ? () => null : button.onClick}
-                >
-                  {button.label}
-                </Button>
+                  text={button.label}
+                  key={index}
+                  classes={"main_button"}
+                  id="main_form_button"
+                  value={button.value}
+                ></CustomButton>
               ) : (
+                // <Button
+                //   id="main_form_button"
+                //   key={index}
+                //   type={button.value == "next" ? "primary" : "button"}
+                //   style={{
+                //     marginRight: "10px",
+                //     margin: "auto",
+                //     display: "block",
+                //     width: "100%",
+                //   }}
+                //   htmlType="submit"
+                //   // onClick={button.value == "next" ? () => null : button.onClick}
+                // >
+                //   {button.label}
+                // </Button>
                 ""
               )
             )}

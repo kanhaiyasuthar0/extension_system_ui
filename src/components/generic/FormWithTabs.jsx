@@ -1,4 +1,4 @@
-import { Tabs } from "antd";
+import { ConfigProvider, Tabs } from "antd";
 import { useState } from "react";
 import { useMyContext } from "../../contexts/ExtensionSysytemContext";
 import ContentRenderer from "./ContentRenderer";
@@ -136,6 +136,12 @@ const FormWithTabs = ({ data, tele }) => {
       } else if (type == "audio") {
         console.log("value", value);
         setAudio(value);
+      } else if (type == "radio") {
+        console.log("value", value);
+        return {
+          ...prev,
+          [name]: value,
+        };
       } else {
         return {
           ...prev,
@@ -159,13 +165,27 @@ const FormWithTabs = ({ data, tele }) => {
 
   return (
     <div className="farmer_profile_main_box">
-      <Tabs
-        defaultActiveKey={tabValueSelected}
-        activeKey={tabValueSelected}
-        onChange={setTabValueSelected}
+      <ConfigProvider
+        theme={{
+          components: {
+            Tabs: {
+              inkBarColor: "#0088cc",
+              itemActiveColor: "#0088cc",
+              itemColor: "#0088cc",
+              itemSelectedColor: "#0088cc",
+            },
+          },
+        }}
       >
-        {tabs}
-      </Tabs>
+        <Tabs
+          in
+          defaultActiveKey={tabValueSelected}
+          activeKey={tabValueSelected}
+          onChange={setTabValueSelected}
+        >
+          {tabs}
+        </Tabs>
+      </ConfigProvider>
     </div>
   );
 };
