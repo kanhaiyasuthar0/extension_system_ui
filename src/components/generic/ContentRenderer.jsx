@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import { useMyContext } from "../../contexts/ExtensionSysytemContext";
 import { ReactMic } from "react-mic";
 import { useRef } from "react";
+import CustomCamera from "../camera/CustomCamera";
 const ContentRenderer = (props) => {
   console.log(
     "🚀 ~ file: ContentRenderer.jsx:9 ~ ContentRenderer ~ props:",
@@ -88,6 +89,7 @@ const ContentRenderer = (props) => {
               />
             ) : element.type === "select" ? (
               <Select
+                mode={element.format == "multiple" ? "multiple" : ""}
                 name={element?.key}
                 onChange={(e) =>
                   props.handleChangeTyping(e, element.key, element.type, e)
@@ -194,9 +196,12 @@ const ContentRenderer = (props) => {
                   <audio controls src={audio.audioBlob.blobURL} />
                 )}
               </div>
+            ) : element.type === "upload" ? (
+              <CustomCamera />
             ) : null}
           </Form.Item>
         ))}
+
         <Form.Item>
           <div style={{ marginTop: "20px" }}>
             {props.buttons.map((button, index) =>
