@@ -49,13 +49,15 @@ const ContentRenderer = (props) => {
             // initialValue={props.searchParams.get(`${element.key}`)}
             rules={[
               {
-                required: element.required == "TRUE",
+                required:
+                  element.type == "upload" ? false : element.required == "TRUE",
                 message: `Please enter ${element.label}!`,
               },
             ]}
           >
             {element.type === "input" ? (
               <Input
+                type={element.format ?? "string"}
                 size="large"
                 placeholder={element.label}
                 onChange={(e) =>
@@ -89,8 +91,9 @@ const ContentRenderer = (props) => {
                 onChange={(e) =>
                   props.handleChangeTyping(e, element.key, element.type, e)
                 }
+                maxTagCount={"responsive"}
               >
-                {element.select_option.map((option, optionIndex) => (
+                {element.select_option?.map((option, optionIndex) => (
                   <Option key={optionIndex} value={option}>
                     {option}
                   </Option>
@@ -98,7 +101,7 @@ const ContentRenderer = (props) => {
               </Select>
             ) : element.type === "checkbox" ? (
               <div style={{ maxHeight: "300px", overflow: "auto" }}>
-                {element.select_option.map((option, optionIndex) => {
+                {element.select_option?.map((option, optionIndex) => {
                   return (
                     <div
                       style={{
@@ -187,7 +190,7 @@ const ContentRenderer = (props) => {
                   // value={value}
                 >
                   <Space direction="vertical">
-                    {element.select_option.map((option, optionIndex) => {
+                    {element.select_option?.map((option, optionIndex) => {
                       return (
                         <Radio value={option}>{option}</Radio>
 
