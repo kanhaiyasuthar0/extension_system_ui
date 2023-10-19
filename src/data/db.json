@@ -297,7 +297,13 @@
     "key": "names1",
     "type": "select",
     "format" : "multiple",
-    "select_option" : ["name1", "name2", "name3", "name4", "name5", "name6"]
+    "select_option" : ["name1", "name2", "name3", "name4", "name5", "name6"] },
+    {
+    "label": "Gender",
+    "value": "",
+    "key": "gender",
+    "type": "radio",
+    "select_option" : ["Male", "Female"]
   }
   ]
 ,      

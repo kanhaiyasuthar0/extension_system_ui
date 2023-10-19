@@ -5,6 +5,8 @@ const MyContext = createContext();
 
 // Step 2: Create a provider component
 function MyContextProvider({ children }) {
+  const [db, setDb] = useState([]);
+
   // Define the state or data you want to share
   const [allValues, setAllValues] = useState({});
   const [audio, setAudio] = useState({
@@ -19,6 +21,8 @@ function MyContextProvider({ children }) {
     setAllValues,
     audio,
     setAudio,
+    db,
+    setDb,
   };
 
   // Provide the context value to the components in the tree`

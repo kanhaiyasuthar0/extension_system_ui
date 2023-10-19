@@ -10,3 +10,24 @@
 .farmer_profile_main_box label {
   color: white !important;
 }
+.ant-tabs-tab-btn {
+}
+.main_button {
+  background-color: #0088cc !important;
+  font-weight: 700 !important;
+  height: 40px;
+}
+
+label {
+  font-size: 18px !important;
+}
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #0088cc; /* Change this to your desired custom color */
+  border-color: #0088cc; /* Change this to match the background color */
+}
+.ant-checkbox-wrapper-in-form-item:hover
+  .ant-checkbox-checked
+  .ant-checkbox-inner {
+  background-color: #0088cc !important; /* Change this to your desired custom color */
+  border-color: #0088cc; /* Change this to match the background color */
+}
