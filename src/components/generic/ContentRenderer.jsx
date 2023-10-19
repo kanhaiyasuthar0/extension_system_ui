@@ -197,7 +197,10 @@ const ContentRenderer = (props) => {
                 )}
               </div>
             ) : element.type === "upload" ? (
-              <CustomCamera />
+              <CustomCamera
+                handleChangeTyping={props.handleChangeTyping}
+                element={element}
+              />
             ) : null}
           </Form.Item>
         ))}

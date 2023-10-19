@@ -131,6 +131,11 @@ const FormWithTabs = ({ data, tele }) => {
       } else if (type == "audio") {
         console.log("value", value);
         setAudio(value);
+      } else if (type == "upload") {
+        return {
+          ...prev,
+          [name]: value,
+        };
       } else {
         return {
           ...prev,

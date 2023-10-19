@@ -1,14 +1,15 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Camera } from "react-camera-pro";
+import { useMyContext } from "../../contexts/ExtensionSysytemContext";
+import { Button } from "antd";
 
-const CustomCamera = () => {
+const CustomCamera = (props) => {
+  const { setAllValues, allValues } = useMyContext();
   const camera = useRef(null);
   const [image, setImage] = useState(null);
-  const [frontCameraOn, setfrontCameraOn] = useState(false);
-  console.log(
-    "🚀 ~ file: CustomCamera.jsx:8 ~ CustomCamera ~ frontCameraOn:",
-    frontCameraOn
-  );
+
+  console.log("🚀 ~ file: CustomCamera.jsx:7 ~ CustomCamera ~ g:", image);
+
   return (
     <div>
       <Camera
@@ -26,23 +27,44 @@ const CustomCamera = () => {
           marginTop: "10px",
         }}
       >
-        <button
-          type="button"
-          onClick={() => setImage(camera.current.takePhoto())}
-        >
-          Take photo
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            if (camera.current) {
-              const result = camera.current.switchCamera();
-              console.log(result);
-            }
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            gap: "20px",
+            width: "100%",
           }}
         >
-          Toggle Camera
-        </button>
+          <Button
+            type="primary"
+            onClick={() => {
+              let value = camera.current.takePhoto();
+              setImage(value);
+              props.handleChangeTyping(
+                "",
+                props.element.key,
+                props.element.type,
+                value
+              );
+            }}
+          >
+            Take photo
+          </Button>
+          <Button
+            danger
+            type="primary"
+            onClick={() => {
+              if (camera.current) {
+                const result = camera.current.switchCamera();
+                console.log(result);
+              }
+            }}
+          >
+            Toggle Camera
+          </Button>
+        </div>
+
         {image && (
           <img height={100} width={200} src={image} alt="Taken photo" />
         )}
