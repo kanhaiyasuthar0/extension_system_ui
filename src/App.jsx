@@ -38,7 +38,7 @@ function App() {
     },
   ]; */}
 
-        {db?.map((eachSheet, index) => {
+        {/* {db?.map((eachSheet, index) => {
           console.log("🚀 ~ file: App.jsx:42 ~ {db?.map ~ db:", eachSheet.id);
           return (
             <Route
@@ -58,8 +58,8 @@ function App() {
               }
             ></Route>
           );
-        })}
-        {/* <Route path="/farmer-profile">
+        })} */}
+        <Route path="/farmer-profile">
           <Route index element={<FarmerProfile tele={tele} />}></Route>
           <Route path=":type" element={<Feedback />}></Route>
         </Route>
@@ -79,7 +79,7 @@ function App() {
         <Route path="/assessment/">
           <Route index element={<Assessment tele={tele} />}></Route>
           <Route path=":id" element={<Assessment tele={tele} />}></Route>
-        </Route> */}
+        </Route>
 
         <Route path="/" element={<></>}></Route>
         <Route path="*" element={<></>}></Route>

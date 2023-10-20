@@ -5,6 +5,7 @@ const { Option } = Select;
 import { useMyContext } from "../../contexts/ExtensionSysytemContext";
 import { ReactMic } from "react-mic";
 import { useRef } from "react";
+import CustomCamera from "../camera/CustomCamera";
 import CustomButton from "./CustomButton";
 const ContentRenderer = (props) => {
   const formRef = useRef();
@@ -48,13 +49,15 @@ const ContentRenderer = (props) => {
             // initialValue={props.searchParams.get(`${element.key}`)}
             rules={[
               {
-                required: element.required == "TRUE",
+                required:
+                  element.type == "upload" ? false : element.required == "TRUE",
                 message: `Please enter ${element.label}!`,
               },
             ]}
           >
             {element.type === "input" ? (
               <Input
+                type={element.format ?? "string"}
                 size="large"
                 placeholder={element.label}
                 onChange={(e) =>
@@ -83,60 +86,57 @@ const ContentRenderer = (props) => {
               />
             ) : element.type === "select" ? (
               <Select
+                mode={element.format == "multiple" ? "multiple" : ""}
                 name={element?.key}
                 onChange={(e) =>
                   props.handleChangeTyping(e, element.key, element.type, e)
                 }
+                maxTagCount={"responsive"}
               >
-                {JSON.parse(element.select_option).map(
-                  (option, optionIndex) => (
-                    <Option key={optionIndex} value={option}>
-                      {option}
-                    </Option>
-                  )
-                )}
+                {element.select_option?.map((option, optionIndex) => (
+                  <Option key={optionIndex} value={option}>
+                    {option}
+                  </Option>
+                ))}
               </Select>
             ) : element.type === "checkbox" ? (
               <div style={{ maxHeight: "300px", overflow: "auto" }}>
-                {JSON.parse(element.select_option).map(
-                  (option, optionIndex) => {
-                    return (
-                      <div
-                        style={{
-                          width:
-                            element.mode === "examination" ? "50%" : "100%",
-                          display:
-                            element.mode === "examination"
-                              ? "inline-block"
-                              : "block",
-                          overflow: "hidden",
-                        }}
-                        key={optionIndex}
+                {element.select_option?.map((option, optionIndex) => {
+                  return (
+                    <div
+                      style={{
+                        width: element.mode === "examination" ? "50%" : "100%",
+                        display:
+                          element.mode === "examination"
+                            ? "inline-block"
+                            : "block",
+                        overflow: "hidden",
+                      }}
+                      key={optionIndex}
+                    >
+                      <Checkbox
+                        name={element.key}
+                        key={option}
+                        defaultChecked={
+                          props.allValues[element.key]
+                            ? props.allValues[element.key][element.key]
+                            : false
+                        }
+                        onChange={(e) =>
+                          props.handleChangeTyping(
+                            e,
+                            element.key,
+                            element.type,
+                            option
+                          )
+                        }
                       >
-                        <Checkbox
-                          name={element.key}
-                          key={option}
-                          defaultChecked={
-                            props.allValues[element.key]
-                              ? props.allValues[element.key][element.key]
-                              : false
-                          }
-                          onChange={(e) =>
-                            props.handleChangeTyping(
-                              e,
-                              element.key,
-                              element.type,
-                              option
-                            )
-                          }
-                        >
-                          {option}
-                        </Checkbox>
-                        {/* </Form.Item>{" "} */}
-                      </div>
-                    );
-                  }
-                )}
+                        {option}
+                      </Checkbox>
+                      {/* </Form.Item>{" "} */}
+                    </div>
+                  );
+                })}
               </div>
             ) : element.type === "textarea" ? (
               <Input.TextArea
@@ -171,6 +171,11 @@ const ContentRenderer = (props) => {
                   <audio controls src={audio.audioBlob.blobURL} />
                 )}
               </div>
+            ) : element.type === "upload" ? (
+              <CustomCamera
+                handleChangeTyping={props.handleChangeTyping}
+                element={element}
+              />
             ) : element?.type == "radio" ? (
               <div style={{ maxHeight: "300px", overflow: "auto" }}>
                 <Radio.Group
@@ -185,52 +190,51 @@ const ContentRenderer = (props) => {
                   // value={value}
                 >
                   <Space direction="vertical">
-                    {JSON.parse(element.select_option).map(
-                      (option, optionIndex) => {
-                        return (
-                          <Radio value={option}>{option}</Radio>
+                    {element.select_option?.map((option, optionIndex) => {
+                      return (
+                        <Radio value={option}>{option}</Radio>
 
-                          // <div
-                          //   style={{
-                          //     width: element.mode === "examination" ? "50%" : "100%",
-                          //     display:
-                          //       element.mode === "examination"
-                          //         ? "inline-block"
-                          //         : "block",
-                          //     overflow: "hidden",
-                          //   }}
-                          //   key={optionIndex}
-                          // >
+                        // <div
+                        //   style={{
+                        //     width: element.mode === "examination" ? "50%" : "100%",
+                        //     display:
+                        //       element.mode === "examination"
+                        //         ? "inline-block"
+                        //         : "block",
+                        //     overflow: "hidden",
+                        //   }}
+                        //   key={optionIndex}
+                        // >
 
-                          //   <Checkbox
-                          //     name={element.key}
-                          //     key={option}
-                          //     defaultChecked={
-                          //       props.allValues[element.key]
-                          //         ? props.allValues[element.key][element.key]
-                          //         : false
-                          //     }
-                          //     onChange={(e) =>
-                          //       props.handleChangeTyping(
-                          //         e,
-                          //         element.key,
-                          //         element.type,
-                          //         option
-                          //       )
-                          //     }
-                          //   >
-                          //     {option}
-                          //   </Checkbox>
-                          // </div>
-                        );
-                      }
-                    )}
+                        //   <Checkbox
+                        //     name={element.key}
+                        //     key={option}
+                        //     defaultChecked={
+                        //       props.allValues[element.key]
+                        //         ? props.allValues[element.key][element.key]
+                        //         : false
+                        //     }
+                        //     onChange={(e) =>
+                        //       props.handleChangeTyping(
+                        //         e,
+                        //         element.key,
+                        //         element.type,
+                        //         option
+                        //       )
+                        //     }
+                        //   >
+                        //     {option}
+                        //   </Checkbox>
+                        // </div>
+                      );
+                    })}
                   </Space>
                 </Radio.Group>
               </div>
             ) : null}
           </Form.Item>
         ))}
+
         <Form.Item>
           <div style={{ marginTop: "20px" }}>
             {props.buttons.map((button, index) =>
