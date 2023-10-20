@@ -53,6 +53,12 @@ dependencies:
   react-router-dom:
     specifier: ^6.16.0
     version: 6.16.0(react-dom@18.2.0)(react@18.2.0)
+  react-voice-recorder:
+    specifier: ^2.1.2
+    version: 2.1.2(react@18.2.0)
+  recordrtc:
+    specifier: ^5.6.2
+    version: 5.6.2
 
 devDependencies:
   '@types/react':
@@ -3440,11 +3446,24 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
+  /react-voice-recorder@2.1.2(react@18.2.0):
+    resolution: {integrity: sha512-fjLN3fdVqsFrlISujAFAuVk85yCxhK4kcyyuahxa0fYo4LxyY36rGeQ4HCG8XRhfHrPxd5E632e//N5UqrnLKg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /react@18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
+    dev: false
+
+  /recordrtc@5.6.2:
+    resolution: {integrity: sha512-1QNKKNtl7+KcwD1lyOgP3ZlbiJ1d0HtXnypUy7yq49xEERxk31PHvE9RCciDrulPCY7WJ+oz0R9hpNxgsIurGQ==}
     dev: false
 
   /regenerator-runtime@0.14.0:
