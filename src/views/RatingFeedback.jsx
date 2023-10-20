@@ -311,7 +311,10 @@ const RatingFeedback = () => {
   return (
     <div className="feedback-form">
       {/* <div> */}
-      <Typography component="legend">How would you rate this video?</Typography>
+      <Typography component="legend">
+        How would you rate this{" "}
+        {queryParams.get("message_id") ? "answer" : "video"}?
+      </Typography>
       <Rating
         name="simple-controlled"
         value={value}
