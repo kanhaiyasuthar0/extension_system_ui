@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import Assessment from "./views/Assessment";
 import FarmLevelDemand from "./views/FarmLevelDemand";
+import RatingFeedback from "./views/RatingFeedback";
 // 3️⃣ Router singleton created
 
 function App() {
@@ -64,6 +65,10 @@ function App() {
   return (
     <>
       <Routes>
+        <Route
+          path="/feedback-form"
+          element={<RatingFeedback tele={tele} />}
+        ></Route>
         <Route path="/farmer-profile">
           <Route index element={<FarmerProfile tele={tele} />}></Route>
           <Route path=":type" element={<Feedback />}></Route>

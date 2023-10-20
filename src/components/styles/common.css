@@ -10,3 +10,15 @@
 .farmer_profile_main_box label {
   color: white !important;
 }
+.feedback-form .ant-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.feedback-form div {
+  color: white !important;
+  text-align: left;
+  font-size: medium;
+}
