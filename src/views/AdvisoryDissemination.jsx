@@ -3,14 +3,18 @@ import axios from "axios";
 import FormWithTabs from "../components/generic/FormWithTabs";
 import database from "../data/db.json";
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const AdvisoryDissemination = ({ tele }) => {
+  const [queryParams, setSearchParams] = useSearchParams();
+
   const [data, setData] = useState(null);
 
   async function getAllFarmers() {
     let baseUrl = "https://farmerchat.farmstack.co/upd-demo";
-    let end_point =
-      "/telegram_app/web_hook/get_farmer_list/?ea_mobile_number=9008254852";
+    let end_point = `/telegram_app/web_hook/get_farmer_list/?ea_mobile_number=${queryParams.get(
+      "ea_tg_number"
+    )}`;
     let url = baseUrl + end_point;
     try {
       let response = await axios.get(url);

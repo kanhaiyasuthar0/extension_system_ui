@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 
 const FormWithTabs = ({ data, tele }) => {
+  const [loading, setLoading] = useState(false);
   console.log("🚀 ~ file: FormWithTabs.jsx:10 ~ FormWithTabs ~ data:", data);
   //the values are stored in the context
   const { allValues, setAllValues, setAudioBlob, setAudio, audio } =
@@ -79,8 +80,11 @@ const FormWithTabs = ({ data, tele }) => {
 
   async function dumpingDataInSheet() {
     let baseUrl = "https://farmerchat.farmstack.co/upd-demo";
-    let end_point =
-      "/telegram_app/web_hook/get_farmer_list/?ea_mobile_number=9008254852";
+    let end_point = `/telegram_app/web_hook/update_task/?task_category=${
+      window.location.href.includes("advisory-dissemination")
+        ? "Advisory Dissemination"
+        : "Record Advisory Adoption"
+    }`;
     let url = baseUrl + end_point;
     try {
       let response = await axios.post(url, allValues);
