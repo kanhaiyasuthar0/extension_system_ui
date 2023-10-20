@@ -88,7 +88,7 @@ const FormWithTabs = ({ data, tele }) => {
     let url = baseUrl + end_point;
     try {
       let response = await axios.post(url, allValues);
-      if (true) {
+      if (response.status == 201) {
         communincatingWithBotForSuccessMessaege();
       }
     } catch (error) {
