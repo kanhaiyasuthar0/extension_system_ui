@@ -35,7 +35,7 @@ const AdvisoryDissemination = ({ tele }) => {
   const formData = [
     {
       format: "multiple",
-      key: "attending_farmers",
+      key: "farmers_attended_mobile_number",
       label: "Select the farmers who attended the session",
       required: "TRUE",
       select_option: memoizedData ?? [],
@@ -43,21 +43,21 @@ const AdvisoryDissemination = ({ tele }) => {
     },
     {
       format: "number",
-      key: "attending_male",
+      key: "total_farmer_count",
       label: "Count of total farmers",
       required: "TRUE",
       type: "input",
     },
     {
       format: "number",
-      key: "attending_female",
+      key: "female_farmer_count",
       label: "Count of female farmers",
       required: "TRUE",
       type: "input",
     },
     {
       format: "",
-      key: "adopting_farmers",
+      key: "adoption_anticipated_farmers_mobile_number",
       label: "Select the farmers who stated that they would adopt the advisory",
       required: "TRUE",
       select_option: memoizedData ?? [],
@@ -65,7 +65,7 @@ const AdvisoryDissemination = ({ tele }) => {
     },
     {
       format: "jpg, png, jpeg",
-      key: "attachment",
+      key: "photo",
       label:
         "Please provide a picture of the group. Click on the button below to open the camera.",
       required: "TRUE",
