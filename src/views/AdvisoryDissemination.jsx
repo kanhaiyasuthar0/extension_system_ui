@@ -114,7 +114,7 @@ const AdvisoryDissemination = ({ tele }) => {
       {loading ? (
         <Skeleton active paragraph={{ rows: 4 }}></Skeleton>
       ) : (
-        <FormWithTabs data={items} tele={tele} />
+        memoizedData?.length > 0 && <FormWithTabs data={items} tele={tele} />
       )}
     </>
   );

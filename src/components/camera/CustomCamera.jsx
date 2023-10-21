@@ -11,7 +11,12 @@ const CustomCamera = (props) => {
   console.log("🚀 ~ file: CustomCamera.jsx:7 ~ CustomCamera ~ g:", image);
 
   return (
-    <div style={{ visibility: props.enableCamera ? "visible" : "hidden" }}>
+    <div
+      style={{
+        visibility: props.enableCamera ? "visible" : "hidden",
+        maxWidth: "300px",
+      }}
+    >
       <Camera
         // facingMode={frontCameraOn ? "user" : "environment"}
         aspectRatio={2}
