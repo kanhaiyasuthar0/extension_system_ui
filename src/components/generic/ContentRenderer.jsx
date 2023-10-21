@@ -183,17 +183,20 @@ const ContentRenderer = (props) => {
                 )}
               </div>
             ) : element.type === "upload" ? (
-              enableCamera ? (
+              <>
                 <CustomCamera
                   handleChangeTyping={props.handleChangeTyping}
                   element={element}
                   setEnableCamera={setEnableCamera}
+                  enableCamera={enableCamera}
                 />
-              ) : (
-                <Button onClick={() => setEnableCamera(true)}>
-                  Open Camera
-                </Button>
-              )
+
+                {!enableCamera && (
+                  <Button onClick={() => setEnableCamera(true)}>
+                    Open Camera
+                  </Button>
+                )}
+              </>
             ) : element?.type == "radio" ? (
               <div style={{ maxHeight: "300px", overflow: "auto" }}>
                 <Radio.Group
