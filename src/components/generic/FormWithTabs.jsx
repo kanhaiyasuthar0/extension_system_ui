@@ -92,7 +92,7 @@ const FormWithTabs = ({ data, tele }) => {
     let data = { ...allValues };
 
     if (taskid) {
-      data["taskid"] = taskid;
+      data["task_id"] = taskid;
     }
     try {
       let response = await axios.post(url, data);
