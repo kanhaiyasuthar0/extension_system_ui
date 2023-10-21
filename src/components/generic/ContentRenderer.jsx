@@ -258,6 +258,7 @@ const ContentRenderer = (props) => {
             {props.buttons.map((button, index) =>
               button.label ? (
                 <CustomButton
+                  submitLoader={props.submitLoader}
                   type={button.value == "next" ? "primary" : "button"}
                   text={button.label}
                   key={index}

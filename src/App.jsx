@@ -11,8 +11,8 @@ import { useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import Assessment from "./views/Assessment";
 import FarmLevelDemand from "./views/FarmLevelDemand";
-import GoogleSheetReader from "./components/google/GoogleSheetReader";
-import FormWithTabs from "./components/generic/FormWithTabs";
+// import GoogleSheetReader from "./components/google/GoogleSheetReader";
+// import FormWithTabs from "./components/generic/FormWithTabs";
 import { useMyContext } from "./contexts/ExtensionSysytemContext";
 // 3️⃣ Router singleton created
 function App() {
@@ -28,7 +28,7 @@ function App() {
 
   return (
     <>
-      <GoogleSheetReader />
+      {/* <GoogleSheetReader /> */}
       <Routes>
         {/* [
     {
