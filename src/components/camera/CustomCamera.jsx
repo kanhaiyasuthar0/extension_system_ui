@@ -39,6 +39,7 @@ const CustomCamera = (props) => {
             alignItems: "center",
             gap: "20px",
             width: "100%",
+            maxWidth,
           }}
         >
           <Button
@@ -68,14 +69,14 @@ const CustomCamera = (props) => {
           >
             Toggle Camera
           </Button>
-          <Button
+          {/* <Button
             // type="primary"
             onClick={() => {
               props.setEnableCamera(false);
             }}
           >
             Close Camera
-          </Button>
+          </Button> */}
         </div>
 
         {image && (
