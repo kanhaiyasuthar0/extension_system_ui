@@ -224,7 +224,7 @@ const FormWithTabs = ({ data, tele }) => {
           activeKey={tabValueSelected}
           onChange={setTabValueSelected}
         >
-          {tabs}
+          {loading ? "" : tabs}
         </Tabs>
       </ConfigProvider>
     </div>
