@@ -13,6 +13,7 @@ function MyContextProvider({ children }) {
     isRecording: false,
     audioBlob: null,
   });
+  
   // Define functions or methods to update the state
 
   // Create a context value object containing the state and methods

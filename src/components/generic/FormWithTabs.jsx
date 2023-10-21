@@ -86,8 +86,14 @@ const FormWithTabs = ({ data, tele }) => {
         : "Record Advisory Adoption"
     }`;
     let url = baseUrl + end_point;
+    let taskid = queryParams.get("taskid");
+    let data = { ...allValues };
+
+    if (taskid) {
+      data["taskid"] = taskid;
+    }
     try {
-      let response = await axios.post(url, allValues);
+      let response = await axios.post(url, data);
       if (response.status == 201) {
         communincatingWithBotForSuccessMessaege();
       }
