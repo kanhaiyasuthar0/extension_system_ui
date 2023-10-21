@@ -34,7 +34,7 @@ const Adoption = (props) => {
   const formData = [
     {
       format: "multiple",
-      key: "adopting_farmers",
+      key: "farmers_who_adopted",
       label: "Select the farmers who adopted the advisory",
       required: "TRUE",
       select_option: memoizedData ?? [],
@@ -49,14 +49,14 @@ const Adoption = (props) => {
     },
     {
       format: "",
-      key: "adopting_female",
+      key: "female_farmer_count",
       label: "Count of female farmers",
       required: "TRUE",
       type: "input",
     },
     {
       format: "jpg, png, jpeg",
-      key: "attachment",
+      key: "photo",
       label:
         "Please provide a picture of the group. Click on the button below to open the camera.",
       required: "TRUE",
@@ -64,7 +64,7 @@ const Adoption = (props) => {
     },
     {
       format: "",
-      key: "feedback",
+      key: "general",
       label: "Did the farmers find the advisory easy to implement?",
       required: "TRUE",
       select_option: ["Yes (हां)", "No (नहीं)"],
@@ -72,7 +72,7 @@ const Adoption = (props) => {
     },
     {
       format: "",
-      key: "comment",
+      key: "feedback",
       label: "Do you want to share any suggestions or challenges faced?",
       required: "FALSE",
       type: "textarea",
