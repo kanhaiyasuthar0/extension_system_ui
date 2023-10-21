@@ -11,7 +11,7 @@ const FormWithTabs = ({ data, tele }) => {
   const [submitLoader, setSubmitLoader] = useState(false);
   console.log("🚀 ~ file: FormWithTabs.jsx:10 ~ FormWithTabs ~ data:", data);
   //the values are stored in the context
-  const { allValues, setAllValues, setAudioBlob, setAudio, audio } =
+  const { allValues, setAllValues, setAudioBlob, setAudio, audio, darkMode } =
     useMyContext();
   const [queryParams, setSearchParams] = useSearchParams();
 
@@ -205,7 +205,7 @@ const FormWithTabs = ({ data, tele }) => {
   ));
 
   return (
-    <div className="farmer_profile_main_box">
+    <div className={`farmer_profile_main_box ${darkMode ? "dark" : "light"}`}>
       <ConfigProvider
         theme={{
           components: {
