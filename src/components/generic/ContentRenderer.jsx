@@ -184,14 +184,14 @@ const ContentRenderer = (props) => {
               </div>
             ) : element.type === "upload" ? (
               <>
-                <CustomCamera
-                  handleChangeTyping={props.handleChangeTyping}
-                  element={element}
-                  setEnableCamera={setEnableCamera}
-                  enableCamera={enableCamera}
-                />
-
-                {!enableCamera && (
+                {enableCamera ? (
+                  <CustomCamera
+                    handleChangeTyping={props.handleChangeTyping}
+                    element={element}
+                    setEnableCamera={setEnableCamera}
+                    enableCamera={enableCamera}
+                  />
+                ) : (
                   <Button onClick={() => setEnableCamera(true)}>
                     Open Camera
                   </Button>
