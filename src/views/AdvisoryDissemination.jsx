@@ -22,12 +22,12 @@ const AdvisoryDissemination = ({ tele }) => {
     try {
       let response = await axios.get(url);
       setData(response.data);
-      setData(["ASDSF"]);
+      // setData(["ASDSF"]);
 
       setLoading(false);
     } catch (error) {
       console.log(error, "Error");
-      setData(["ASDSF"]);
+      // setData(["ASDSF"]);
 
       setLoading(false);
     }
