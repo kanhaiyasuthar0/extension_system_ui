@@ -16,7 +16,7 @@ import FarmLevelDemand from "./views/FarmLevelDemand";
 import { useMyContext } from "./contexts/ExtensionSysytemContext";
 // 3️⃣ Router singleton created
 function App() {
-  const { db } = useMyContext();
+  const { db, setDarkMode } = useMyContext();
   const tele = window.Telegram.WebApp;
   useEffect(() => {
     console.log("TELEGRAM", window.Telegram);
@@ -24,8 +24,9 @@ function App() {
 
     //setting the background color as per theme of telegram bot
     document.body.style.backgroundColor = tele.backgroundColor ?? "#333333";
-    document.body.style.color =
-      tele.backgroundColor == "#ffffff" ? "#333333" : "#ffffff";
+    if (tele.backgroundColor == "#ffffff") {
+      setDarkMode(false);
+    }
   });
 
   return (

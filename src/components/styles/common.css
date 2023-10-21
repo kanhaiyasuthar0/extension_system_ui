@@ -31,3 +31,9 @@ label {
   background-color: #0088cc !important; /* Change this to your desired custom color */
   border-color: #0088cc; /* Change this to match the background color */
 }
+.dark label {
+  color: white !important;
+}
+.light label {
+  color: black !important;
+}

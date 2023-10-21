@@ -48,7 +48,7 @@ const ContentRenderer = (props) => {
         onFinish={props.submit}
         onReset={resetAll}
         layout="vertical"
-        style={{ textAlign: "left" }}
+        style={{ textAlign: "left", color: "white" }}
         scrollToFirstError
       >
         {/* The JSON array representing the form elements */}
