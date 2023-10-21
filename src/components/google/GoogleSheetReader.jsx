@@ -17,9 +17,9 @@ const GoogleSheetReader = () => {
       setDb(data);
     }
   }, [data]);
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
   if (error) {
     return <div>Error!</div>;

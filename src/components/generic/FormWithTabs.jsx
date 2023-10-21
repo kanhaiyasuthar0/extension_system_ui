@@ -59,9 +59,11 @@ const FormWithTabs = ({ data, tele }) => {
     if (tabValueSelected == data.length) {
       axios
         .post(
-          `https://api.telegram.org/bot${queryParams.get("bot")}/sendMessage`,
+          `https://api.telegram.org/bot${queryParams.get(
+            "bot_token"
+          )}/sendMessage`,
           {
-            chat_id: queryParams.get("chatid"),
+            chat_id: queryParams.get("chat_id"),
             text: message,
           }
         )
@@ -88,7 +90,7 @@ const FormWithTabs = ({ data, tele }) => {
         : "Record Advisory Adoption"
     }`;
     let url = baseUrl + end_point;
-    let taskid = queryParams.get("taskid");
+    let taskid = queryParams.get("task_id");
     let data = { ...allValues };
 
     if (taskid) {
@@ -120,9 +122,11 @@ const FormWithTabs = ({ data, tele }) => {
     }
     axios
       .post(
-        `https://api.telegram.org/bot${queryParams.get("bot")}/sendMessage`,
+        `https://api.telegram.org/bot${queryParams.get(
+          "bot_token"
+        )}/sendMessage`,
         {
-          chat_id: queryParams.get("chatid"),
+          chat_id: queryParams.get("chat_id"),
           text: message,
           // ...allValues,
         }
