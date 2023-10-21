@@ -91,6 +91,10 @@ const FormWithTabs = ({ data, tele }) => {
     }`;
     let url = baseUrl + end_point;
     let taskid = queryParams.get("task_id");
+    console.log(
+      "🚀 ~ file: FormWithTabs.jsx:94 ~ dumpingDataInSheet ~ queryParams:",
+      queryParams
+    );
     let data = { ...allValues };
 
     if (taskid) {
