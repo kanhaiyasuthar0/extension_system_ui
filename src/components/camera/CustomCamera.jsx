@@ -39,7 +39,6 @@ const CustomCamera = (props) => {
             alignItems: "center",
             gap: "20px",
             width: "100%",
-            maxWidth,
           }}
         >
           <Button
