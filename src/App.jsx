@@ -25,7 +25,7 @@ function App() {
     //setting the background color as per theme of telegram bot
     document.body.style.backgroundColor = tele.backgroundColor ?? "#333333";
     document.body.style.color =
-      tele.backgroundColor !== "#ffffff" ? "#333333" : "#ffffff";
+      tele.backgroundColor == "#ffffff" ? "#333333" : "#ffffff";
   });
 
   return (
