@@ -4,13 +4,16 @@ import FormWithTabs from "../components/generic/FormWithTabs";
 import database from "../data/db.json";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { Skeleton } from "antd";
 
 const AdvisoryDissemination = ({ tele }) => {
+  const [loading, setLoading] = useState(false);
   const [queryParams, setSearchParams] = useSearchParams();
 
   const [data, setData] = useState(null);
 
   async function getAllFarmers() {
+    setLoading(true);
     let baseUrl = "https://farmerchat.farmstack.co/upd-demo";
     let end_point = `/telegram_app/web_hook/get_farmer_list/?ea_mobile_number=${queryParams.get(
       "ea_tg_number"
@@ -19,8 +22,14 @@ const AdvisoryDissemination = ({ tele }) => {
     try {
       let response = await axios.get(url);
       setData(response.data);
+      setData(["ASDSF"]);
+
+      setLoading(false);
     } catch (error) {
       console.log(error, "Error");
+      setData(["ASDSF"]);
+
+      setLoading(false);
     }
   }
 
@@ -102,7 +111,11 @@ const AdvisoryDissemination = ({ tele }) => {
   ];
   return (
     <>
-      <FormWithTabs data={items} tele={tele} />
+      {loading ? (
+        <Skeleton active paragraph={{ rows: 4 }}></Skeleton>
+      ) : (
+        <FormWithTabs data={items} tele={tele} />
+      )}
     </>
   );
 };

@@ -63,6 +63,14 @@ const CustomCamera = (props) => {
           >
             Toggle Camera
           </Button>
+          <Button
+            // type="primary"
+            onClick={() => {
+              props.setEnableCamera(false);
+            }}
+          >
+            Close Camera
+          </Button>
         </div>
 
         {image && (

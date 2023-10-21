@@ -8,6 +8,7 @@ import { useSearchParams } from "react-router-dom";
 
 const FormWithTabs = ({ data, tele }) => {
   const [loading, setLoading] = useState(false);
+  const [submitLoader, setSubmitLoader] = useState(false);
   console.log("🚀 ~ file: FormWithTabs.jsx:10 ~ FormWithTabs ~ data:", data);
   //the values are stored in the context
   const { allValues, setAllValues, setAudioBlob, setAudio, audio } =
@@ -79,6 +80,7 @@ const FormWithTabs = ({ data, tele }) => {
   };
 
   async function dumpingDataInSheet() {
+    setSubmitLoader(true);
     let baseUrl = "https://farmerchat.farmstack.co/upd-demo";
     let end_point = `/telegram_app/web_hook/update_task/?task_category=${
       window.location.href.includes("advisory-dissemination")
@@ -86,13 +88,21 @@ const FormWithTabs = ({ data, tele }) => {
         : "Record Advisory Adoption"
     }`;
     let url = baseUrl + end_point;
+    let taskid = queryParams.get("taskid");
+    let data = { ...allValues };
+
+    if (taskid) {
+      data["taskid"] = taskid;
+    }
     try {
-      let response = await axios.post(url, allValues);
+      let response = await axios.post(url, data);
       if (response.status == 201) {
         communincatingWithBotForSuccessMessaege();
       }
+      setSubmitLoader(false);
     } catch (error) {
       console.log(error, "Error");
+      setSubmitLoader(false);
     }
   }
 
@@ -189,6 +199,7 @@ const FormWithTabs = ({ data, tele }) => {
         handleChangeTyping={handleChangeTyping}
         allValues={allValues}
         submit={() => handleSubmit()}
+        submitLoader={submitLoader}
       />
     </Tabs.TabPane>
   ));

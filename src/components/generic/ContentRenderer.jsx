@@ -1,10 +1,19 @@
 /* eslint-disable react/prop-types */
-import { Form, Input, DatePicker, Select, Checkbox, Radio, Space } from "antd";
+import {
+  Form,
+  Input,
+  DatePicker,
+  Select,
+  Checkbox,
+  Radio,
+  Space,
+  Button,
+} from "antd";
 const { Option } = Select;
 // import dayjs from "dayjs";
 import { useMyContext } from "../../contexts/ExtensionSysytemContext";
 import { ReactMic } from "react-mic";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import CustomCamera from "../camera/CustomCamera";
 import CustomButton from "./CustomButton";
 const ContentRenderer = (props) => {
@@ -14,6 +23,8 @@ const ContentRenderer = (props) => {
   const startRecording = () => {
     setAudio({ ...audio, isRecording: true });
   };
+
+  const [enableCamera, setEnableCamera] = useState(false);
 
   const stopRecording = () => {
     setAudio({ ...audio, isRecording: false });
@@ -172,10 +183,17 @@ const ContentRenderer = (props) => {
                 )}
               </div>
             ) : element.type === "upload" ? (
-              <CustomCamera
-                handleChangeTyping={props.handleChangeTyping}
-                element={element}
-              />
+              enableCamera ? (
+                <CustomCamera
+                  handleChangeTyping={props.handleChangeTyping}
+                  element={element}
+                  setEnableCamera={setEnableCamera}
+                />
+              ) : (
+                <Button onClick={() => setEnableCamera(true)}>
+                  Open Camera
+                </Button>
+              )
             ) : element?.type == "radio" ? (
               <div style={{ maxHeight: "300px", overflow: "auto" }}>
                 <Radio.Group
@@ -240,6 +258,7 @@ const ContentRenderer = (props) => {
             {props.buttons.map((button, index) =>
               button.label ? (
                 <CustomButton
+                  submitLoader={props.submitLoader}
                   type={button.value == "next" ? "primary" : "button"}
                   text={button.label}
                   key={index}
