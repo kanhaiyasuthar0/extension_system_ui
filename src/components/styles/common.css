@@ -22,3 +22,10 @@
   text-align: left;
   font-size: medium;
 }
+
+.dark label {
+  color: white !important;
+}
+.light label {
+  color: black !important;
+}

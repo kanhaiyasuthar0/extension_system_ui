@@ -12,13 +12,19 @@ import { Analytics } from "@vercel/analytics/react";
 import Assessment from "./views/Assessment";
 import FarmLevelDemand from "./views/FarmLevelDemand";
 import RatingFeedback from "./views/RatingFeedback";
+import { useMyContext } from "./contexts/ExtensionSysytemContext";
 // 3️⃣ Router singleton created
 
 function App() {
+  const { setDarkMode } = useMyContext();
   const tele = window.Telegram.WebApp;
   useEffect(() => {
     console.log("TELEGRAM", window.Telegram);
     tele.ready();
+    document.body.style.backgroundColor = tele.backgroundColor ?? "#333333";
+    if (tele.backgroundColor == "#ffffff") {
+      setDarkMode(false);
+    }
     // setMobileNumber(queryMobileNumber);
   });
   // let element = useRoutes([
