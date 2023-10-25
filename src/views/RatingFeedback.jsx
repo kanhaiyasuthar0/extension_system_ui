@@ -167,7 +167,7 @@ const RatingFeedback = (props) => {
       tag_other: value == 5 ? "" : other ? otherConcern : "",
       description: textAreaContent,
       images: [imageObject["image"]],
-      audios: [],
+      audios: [base64Audio],
       chat_id: queryParams.get("chatid"),
     };
     body[key] = id;
@@ -211,13 +211,49 @@ const RatingFeedback = (props) => {
   const onData = (recordedBlob) => {
     console.log(
       "🚀 ~ file: RatingFeedback.jsx:224 ~ onData ~ recordedBlob:",
-      recordedBlob
+      recordedBlob,
+      recordedBlob.blob,
+      recordedBlob.Blob
     );
     // setAudio({...audio, audioBlob: recordedBlob });
+    fetchBlobAsBase64(recordedBlob.blobURL)
+      .then((base64String) => {
+        setbase64Audio(base64String);
+        console.log(base64String); // The base64 encoded audio data
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
+  function fetchBlobAsBase64(blobURL) {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.responseType = "blob";
+      xhr.onload = () => {
+        if (xhr.status === 200) {
+          const blob = xhr.response;
+
+          // Set the desired mimeType
+          const base64Blob = new Blob([blob], { type: "audio/webm" });
+
+          const reader = new FileReader();
+          reader.onload = () => {
+            resolve(reader.result);
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(base64Blob);
+        } else {
+          reject(new Error("Failed to fetch the Blob."));
+        }
+      };
+      xhr.open("GET", blobURL);
+      xhr.send();
+    });
+  }
+
   const blobToBase64 = (blob) => {
-    console.log(blob, "blob");
+    console.log(blob, "blob123");
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = () => {
@@ -237,17 +273,25 @@ const RatingFeedback = (props) => {
       "🚀 ~ file: RatingFeedback.jsx:215 ~ onStop ~ recordedBlob:",
       recordedBlob
     );
+    function blobToBase64(blob) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          resolve(reader.result.split(",")[1]);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    }
+    // Convert the audioBlob to a base64 string
     blobToBase64(recordedBlob)
       .then((base64String) => {
-        console.log(
-          "🚀 ~ file: RatingFeedback.jsx:228 ~ .then ~ base64String:",
-          base64String
-        );
-        setbase64Audio(base64String);
+        console.log(base64String); // The base64 encoded audio data
       })
       .catch((error) => {
-        console.log(error, "error");
+        console.error(error);
       });
+
     setAudio({ ...audio, audioBlob: recordedBlob });
   };
   const resetAll = () => {
