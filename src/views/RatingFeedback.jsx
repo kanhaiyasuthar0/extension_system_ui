@@ -14,7 +14,7 @@ import recordImage from "../assets/record.svg";
 import uploadImage from "../assets/upload.svg";
 // import AudioRecordingComponent from "../components/generic/AudioRecordingComponent";
 
-const RatingFeedback = () => {
+const RatingFeedback = (props) => {
   const [queryParams, setSearchParams] = useSearchParams();
 
   const [value, setValue] = useState(0);
@@ -184,12 +184,14 @@ const RatingFeedback = () => {
       )
       .then((response) => {
         console.log(response);
-        sendMessageToUserOnBot();
+        // sendMessageToUserOnBot();
         setisLoading(false);
+        props.tele.close();
       })
       .catch((error) => {
-        sendMessageToUserOnBot();
+        // sendMessageToUserOnBot();
         setisLoading(false);
+        props.tele.close();
 
         console.log(
           "🚀 ~ file: RatingFeedback.jsx:19 ~ getAllFeedbackTags ~ error:",
