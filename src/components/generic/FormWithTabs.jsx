@@ -103,13 +103,14 @@ const FormWithTabs = ({ data, tele }) => {
     try {
       let response = await axios.post(url, data);
       if (response.status == 201) {
-        communincatingWithBotForSuccessMessaege();
+        // communincatingWithBotForSuccessMessaege();
       }
       setSubmitLoader(false);
     } catch (error) {
       console.log(error, "Error");
       setSubmitLoader(false);
     }
+    tele.close();
   }
 
   async function communincatingWithBotForSuccessMessaege() {
