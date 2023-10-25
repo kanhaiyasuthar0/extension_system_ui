@@ -362,6 +362,7 @@ const RatingFeedback = () => {
               onChange={(e) => setOtherConcern(e.target.value)}
               placeholder="Please describe it"
               maxLength={50}
+              size="large"
             />
           )}
         </div>
@@ -375,6 +376,7 @@ const RatingFeedback = () => {
           rows={4}
           onChange={(e) => setTextAreaContent(e.target.value)}
           value={textAreaContent}
+          size="large"
         />
         <div
           style={{
