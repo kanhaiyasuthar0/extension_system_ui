@@ -37,3 +37,11 @@ label {
 .light label {
   color: black !important;
 }
+
+.mtop25 {
+  margin-top: 25px;
+}
+
+.m12 {
+  margin: 12px !important;
+}

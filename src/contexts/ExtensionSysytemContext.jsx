@@ -15,6 +15,10 @@ function MyContextProvider({ children }) {
   });
 
   const [darkMode, setDarkMode] = useState(true);
+  console.log(
+    "🚀 ~ file: ExtensionSysytemContext.jsx:18 ~ MyContextProvider ~ darkMode:",
+    darkMode
+  );
 
   // Define functions or methods to update the state
 

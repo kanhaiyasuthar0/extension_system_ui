@@ -81,10 +81,28 @@ function App() {
           <Route path=":type" element={<Feedback />}></Route>
         </Route>
         <Route path="/input-collection">
-          <Route index element={<InputsCollection tele={tele} />}></Route>
+          <Route
+            index
+            element={
+              <InputsCollection purpose={"indent_collection"} tele={tele} />
+            }
+          ></Route>
+          <Route path=":type" element={<Feedback />}></Route>
+        </Route>
+        <Route path="/input-distribution">
+          <Route
+            index
+            element={
+              <InputsCollection purpose={"indent_distribution"} tele={tele} />
+            }
+          ></Route>
           <Route path=":type" element={<Feedback />}></Route>
         </Route>
         <Route path="/assessment/">
+          <Route index element={<Assessment tele={tele} />}></Route>
+          <Route path=":id" element={<Assessment tele={tele} />}></Route>
+        </Route>
+        <Route path="/indent/:collection/">
           <Route index element={<Assessment tele={tele} />}></Route>
           <Route path=":id" element={<Assessment tele={tele} />}></Route>
         </Route>
