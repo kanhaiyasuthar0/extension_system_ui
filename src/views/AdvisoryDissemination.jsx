@@ -43,12 +43,12 @@ const AdvisoryDissemination = ({ tele }) => {
 
   const formData = [
     {
-      format: "multiple",
+      format: "",
       key: "farmers_attended_mobile_number",
       label: "Select the farmers who attended the session",
       required: "TRUE",
       select_option: memoizedData ?? [],
-      type: "select",
+      type: "checkbox",
     },
     {
       format: "number",

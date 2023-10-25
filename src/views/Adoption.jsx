@@ -38,12 +38,12 @@ const Adoption = (props) => {
 
   const formData = [
     {
-      format: "multiple",
+      format: "",
       key: "farmers_who_adopted",
       label: "Select the farmers who adopted the advisory",
       required: "TRUE",
       select_option: memoizedData ?? [],
-      type: "select",
+      type: "checkbox",
     },
     {
       format: "",

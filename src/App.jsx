@@ -14,6 +14,7 @@ import FarmLevelDemand from "./views/FarmLevelDemand";
 // import GoogleSheetReader from "./components/google/GoogleSheetReader";
 // import FormWithTabs from "./components/generic/FormWithTabs";
 import { useMyContext } from "./contexts/ExtensionSysytemContext";
+import InputsCollection from "./views/InputsCollection";
 // 3️⃣ Router singleton created
 function App() {
   const { db, setDarkMode } = useMyContext();
@@ -77,6 +78,10 @@ function App() {
         </Route>
         <Route path="/advisory-dissemination">
           <Route index element={<AdvisoryDissemination tele={tele} />}></Route>
+          <Route path=":type" element={<Feedback />}></Route>
+        </Route>
+        <Route path="/input-collection">
+          <Route index element={<InputsCollection tele={tele} />}></Route>
           <Route path=":type" element={<Feedback />}></Route>
         </Route>
         <Route path="/assessment/">
