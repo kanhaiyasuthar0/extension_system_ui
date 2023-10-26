@@ -43,16 +43,16 @@ const Collection = ({
     for (let i = 0; i < memoizedallProductsData?.length; i++) {
       if (
         memoizedallProductsData[i][prev] == ongoingData[prevOn] &&
-        !finalObj[cur]
+        !finalObj[memoizedallProductsData[i][cur]]
       ) {
         final.push({
           value: memoizedallProductsData[i][cur],
           label: memoizedallProductsData[i][cur],
         });
-        finalObj[cur] = true;
+        finalObj[memoizedallProductsData[i][cur]] = true;
       }
     }
-    // console.log(finalObj, "finalObj");
+    console.log(finalObj, "finalObj");
 
     // console.log(memoizedallProductsData, "memoizedallProductsData");
     // let final = memoizedallProductsData.map((each) => {
@@ -69,11 +69,15 @@ const Collection = ({
   return (
     <>
       <div style={{ textAlign: "left" }}>
-        <h3>Create an Indent</h3>
+        <h3>
+          {window.location.pathname.includes("collection")
+            ? "Create an Indent"
+            : "Record Distributtion"}{" "}
+        </h3>
         <Typography> Please select a farmer</Typography>
         <Select
           value={ongoingData["farmer"]}
-          style={{ width: "100%" }}
+          style={{ width: "300px" }}
           onChange={(e) => handleChangeSelect("farmer", e, 0)}
           options={farmers?.map((each) => ({ value: each, label: each }))}
         />
@@ -81,6 +85,7 @@ const Collection = ({
           {categories.map((each) => {
             return (
               <Chip
+                disabled={!ongoingData["farmer"]}
                 className="m12"
                 onClick={() => handleChangeSelect("category", each, 1)}
                 variant={

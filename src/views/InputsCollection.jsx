@@ -211,15 +211,32 @@ const InputsCollection = ({ tele, purpose }) => {
     }));
   };
 
+  function extractNumberInParentheses(inputString) {
+    // Define a regex pattern to match numbers within parentheses
+    const regex = /\((\d+)\)/;
+
+    // Use the `exec` method to find the match
+    const match = regex.exec(inputString);
+
+    if (match) {
+      // The extracted number is in the first capturing group (index 1)
+      return match[1];
+    } else {
+      // Return null if no match is found
+      return "";
+    }
+  }
+
   const handleSubmit = async (url) => {
     let baseurl = `https://farmerchat.farmstack.co/upd-demo`;
-    let endPoint = `/telegram_app/web_hook/post_indent/?"chat_id"=${queryParams.get(
+    let endPoint = `/telegram_app/web_hook/post_indent/?chat_id=${queryParams.get(
       "chat_id"
     )}&indent_purpose=${purpose}`;
     url = baseurl + endPoint;
     let body = {
       task_id: queryParams.get("task_id"), // first
-      farmer_mobile_number: "8053203639", // second
+      farmer_mobile_number:
+        extractNumberInParentheses(ongoingData["farmer"]) ?? "", // second
       products: savedData.map((each) => {
         return {
           product_category: each["category"],
