@@ -13,15 +13,17 @@ const CustomCamera = (props) => {
   return (
     <div
       style={{
-        visibility: props.enableCamera ? "visible" : "hidden",
+        visibility: props.enableCamera ? "visible" : "visible",
         maxWidth: "300px",
       }}
     >
-      <Camera
-        // facingMode={frontCameraOn ? "user" : "environment"}
-        aspectRatio={2}
-        ref={camera}
-      />
+      {props.enableCamera && (
+        <Camera
+          // facingMode={frontCameraOn ? "user" : "environment"}
+          aspectRatio={2}
+          ref={camera}
+        />
+      )}
       <div
         style={{
           display: "flex",
@@ -41,46 +43,63 @@ const CustomCamera = (props) => {
             width: "100%",
           }}
         >
-          <Button
-            type="primary"
-            onClick={() => {
-              let value = camera.current.takePhoto();
-              setImage(value);
-              props.handleChangeTyping(
-                "",
-                props.element.key,
-                props.element.type,
-                value
-              );
-            }}
-          >
-            Take photo
-          </Button>
-          <Button
-            danger
-            type="primary"
-            onClick={() => {
-              if (camera.current) {
-                const result = camera.current.switchCamera();
-                console.log(result);
-              }
-            }}
-          >
-            Toggle Camera
-          </Button>
-          {/* <Button
-            // type="primary"
-            onClick={() => {
-              props.setEnableCamera(false);
-            }}
-          >
-            Close Camera
-          </Button> */}
+          {props.enableCamera && (
+            <Button
+              type="primary"
+              onClick={() => {
+                let value = camera.current.takePhoto();
+                setImage(value);
+                props.handleChangeTyping(
+                  "",
+                  props.element.key,
+                  props.element.type,
+                  value
+                );
+                props.setEnableCamera(false);
+              }}
+            >
+              Take photo
+            </Button>
+          )}
+          {props.enableCamera && (
+            <Button
+              danger
+              type="primary"
+              onClick={() => {
+                if (camera.current) {
+                  const result = camera.current.switchCamera();
+                  console.log(result);
+                }
+              }}
+            >
+              Toggle Camera
+            </Button>
+          )}
         </div>
-
-        {image && (
-          <img height={100} width={200} src={image} alt="Taken photo" />
-        )}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "300px",
+            flexDirection: "column",
+            gap: "20px",
+          }}
+        >
+          {image && (
+            <img height={100} width={200} src={image} alt="Taken photo" />
+          )}
+          {!props.enableCamera && (
+            <Button
+              type="dashed"
+              onClick={() => {
+                props.setEnableCamera(true);
+              }}
+            >
+              Retake
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 
-const FormWithTabs = ({ data, tele }) => {
+const FormWithTabs = ({ data, tele, submitCall, submitCallLoader }) => {
   const [loading, setLoading] = useState(false);
   const [submitLoader, setSubmitLoader] = useState(false);
   console.log("🚀 ~ file: FormWithTabs.jsx:10 ~ FormWithTabs ~ data:", data);
@@ -207,8 +207,8 @@ const FormWithTabs = ({ data, tele }) => {
         buttons={buttonsSecond}
         handleChangeTyping={handleChangeTyping}
         allValues={allValues}
-        submit={() => handleSubmit()}
-        submitLoader={submitLoader}
+        submit={() => (submitCall ? submitCall() : handleSubmit())}
+        submitLoader={submitCall ? submitCallLoader : submitLoader}
       />
     </Tabs.TabPane>
   ));

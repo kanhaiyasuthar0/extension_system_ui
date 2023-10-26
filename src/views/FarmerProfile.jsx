@@ -37,7 +37,7 @@ const FarmerProfile = (props) => {
   }, []); // Empty dependency array to run this effect only once
 
   // Use useMemo to memoize the data
-  const memoizedData = useMemo(() => ["data"], [data]);
+  const memoizedData = useMemo(() => data, [data]);
 
   const formData = [
     {
@@ -46,12 +46,18 @@ const FarmerProfile = (props) => {
       label: "Please select farmer mobile number",
       required: "TRUE",
       select_option: memoizedData ?? [],
-      type: "checkbox",
+      type: "select",
     },
     {
       format: "",
-      key: "farmer_name",
-      label: "Farmer Name",
+      key: "farmer_first_name",
+      label: "Farmer's first name",
+      type: "input",
+    },
+    {
+      format: "",
+      key: "farmer_last_name",
+      label: "Farmer's last name",
       type: "input",
     },
     {
@@ -74,26 +80,32 @@ const FarmerProfile = (props) => {
       type: "upload",
     },
     {
-      format: "",
-      key: "district",
-      label: "Select district",
-      select_option: ["bhilwara", "jaipur"],
-      type: "select",
+      format: "number",
+      key: "farmer_aadhaar",
+      label: "Farmer's Aadhaar Number",
+      type: "input",
     },
-    {
-      format: "",
-      key: "block",
-      label: "Select block",
-      select_option: ["A", "B"],
-      type: "select",
-    },
-    {
-      format: "",
-      key: "village",
-      label: "Select village",
-      select_option: ["Village A"],
-      type: "select",
-    },
+    // {
+    //   format: "",
+    //   key: "district",
+    //   label: "Select district",
+    //   select_option: ["bhilwara", "jaipur"],
+    //   type: "select",
+    // },
+    // {
+    //   format: "",
+    //   key: "block",
+    //   label: "Select block",
+    //   select_option: ["A", "B"],
+    //   type: "select",
+    // },
+    // {
+    //   format: "",
+    //   key: "village",
+    //   label: "Select village",
+    //   select_option: ["Village A"],
+    //   type: "select",
+    // },
   ];
 
   const items = [
@@ -104,6 +116,10 @@ const FarmerProfile = (props) => {
     },
   ];
 
+  function submitCall() {
+    console.log("submitCall");
+  }
+
   return (
     <>
       {/* <FormWithTabs data={items} tele={props.tele} /> */}
@@ -111,7 +127,11 @@ const FarmerProfile = (props) => {
         <Skeleton active paragraph={{ rows: 4 }}></Skeleton>
       ) : (
         memoizedData?.length > 0 && (
-          <FormWithTabs data={items} tele={props.tele} />
+          <FormWithTabs
+            data={items}
+            tele={props.tele}
+            submitCall={submitCall}
+          />
         )
       )}
     </>
