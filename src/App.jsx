@@ -15,54 +15,45 @@ import FarmLevelDemand from "./views/FarmLevelDemand";
 // import FormWithTabs from "./components/generic/FormWithTabs";
 import { useMyContext } from "./contexts/ExtensionSysytemContext";
 import InputsCollection from "./views/InputsCollection";
+import { Switch } from "antd";
 // 3️⃣ Router singleton created
 function App() {
-  const { db, setDarkMode } = useMyContext();
+  const { setDarkMode } = useMyContext();
   const tele = window.Telegram.WebApp;
   useEffect(() => {
     console.log("TELEGRAM", window.Telegram);
     tele.ready();
 
-    //setting the background color as per theme of telegram bot
-    document.body.style.backgroundColor = tele.backgroundColor ?? "#333333";
     if (tele.backgroundColor == "#ffffff") {
+      document.body.classList.remove("dark-mode");
+      setDarkMode(false);
+    } else if (tele.backgroundColor == "#333333") {
+      document.body.classList.add("dark-mode");
+      setDarkMode(true);
+    } else {
       setDarkMode(false);
     }
   });
 
+  const handleChange = (checked) => {
+    console.log("🚀 ~ file: App.jsx:73 ~ handleChange ~ checked:", checked);
+    // document.body.style.backgroundColor = checked ? "#333333" : "#ffffff";
+    if (checked) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+    setDarkMode(checked);
+  };
+
   return (
     <>
-      {/* <GoogleSheetReader /> */}
+      {import.meta.env.VITE_REACT_MODE == "DEV" ? (
+        <Switch onChange={handleChange} />
+      ) : (
+        ""
+      )}
       <Routes>
-        {/* [
-    {
-      key: "1",
-      label: "ADOPTION",
-      data: database.advisory_form,
-    },
-  ]; */}
-
-        {/* {db?.map((eachSheet, index) => {
-          console.log("🚀 ~ file: App.jsx:42 ~ {db?.map ~ db:", eachSheet.id);
-          return (
-            <Route
-              key={index}
-              path={eachSheet.id}
-              element={
-                <FormWithTabs
-                  tele={tele}
-                  data={[
-                    {
-                      key: "1",
-                      label: eachSheet.id,
-                      data: eachSheet.data,
-                    },
-                  ]}
-                />
-              }
-            ></Route>
-          );
-        })} */}
         <Route path="/farmer-profile">
           <Route index element={<FarmerProfile tele={tele} />}></Route>
           <Route path=":type" element={<Feedback />}></Route>

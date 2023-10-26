@@ -45,3 +45,33 @@ label {
 .m12 {
   margin: 12px !important;
 }
+
+.dark-mode {
+  background-color: #333333 !important;
+  color: white !important;
+}
+
+/* .light-mode {
+  background-color: #ffffff !important;
+  color: #333333 !important;
+} */
+.dark-mode .MuiChip-label,
+.dark-mode .ant-form-item-label label {
+  color: #ffffff !important;
+}
+button:disabled {
+  color: #333333 !important;
+}
+.dark-mode button:disabled {
+  color: #ffffff !important;
+}
+.dark-mode .MuiRating-root {
+  background-color: #ffffff !important;
+  /* padding: 0px 25px; */
+  border-radius: 5px;
+  /* width: 100%; */
+}
+.MuiRating-root {
+  /* width: 100%; */
+  /* text-align: center; */
+}

@@ -6,6 +6,7 @@ import axios from "axios";
 import Collection from "../components/indentCollection/Collection";
 const InputsCollection = ({ tele, purpose }) => {
   const [loading, setLoading] = useState(false);
+  const [submitLoader, setsubmitLoader] = useState(false);
   const [queryParams, setSearchParams] = useSearchParams();
 
   const [data, setData] = useState(null);
@@ -228,6 +229,7 @@ const InputsCollection = ({ tele, purpose }) => {
   }
 
   const handleSubmit = async (url) => {
+    setsubmitLoader(true);
     let baseurl = `https://farmerchat.farmstack.co/upd-demo`;
     let endPoint = `/telegram_app/web_hook/post_indent/?chat_id=${queryParams.get(
       "chat_id"
@@ -257,9 +259,11 @@ const InputsCollection = ({ tele, purpose }) => {
         "🚀 ~ file: InputsCollection.jsx:240 ~ handleSubmit ~ response:",
         response
       );
+      setLosetsubmitLoaderading(false);
       tele?.close();
     } catch (error) {
       console.log(error);
+      setsubmitLoader(false);
       tele?.close();
     }
   };
@@ -281,6 +285,7 @@ const InputsCollection = ({ tele, purpose }) => {
           handleClear={handleClear}
           handleSubmit={handleSubmit}
           savedData={savedData}
+          loading={submitLoader}
         />
       )}
     </>

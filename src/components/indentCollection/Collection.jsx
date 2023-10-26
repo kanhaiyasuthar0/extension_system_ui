@@ -4,6 +4,7 @@ import { Input, Select, Button, Badge } from "antd";
 // import Button from "@mui/material/Button";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 const Collection = ({
+  loading,
   farmers,
   uom,
   variety,
@@ -182,6 +183,8 @@ const Collection = ({
       </div>
       <div className="mtop25">
         <Button
+          disabled={!savedData.length > 0}
+          loading={loading}
           variant="contained"
           color="success"
           onClick={handleSubmit}
