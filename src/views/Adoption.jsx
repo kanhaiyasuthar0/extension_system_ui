@@ -69,7 +69,7 @@ const Adoption = (props) => {
     },
     {
       format: "",
-      key: "general",
+      key: "feedback",
       label: "Did the farmers find the advisory easy to implement?",
       required: "TRUE",
       select_option: ["Yes (हां)", "No (नहीं)"],
@@ -77,7 +77,7 @@ const Adoption = (props) => {
     },
     {
       format: "",
-      key: "feedback",
+      key: "extra_comments",
       label: "Do you want to share any suggestions or challenges faced?",
       required: "FALSE",
       type: "textarea",

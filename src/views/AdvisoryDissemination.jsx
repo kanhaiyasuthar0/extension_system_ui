@@ -90,7 +90,7 @@ const AdvisoryDissemination = ({ tele }) => {
     },
     {
       format: "",
-      key: "comment",
+      key: "extra_comments",
       label: "Do you want to share any suggestions or challenges faced?",
       required: "FALSE",
       type: "textarea",
