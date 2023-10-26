@@ -12,7 +12,11 @@ const ContentRenderer = (props) => {
   );
   const formRef = useRef();
 
-  const { audio, setAudio } = useMyContext();
+  const { audio, setAudio, darkMode } = useMyContext();
+  console.log(
+    "🚀 ~ file: ContentRenderer.jsx:16 ~ ContentRenderer ~ darkMode:",
+    darkMode
+  );
   const startRecording = () => {
     setAudio({ ...audio, isRecording: true });
   };
@@ -210,6 +214,7 @@ const ContentRenderer = (props) => {
                     margin: "auto",
                     display: "block",
                     width: "100%",
+                    // color: darkMode ? "white" : "black",
                   }}
                   htmlType="submit"
                   // onClick={button.value == "next" ? () => null : button.onClick}

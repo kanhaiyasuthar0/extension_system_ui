@@ -13,6 +13,7 @@ import Assessment from "./views/Assessment";
 import FarmLevelDemand from "./views/FarmLevelDemand";
 import RatingFeedback from "./views/RatingFeedback";
 import { useMyContext } from "./contexts/ExtensionSysytemContext";
+import { Switch } from "antd";
 // 3️⃣ Router singleton created
 
 function App() {
@@ -21,12 +22,18 @@ function App() {
   useEffect(() => {
     console.log("TELEGRAM", window.Telegram);
     tele.ready();
-    document.body.style.backgroundColor = tele.backgroundColor ?? "#333333";
+    // document.body.style.backgroundColor = tele.backgroundColor ?? "#333333";
     if (tele.backgroundColor == "#ffffff") {
+      document.body.classList.remove("dark-mode");
+      setDarkMode(false);
+    } else if (tele.backgroundColor == "#333333") {
+      document.body.classList.add("dark-mode");
+      setDarkMode(true);
+    } else {
       setDarkMode(false);
     }
     // setMobileNumber(queryMobileNumber);
-  });
+  }, []);
   // let element = useRoutes([
   //   {
   //     path: "farmer-profile",
@@ -68,8 +75,25 @@ function App() {
   //   },
   // ]);
 
+  const handleChange = (checked) => {
+    console.log("🚀 ~ file: App.jsx:73 ~ handleChange ~ checked:", checked);
+    // document.body.style.backgroundColor = checked ? "#333333" : "#ffffff";
+    if (checked) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+    setDarkMode(checked);
+  };
+  // console.log(import.meta.env.VITE_REACT_MODE);
   return (
     <>
+      {import.meta.env.VITE_REACT_MODE == "DEV" ? (
+        <Switch onChange={handleChange} />
+      ) : (
+        ""
+      )}
+
       <Routes>
         <Route
           path="/feedback-form"

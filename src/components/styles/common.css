@@ -2,13 +2,13 @@
   /* color: white !important; */
 }
 .ant-tabs-tab {
-  color: #808a8e !important;
+  /* color: #808a8e !important; */
 }
 .ant-tabs-tabpane {
-  color: white !important;
+  /* color: black !important; */
 }
 .farmer_profile_main_box label {
-  color: white !important;
+  /* color: black !important; */
 }
 .feedback-form .ant-upload-wrapper {
   display: flex;
@@ -18,14 +18,50 @@
 }
 
 .feedback-form div {
-  color: white !important;
+  /* color: black !important; */
   text-align: left;
   font-size: medium;
 }
+/* label,
+legend {
+  color: black !important;
+} */
 
-.dark label {
+/* .dark-mode {
+  background-color: #333333 !important;
+}
+
+.dark label,
+.dark legend,
+.dark-mode legend .dark-mode label {
+  color: white !important;
+} */
+.dark-mode {
+  background-color: #333333 !important;
   color: white !important;
 }
-.light label {
-  color: black !important;
+
+/* .light-mode {
+  background-color: #ffffff !important;
+  color: #333333 !important;
+} */
+.dark-mode .MuiChip-label,
+.dark-mode .ant-form-item-label label {
+  color: #ffffff !important;
+}
+button:disabled {
+  color: #333333 !important;
+}
+.dark-mode button:disabled {
+  color: #ffffff !important;
+}
+.dark-mode .MuiRating-root {
+  background-color: #ffffff !important;
+  /* padding: 0px 25px; */
+  border-radius: 5px;
+  /* width: 100%; */
+}
+.MuiRating-root {
+  /* width: 100%; */
+  /* text-align: center; */
 }
