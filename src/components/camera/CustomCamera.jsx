@@ -15,6 +15,7 @@ const CustomCamera = (props) => {
       style={{
         visibility: props.enableCamera ? "visible" : "visible",
         maxWidth: "300px",
+        margin: "auto",
       }}
     >
       {props.enableCamera && (
