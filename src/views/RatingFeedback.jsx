@@ -166,7 +166,7 @@ const RatingFeedback = (props) => {
       tags: value == 5 ? [] : selectedTag,
       tag_other: value == 5 ? "" : other ? otherConcern : "",
       description: textAreaContent,
-      images: [imageObject["image"]],
+      images: imageObject["image"] ? [imageObject["image"]] : [],
       audios: [base64Audio],
       chat_id: queryParams.get("chatid"),
     };
