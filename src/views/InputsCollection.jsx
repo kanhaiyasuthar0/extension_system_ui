@@ -259,7 +259,7 @@ const InputsCollection = ({ tele, purpose }) => {
         "🚀 ~ file: InputsCollection.jsx:240 ~ handleSubmit ~ response:",
         response
       );
-      setLosetsubmitLoaderading(false);
+      setsubmitLoader(false);
       tele?.close();
     } catch (error) {
       console.log(error);
