@@ -57,7 +57,7 @@ const FarmerProfileC = (props) => {
 
   useEffect(() => {
     formRef.current.setFieldValue("first_name", allValues["first_name"]);
-    formRef.current.setFieldValue("last_name", allValues["first_name"]);
+    formRef.current.setFieldValue("last_name", allValues["last_name"]);
     formRef.current.setFieldValue("gender", allValues["gender"]);
     if (allValues["date_of_birth"]) {
       formRef.current.setFieldValue(
@@ -114,7 +114,7 @@ const FarmerProfileC = (props) => {
           label={2 + ". " + `Farmer's first name`}
           name={"first_name"}
           // value={allValues["first_name"]}
-          initialValue={allValues["first_name"] ?? ""}
+          // initialValue={allValues["first_name"] ?? ""}
           rules={[
             {
               required: true,
@@ -125,7 +125,6 @@ const FarmerProfileC = (props) => {
           <Input
             required
             placeholder="Farmer's first name"
-            // ={allValues["first_name"]}
             value={allValues["first_name"]}
             onChange={(e) =>
               setAllValues((prev) => ({ ...prev, first_name: e.target.value }))
@@ -136,7 +135,7 @@ const FarmerProfileC = (props) => {
           label={3 + ". " + `Farmer's last name`}
           name={"last_name"}
           // initialValue={allValues[element.key]}
-          value={allValues["last_name"]}
+          // value={allValues["last_name"]}
           rules={[
             {
               required: false,
