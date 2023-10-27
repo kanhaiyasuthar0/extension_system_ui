@@ -174,16 +174,16 @@ const Collection = ({
             alignSelf: "end",
           }}
         >
-          <AddCircleOutlineIcon /> Add more product
+          <AddCircleOutlineIcon /> Add product
         </Button>
         <Badge count={savedData.length}>
           {/* <Avatar shape="square" size="large" /> */}
-          <Button>Total products added</Button>
+          <Button style={{ border: "none" }}>Total products added</Button>
         </Badge>
       </div>
       <div className="mtop25">
         <Button
-          //   disabled={!savedData.length > 0}
+          disabled={!savedData.length > 0}
           loading={loading}
           variant="contained"
           color="success"

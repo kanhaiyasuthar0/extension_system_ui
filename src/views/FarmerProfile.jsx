@@ -306,7 +306,7 @@ const FarmerProfile = (props) => {
       console.log(error, "Error");
       // setSubmitLoader(false);
     }
-    props.tele.close();
+    // props.tele.close();
   }
 
   function submitCall() {
