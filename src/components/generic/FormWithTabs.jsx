@@ -88,7 +88,7 @@ const FormWithTabs = ({ data, tele, submitCall, submitCallLoader }) => {
       window.location.href.includes("advisory-dissemination")
         ? "Advisory Dissemination"
         : "Record Advisory Adoption"
-    }`;
+    }&chat_id=${queryParams.get("chat_id")}`;
     let url = baseUrl + end_point;
     let taskid = queryParams.get("task_id");
     console.log(

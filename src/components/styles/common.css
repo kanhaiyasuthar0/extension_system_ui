@@ -75,3 +75,7 @@ button:disabled {
   /* width: 100%; */
   /* text-align: center; */
 }
+.dark-mode .ant-checkbox-wrapper span,
+.dark-mode .ant-radio-wrapper span {
+  color: white !important;
+}
