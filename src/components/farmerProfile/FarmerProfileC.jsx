@@ -9,16 +9,19 @@ import {
   Space,
   Button,
 } from "antd";
+import { Typography } from "@mui/material";
+
 const { Option } = Select;
 // import dayjs from "dayjs";
 import { useMyContext } from "../../contexts/ExtensionSysytemContext";
 import { ReactMic } from "react-mic";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CustomCamera from "../camera/CustomCamera";
 import CustomButton from "../generic/CustomButton";
 // import CustomButton from "./CustomButton";
 const FarmerProfileC = (props) => {
   const formRef = useRef();
+  console.log("🚀 ~ file: FarmerProfileC.jsx:24 ~ FarmerProfileC ~ formRef:");
 
   const { audio, setAudio, allValues, setAllValues } = useMyContext();
   console.log(
@@ -51,6 +54,15 @@ const FarmerProfileC = (props) => {
     console.log("handleCa, key, value", key, value);
     setAllValues((prev) => ({ ...prev, [key]: value })); // Assuming setAllValues is a function to update state
   };
+
+  useEffect(() => {
+    formRef.current.setFieldValue("first_name", allValues["first_name"]);
+    formRef.current.setFieldValue("last_name", allValues["first_name"]);
+    formRef.current.setFieldValue("gender", allValues["gender"]);
+    // formRef.current.setFieldValue("date_of_birth", allValues["date_of_birth"]);
+    formRef.current.setFieldValue("aadhar_number", allValues["aadhar_number"]);
+    // formRef.current.setFieldValue("last_name", allValues["first_name"]);
+  });
   return (
     <div>
       <Form
@@ -106,8 +118,10 @@ const FarmerProfileC = (props) => {
           ]}
         >
           <Input
+            required
             placeholder="Farmer's first name"
             // ={allValues["first_name"]}
+            value={allValues["first_name"]}
             onChange={(e) =>
               setAllValues((prev) => ({ ...prev, first_name: e.target.value }))
             }
