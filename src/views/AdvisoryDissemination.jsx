@@ -52,8 +52,8 @@ const AdvisoryDissemination = ({ tele }) => {
     },
     {
       format: "number",
-      key: "total_farmer_count",
-      label: "Count of total farmers",
+      key: "male_farmer_count",
+      label: "Count of male farmers",
       required: "TRUE",
       type: "input",
     },

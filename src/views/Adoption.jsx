@@ -47,8 +47,8 @@ const Adoption = (props) => {
     },
     {
       format: "",
-      key: "total_farmer_count",
-      label: "Count of total farmers",
+      key: "male_farmer_count",
+      label: "Count of male farmers",
       required: "TRUE",
       type: "input",
     },
