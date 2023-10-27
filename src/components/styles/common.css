@@ -65,3 +65,10 @@ button:disabled {
   /* width: 100%; */
   /* text-align: center; */
 }
+.MuiRating-root label {
+  font-size: 50px !important;
+  color: #e0ba30 !important;
+}
+.dark-mode .ant-upload-list-item-name {
+  color: white !important;
+}

@@ -357,7 +357,7 @@ const RatingFeedback = (props) => {
   return (
     <div className="feedback-form">
       {/* <div> */}
-      <Typography component="legend">
+      <Typography style={{ margin: "15px 0px 10px 0px" }} component="legend">
         How would you rate this{" "}
         {queryParams.get("message_id") ? "answer" : "video"}?
       </Typography>
@@ -378,20 +378,30 @@ const RatingFeedback = (props) => {
             //   visibility: value <= 4 ? "visible" : "hidden",
           }}
         >
-          <Typography component="legend">
+          <Typography
+            component="legend"
+            style={{ margin: "15px 0px 10px 0px" }}
+          >
             Please select one or more issues.
           </Typography>
           {allTags.map((eachTag, index) => {
             console.log(eachTag, "eachTag");
             return (
-              <Chip
-                onClick={() => handleClick(eachTag)}
-                key={index}
-                label={eachTag.name}
-                variant={
-                  selectedTag.includes(eachTag?.id) ? "outlined" : "filled"
-                }
-              />
+              <div style={{ margin: "5px 10px", display: "inline-block" }}>
+                <Chip
+                  onClick={() => handleClick(eachTag)}
+                  key={index}
+                  label={eachTag.name}
+                  variant={
+                    selectedTag.includes(eachTag?.id) ? "outlined" : "outlined"
+                  }
+                  style={{
+                    background: selectedTag.includes(eachTag?.id)
+                      ? "#B7B7B7"
+                      : "",
+                  }}
+                />
+              </div>
             );
           })}
 
@@ -399,7 +409,12 @@ const RatingFeedback = (props) => {
             onClick={() => setOther(!other)}
             key={"other"}
             label={"Other"}
-            variant={other ? "outlined" : "filled"}
+            variant={other ? "outlined" : "outlined"}
+            // color={other ? "primary" : ""}
+            style={{
+              background: other ? "#B7B7B7" : "",
+              color: other,
+            }}
           />
           {other && (
             <Input
@@ -415,7 +430,7 @@ const RatingFeedback = (props) => {
       )}
 
       <div>
-        <Typography component="legend">
+        <Typography component="legend" style={{ margin: "15px 0px 10px 0px" }}>
           Please provide details (Optional)
         </Typography>
         <TextArea
@@ -440,6 +455,7 @@ const RatingFeedback = (props) => {
                 display: "flex",
                 justifyContent: "left",
                 alignItems: "center",
+                cursor: "pointer",
               }}
             >
               <Upload
@@ -455,7 +471,7 @@ const RatingFeedback = (props) => {
                   setFileList(newFileList);
                 }}
                 onPreview={handlePreview}
-                listType="picture-card"
+                listType="picture"
                 // style={{ height: "10px" }}
               >
                 <div>
