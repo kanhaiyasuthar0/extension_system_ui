@@ -174,7 +174,7 @@ const Collection = ({
             alignSelf: "end",
           }}
         >
-          <AddCircleOutlineIcon /> Add product
+          <AddCircleOutlineIcon /> Add more product
         </Button>
         <Badge count={savedData.length}>
           {/* <Avatar shape="square" size="large" /> */}
