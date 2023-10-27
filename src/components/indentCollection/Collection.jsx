@@ -183,7 +183,7 @@ const Collection = ({
       </div>
       <div className="mtop25">
         <Button
-          disabled={!savedData.length > 0}
+          //   disabled={!savedData.length > 0}
           loading={loading}
           variant="contained"
           color="success"
