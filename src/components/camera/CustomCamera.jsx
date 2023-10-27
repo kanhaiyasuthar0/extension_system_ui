@@ -19,11 +19,7 @@ const CustomCamera = (props) => {
       }}
     >
       {props.enableCamera && (
-        <Camera
-          // facingMode={frontCameraOn ? "user" : "environment"}
-          aspectRatio={2}
-          ref={camera}
-        />
+        <Camera facingMode={"environment"} aspectRatio={2} ref={camera} />
       )}
       <div
         style={{
