@@ -97,7 +97,7 @@ const InputsCollection = ({ tele, purpose }) => {
     product: "",
     uom: "",
     variety: "",
-    quanity: "",
+    quantity: "",
     category: "",
     farmer: "",
   };
@@ -106,7 +106,7 @@ const InputsCollection = ({ tele, purpose }) => {
     product: "",
     uom: "",
     variety: "",
-    quanity: "",
+    quantity: "",
     category: "",
     farmer: "",
   });
@@ -249,6 +249,20 @@ const InputsCollection = ({ tele, purpose }) => {
         };
       }),
     };
+    console.log(ongoingData, "123");
+    if (
+      ongoingData["uom"] &&
+      ongoingData["farmer"] &&
+      ongoingData["quantity"]
+    ) {
+      body["products"].push({
+        product_category: ongoingData["category"],
+        product_name: ongoingData["product"],
+        product_variety: ongoingData["variety"],
+        product_uom: ongoingData["uom"],
+        qty: ongoingData["quantity"],
+      });
+    }
     console.log(
       "🚀 ~ file: InputsCollection.jsx:234 ~ handleSubmit ~ body:",
       body

@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import Chip from "@mui/material/Chip";
-import { Input, Select, Button, Badge } from "antd";
+import { Input, Select, Button, Badge, Avatar } from "antd";
 // import Button from "@mui/material/Button";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 const Collection = ({
@@ -174,16 +174,18 @@ const Collection = ({
             alignSelf: "end",
           }}
         >
-          <AddCircleOutlineIcon /> Add product
+          <AddCircleOutlineIcon /> Add more product
         </Button>
-        <Badge count={savedData.length}>
+        <Badge count={savedData.length} showZero>
           {/* <Avatar shape="square" size="large" /> */}
-          <Button style={{ border: "none" }}>Total products added</Button>
+          {/* < style={{ border: "none" }}>Total products added</> */}
+
+          <Avatar size={40}>Total</Avatar>
         </Badge>
       </div>
       <div className="mtop25">
         <Button
-          disabled={!savedData.length > 0}
+          //   disabled={!savedData.length > 0}
           loading={loading}
           variant="contained"
           color="success"
