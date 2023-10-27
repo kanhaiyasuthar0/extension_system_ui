@@ -19,7 +19,11 @@ import CustomButton from "./CustomButton";
 const ContentRenderer = (props) => {
   const formRef = useRef();
 
-  const { audio, setAudio } = useMyContext();
+  const { audio, setAudio, allValues } = useMyContext();
+  console.log(
+    "🚀 ~ file: ContentRenderer.jsx:23 ~ ContentRenderer ~ allValues:",
+    allValues
+  );
   const startRecording = () => {
     setAudio({ ...audio, isRecording: true });
   };
@@ -57,7 +61,8 @@ const ContentRenderer = (props) => {
             key={index}
             label={index + 1 + ". " + element.label}
             name={element.key}
-            // initialValue={props.searchParams.get(`${element.key}`)}
+            // initialValue={allValues[element.key]}
+            value={allValues[element.key]}
             rules={[
               {
                 required:

@@ -6,7 +6,7 @@ const CustomButton = (props) => {
   return (
     <>
       <Button
-        loading={props.submitLoader}
+        loading={props.submitLoader ?? false}
         disable={disable ?? false}
         type="primary"
         className={classes}

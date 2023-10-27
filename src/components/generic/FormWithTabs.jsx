@@ -160,6 +160,7 @@ const FormWithTabs = ({ data, tele, submitCall, submitCallLoader }) => {
   };
 
   const handleChangeTyping = (e, name, type, value) => {
+    console.log("called");
     setAllValues((prev) => {
       if (type === "checkbox") {
         let exist = prev[name] ?? {};
