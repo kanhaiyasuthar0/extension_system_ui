@@ -10,7 +10,7 @@ import {
   Button,
 } from "antd";
 import { Typography } from "@mui/material";
-
+import moment from "moment";
 const { Option } = Select;
 // import dayjs from "dayjs";
 import { useMyContext } from "../../contexts/ExtensionSysytemContext";
@@ -59,7 +59,12 @@ const FarmerProfileC = (props) => {
     formRef.current.setFieldValue("first_name", allValues["first_name"]);
     formRef.current.setFieldValue("last_name", allValues["first_name"]);
     formRef.current.setFieldValue("gender", allValues["gender"]);
-    // formRef.current.setFieldValue("date_of_birth", allValues["date_of_birth"]);
+    if (allValues["date_of_birth"]) {
+      formRef.current.setFieldValue(
+        "date_of_birth",
+        moment(allValues["date_of_birth"], "YYYY-MM-DD")
+      );
+    }
     formRef.current.setFieldValue("aadhar_number", allValues["aadhar_number"]);
     // formRef.current.setFieldValue("last_name", allValues["first_name"]);
   });
