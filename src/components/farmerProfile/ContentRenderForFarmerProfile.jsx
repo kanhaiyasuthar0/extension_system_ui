@@ -116,6 +116,13 @@ const ContentRenderForFarmerProfile = (props) => {
               />
             ) : element.type === "select" ? (
               <Select
+                onClear={
+                  () => (element.clearFn ? element.clearFn() : "")
+                  // element.clearFn
+                  //   ? element.clearFn
+                  //   : () => console.log("cleared")
+                }
+                allowClear
                 mode={element.format == "multiple" ? "multiple" : ""}
                 name={element?.key}
                 onChange={(e) => {

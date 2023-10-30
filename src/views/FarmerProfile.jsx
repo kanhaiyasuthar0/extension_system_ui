@@ -13,6 +13,7 @@ const FarmerProfile = (props) => {
   const [queryParams, setSearchParams] = useSearchParams();
   const { allValues, setAllValues } = useMyContext();
   const [data, setData] = useState(null);
+  const [sheetData, setSheetData] = useState({});
   // const [items, setItems] = useState([]);
   // const [formData, setFormData] = useState([]);
   async function getAllFarmers() {
@@ -81,6 +82,10 @@ const FarmerProfile = (props) => {
       select_option: ["Female", "Male"],
       type: "select",
       required: "TRUE",
+      clearFn: () => {
+        console.log("called gender clear", sheetData);
+        setAllValues({ ...allValues, gender: sheetData["gender"] });
+      },
     },
     {
       format: "jpg, jpeg, png",
@@ -103,6 +108,8 @@ const FarmerProfile = (props) => {
       type: "select",
       required: "TRUE",
       select_option: ["Crop only", "Livestock only", "Mixed"],
+      clearFn: () =>
+        setAllValues({ ...allValues, farming_type: sheetData["farming_type"] }),
     },
     // {
     //   format: "",
@@ -232,6 +239,11 @@ const FarmerProfile = (props) => {
       key: "land_ownership_type",
       type: "select",
       select_option: ["Own", "Rented"],
+      clearFn: () =>
+        setAllValues({
+          ...allValues,
+          land_ownership_type: sheetData["land_ownership_type"],
+        }),
     },
     {
       label: "Soil Type",
@@ -239,6 +251,8 @@ const FarmerProfile = (props) => {
       key: "soil_type",
       type: "select",
       select_option: ["Loam", "Clay", "Silt", "Peat", "Sandy"],
+      clearFn: () =>
+        setAllValues({ ...allValues, soil_type: sheetData["soil_type"] }),
     },
     {
       label: "Land Area (in acres)",
@@ -252,6 +266,8 @@ const FarmerProfile = (props) => {
       key: "crop_type",
       type: "select",
       select_option: ["Wheat", "Rice", "Potato", "Tomato", "Coffee", "Coconut"],
+      clearFn: () =>
+        setAllValues({ ...allValues, crop_type: sheetData["crop_type"] }),
     },
     // {
     //   label: "Irrigation Type (सिंचाई प्रकार)",
@@ -338,6 +354,12 @@ const FarmerProfile = (props) => {
       key: "livestock_type",
       type: "select",
       select_option: ["Cattle", "Fish", "Poultry"],
+      clearFn: () =>
+        setAllValues({
+          ...allValues,
+          livestock_type: sheetData["livestock_type"],
+          livestock_breed: "",
+        }),
     },
     {
       label: "Livestock Breed",
@@ -352,6 +374,11 @@ const FarmerProfile = (props) => {
           : allValues["livestock_type"] == "Poultry"
           ? ["Aseel", "Kadaknath", "Busra"]
           : [],
+      clearFn: () =>
+        setAllValues({
+          ...allValues,
+          livestock_breed: sheetData["livestock_breed"],
+        }),
     },
     {
       label: "Number of Livestock",
@@ -551,8 +578,43 @@ const FarmerProfile = (props) => {
     land_records_info: "land_records_info",
     livestock_info: "livestock_info",
     photo_data: "photo",
+    farming_type: "Farming Type",
+    national_id: "National ID",
+    land_ownership_type: "Land Ownership type",
+    soil_type: "Soil type",
+    land_area: "Field Size (in acres)",
+    crop_type: "Crop type",
     livestock_count: "Livestock Count",
+    livestock_type: "Livestock Type",
+    livestock_breed: "Livestock Breed",
   };
+
+  // const reversedKeyMapping = {
+  //   first_name: "First Name",
+  //   last_name: "Last Name",
+  //   development_group: "Select Development Group",
+  //   parent_organization: "Parent Organization ",
+  //   date_of_birth: "Date of Birth",
+  //   gender: "Gender",
+  //   mobile_number: "Mobile Number (Should be unique)",
+  //   telegram_number: "Telegram/ Whatsapp Number",
+  //   aadhar_number: "Aadhar Number ",
+  //   village: "Village/Kebele",
+  //   block: "Block / Taluk/ woreda",
+  //   district: "District/ zone",
+  //   state: "State/Region",
+  //   aadhar_front_link: "G drive link to copy of Aadhar front page",
+  //   aadhar_back_link: "G drive link to copy of Aadhar back page",
+  //   land_records_link: "G drive link to copy of Land records",
+  //   bank_passbook_link: "G drive link to copy of bank passbook",
+  //   photo_link: "G drive link to photo",
+  //   task_id: "task_id",
+  //   basic_info: "basic_profile_info",
+  //   land_records_info: "land_records_info",
+  //   livestock_info: "livestock_info",
+  //   photo_data: "photo",
+  //   livestock_count: "Livestock Count",
+  // };
   function extractNumberInParentheses(inputString) {
     // Define a regex pattern to match numbers within parentheses
     const regex = /\((\d+)\)/;
@@ -579,47 +641,52 @@ const FarmerProfile = (props) => {
     let taskid = queryParams.get("task_id");
 
     let data = {};
-    // for (var key in reversedKeyMapping) {
-    //   // data[reversedKeyMapping[key]] = allValues[key] ?? "";
-    // }
-    const keyMapping = {
-      "First Name": allValues["first_name"],
-      "Last Name": allValues["last_name"],
-      "Select Development Group": allValues["development_group"],
-      "Parent Organization ": allValues["parent_organization"],
-      "Date of Birth": allValues["date_of_birth"],
-      Gender: allValues["gender"],
-      "Mobile Number (Should be unique)": allValues["mobile_number"],
-      "Telegram/ Whatsapp Number": allValues["telegram_number"],
-      "National ID": allValues["national_id"],
-      "Village/Kebele": allValues["village"],
-      "Block / Taluk/ woreda": allValues["block"],
-      "District/ zone": allValues["district"],
-      "State/Region": allValues["state"],
-      "G drive link to copy of Aadhar front page":
-        allValues["aadhar_front_link"],
-      "G drive link to copy of Aadhar back page": allValues["aadhar_back_link"],
-      "G drive link to copy of Land records": allValues["land_records_link"],
-      "G drive link to copy of bank passbook": allValues["bank_passbook_link"],
-      "G drive link to photo": allValues["photo_link"],
-      task_id: queryParams.get("task_id"),
-      basic_profile_info: allValues["basic_info"],
-      land_records_info: allValues["land_records_info"],
-      livestock_info: allValues["livestock_info"],
-      photo: allValues["photo_data"],
-      "Farming Type": allValues["farming_type"],
+    for (var key in reversedKeyMapping) {
+      data[reversedKeyMapping[key]] = allValues[key] ?? sheetData[key];
+    }
 
-      // land
-      "Land Ownership type": allValues["land_ownership_type"],
-      "Soil type": allValues["soil_type"],
-      "Field Size (in acres)": allValues["land_area"],
-      "Crop type": allValues["crop_type"],
+    // const keyMapping = {
+    //   "First Name": allValues["first_name"] ?? sheetData["first_name"],
+    //   "Last Name": allValues["last_name"] ?? sheetData["last_name"],
+    //   "Select Development Group":
+    //     allValues["development_group"] ?? sheetData["development_group"],
+    //   "Parent Organization ":
+    //     allValues["parent_organization"] ?? sheetData["parent_organization"],
+    //   "Date of Birth": allValues["date_of_birth"] ?? sheetData["date_of_birth"],
+    //   Gender: allValues["gender"] ?? sheetData["gender"],
+    //   "Mobile Number (Should be unique)":
+    //     allValues["mobile_number"] ?? sheetData["mobile_number"],
+    //   "Telegram/ Whatsapp Number":
+    //     allValues["telegram_number"] ?? sheetData["telegram_number"],
+    //   "National ID": allValues["national_id"] ?? sheetData["national_id"],
+    //   "Village/Kebele": allValues["village"] ?? sheetData["village"],
+    //   "Block / Taluk/ woreda": allValues["block"] ?? sheetData["block"],
+    //   "District/ zone": allValues["district"] ?? sheetData["district"],
+    //   "State/Region": allValues["state"],
+    //   "G drive link to copy of Aadhar front page":
+    //     allValues["aadhar_front_link"],
+    //   "G drive link to copy of Aadhar back page": allValues["aadhar_back_link"],
+    //   "G drive link to copy of Land records": allValues["land_records_link"],
+    //   "G drive link to copy of bank passbook": allValues["bank_passbook_link"],
+    //   "G drive link to photo": allValues["photo_link"],
+    //   task_id: queryParams.get("task_id"),
+    //   basic_profile_info: allValues["basic_info"],
+    //   land_records_info: allValues["land_records_info"],
+    //   livestock_info: allValues["livestock_info"],
+    //   photo: allValues["photo_data"],
+    //   "Farming Type": allValues["farming_type"],
 
-      // livestock
-      "Livestock Count": allValues["livestock_count"],
-      "Livestock Type": allValues["livestock_type"],
-      "Livestock Breed": allValues["livestock_breed"],
-    };
+    //   // land
+    //   "Land Ownership type": allValues["land_ownership_type"],
+    //   "Soil type": allValues["soil_type"],
+    //   "Field Size (in acres)": allValues["land_area"],
+    //   "Crop type": allValues["crop_type"],
+
+    //   // livestock
+    //   "Livestock Count": allValues["livestock_count"],
+    //   "Livestock Type": allValues["livestock_type"],
+    //   "Livestock Breed": allValues["livestock_breed"],
+    // };
 
     // console.log(data, "data");
     // if (taskid) {
@@ -628,7 +695,7 @@ const FarmerProfile = (props) => {
     // data["mobile_number"] = extractNumberInParentheses(data["mobile_number"]);
 
     try {
-      let response = await axios.post(url, keyMapping);
+      let response = await axios.post(url, data);
       if (response.status == 201) {
         // communincatingWithBotForSuccessMessaege();
       }
@@ -664,6 +731,7 @@ const FarmerProfile = (props) => {
           keyMapping[key],
           response.data[key]
         );
+        setSheetData(data);
         if (element) {
           // element.value = response.data[key];
         }
