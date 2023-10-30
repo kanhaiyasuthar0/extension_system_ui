@@ -100,7 +100,7 @@ const AdvisoryDissemination = ({ tele }) => {
   const items = [
     {
       key: "1",
-      label: "ADVISORY",
+      label: "ADVISORY DISSEMINATION",
       data: formData,
     },
     // {
