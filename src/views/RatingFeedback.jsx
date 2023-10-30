@@ -70,7 +70,8 @@ const RatingFeedback = (props) => {
       reader.readAsDataURL(file);
       reader.onload = () => {
         // Save the base64 image to the imageObject
-        setImageObject({ image: reader.result });
+        const base64Data = reader.result.split(",")[1];
+        setImageObject({ image: base64Data });
       };
 
       // Add the file to the fileList for display in the UI
