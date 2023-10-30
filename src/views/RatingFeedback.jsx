@@ -529,7 +529,7 @@ const RatingFeedback = (props) => {
                 onRecordingComplete={(blob) => addAudioElement(blob)}
                 recorderControls={recorderControls}
                 // downloadOnSavePress={true}
-                downloadFileExtension="mp3"
+                // downloadFileExtension="mp3"
                 showVisualizer={true}
               />
               <br />
