@@ -674,7 +674,7 @@ const FarmerProfile = (props) => {
         "🚀 ~ file: FarmerProfile.jsx:242 ~ get_farmer_profile ~ data:",
         data
       );
-      data["livestock_count"] = 101;
+      // data["livestock_count"] = 101;
       setAllValues((prev) => ({ ...prev, ...data }));
       // setFormData(initialForm);
 
