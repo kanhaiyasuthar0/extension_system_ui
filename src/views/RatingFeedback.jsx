@@ -13,6 +13,7 @@ import { useSearchParams } from "react-router-dom";
 import recordImage from "../assets/record.svg";
 import uploadImage from "../assets/upload.svg";
 // import AudioRecordingComponent from "../components/generic/AudioRecordingComponent";
+import { AudioRecorder, useAudioRecorder } from "react-audio-voice-recorder";
 
 const RatingFeedback = (props) => {
   const [queryParams, setSearchParams] = useSearchParams();
@@ -61,6 +62,31 @@ const RatingFeedback = (props) => {
     "🚀 ~ file: RatingFeedback.jsx:28 ~ RatingFeedback ~ imageObject:",
     imageObject
   );
+
+  const recorderControls = useAudioRecorder(
+    {
+      noiseSuppression: true,
+      echoCancellation: true,
+    },
+    (err) => console.table(err) // onNotAllowedOrFound
+  );
+  const addAudioElement = async (blob) => {
+    const base64Audio = await blobToBase64(blob);
+    console.log(
+      "🚀 ~ file: RatingFeedback.jsx:75 ~ addAudioElement ~ base64Audio:",
+      base64Audio
+    );
+    setbase64Audio(base64Audio);
+    const url = URL.createObjectURL(blob);
+    const audio = document.createElement("audio");
+    audio.src = url;
+    audio.controls = true;
+    const audioTrackDiv = document.getElementById("audio_track");
+    audioTrackDiv.innerHTML = "";
+    audioTrackDiv.appendChild(audio);
+
+    // document.body.appendChild(audio);
+  };
 
   const handleBeforeUpload = (file) => {
     // Check if the uploaded file is an image
@@ -253,21 +279,16 @@ const RatingFeedback = (props) => {
     });
   }
 
-  const blobToBase64 = (blob) => {
-    console.log(blob, "blob123");
+  function blobToBase64(blob) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = () => {
         resolve(reader.result.split(",")[1]);
       };
       reader.onerror = reject;
-      if (blob instanceof Blob) {
-        reader.readAsDataURL(blob);
-      } else {
-        reject(new Error("Invalid Blob object"));
-      }
+      reader.readAsDataURL(blob);
     });
-  };
+  }
 
   const onStop = (recordedBlob) => {
     console.log(
@@ -503,7 +524,22 @@ const RatingFeedback = (props) => {
             onOk={handleOk}
             onCancel={handleCancel}
           >
-            <div style={{ maxWidth: "100%" }}>
+            <div>
+              <AudioRecorder
+                onRecordingComplete={(blob) => addAudioElement(blob)}
+                recorderControls={recorderControls}
+                // downloadOnSavePress={true}
+                downloadFileExtension="mp3"
+                showVisualizer={true}
+              />
+              <br />
+              <button onClick={recorderControls.stopRecording}>
+                Stop recording
+              </button>
+              <br />
+            </div>
+
+            {/* <div style={{ maxWidth: "100%" }}>
               <ReactMic
                 record={audio.isRecording}
                 onData={onData}
@@ -530,10 +566,10 @@ const RatingFeedback = (props) => {
             </div>
             {audio.audioBlob && (
               <audio controls src={audio.audioBlob.blobURL} />
-            )}
+            )} */}
           </Modal>
-
-          {audio.audioBlob && <audio controls src={audio.audioBlob.blobURL} />}
+          <div id="audio_track"></div>
+          {/* {audio.audioBlob && <audio controls src={audio.audioBlob.blobURL} />} */}
         </div>
       </div>
 
