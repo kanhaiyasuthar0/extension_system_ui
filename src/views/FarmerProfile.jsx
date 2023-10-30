@@ -4,8 +4,9 @@ import { useSearchParams } from "react-router-dom";
 import { Skeleton } from "antd";
 import axios from "axios";
 import { useMyContext } from "../contexts/ExtensionSysytemContext";
-import FarmerProfileC from "../components/farmerProfile/FarmerProfileC";
-
+// import FarmerProfileC from "../components/farmerProfile/FarmerProfileC";
+import db from "../data/db.json";
+import MultiStepForm from "../components/farmerProfile/MultiStepForm";
 const FarmerProfile = (props) => {
   const [loading, setLoading] = useState(false);
   const [submitLoader, setSubmitLoader] = useState(false);
@@ -51,6 +52,7 @@ const FarmerProfile = (props) => {
       required: "TRUE",
       select_option: memoizedData ?? [],
       type: "select",
+      afterChange: get_farmer_profile,
     },
     {
       format: "",
@@ -89,10 +91,18 @@ const FarmerProfile = (props) => {
     },
     {
       format: "number",
-      key: "aadhar_number",
+      key: "national_id",
       label: "Farmer's Aadhaar Number",
       type: "input",
       required: "TRUE",
+    },
+    {
+      format: "",
+      key: "farming_type",
+      label: "Farming Type",
+      type: "select",
+      required: "TRUE",
+      select_option: ["Crop only", "Livestock only", "Mixed"],
     },
     // {
     //   format: "",
@@ -117,13 +127,355 @@ const FarmerProfile = (props) => {
     // },
   ];
 
+  // const farmer_profile_form = [
+  //   {
+  //     label: "Select farmer",
+  //     value: "",
+  //     key: "gender",
+  //     type: "select",
+  //     select_option: ["Male (पुरुष)", "Female (महिला)"],
+  //   },
+
+  //   {
+  //     label: "Farmer Name (किसान का नाम)",
+  //     value: "",
+  //     key: "farmer_name",
+  //     type: "input",
+  //   },
+  //   {
+  //     label: "Father's Name (पिता का नाम)",
+  //     value: "",
+  //     key: "father_name",
+  //     type: "input",
+  //   },
+  //   {
+  //     label: "Grand Father's Name (दादा का नाम)",
+  //     value: "",
+  //     key: "grand_father_name",
+  //     type: "input",
+  //   },
+  //   {
+  //     label: "Date of Birth (जन्म की तारीख)",
+  //     value: "2023-12-20",
+  //     key: "date_of_birth",
+  //     type: "date",
+  //   },
+  //   {
+  //     label: "Gender (लिंग)",
+  //     value: "",
+  //     key: "gender",
+  //     type: "select",
+  //     select_option: ["Male (पुरुष)", "Female (महिला)"],
+  //   },
+  //   {
+  //     label: "Select Region (क्षेत्र चुनें)",
+  //     value: "",
+  //     key: "region",
+  //     type: "select",
+  //     select_option: [
+  //       "Bihar (बिहार)",
+  //       "Karnataka (कर्नाटक)",
+  //       "Rajasthan (राजस्थान)",
+  //     ],
+  //   },
+  //   {
+  //     label: "Marital Status (वैवाहिक स्थिति)",
+  //     value: "",
+  //     key: "marital_status",
+  //     type: "select",
+  //     select_option: ["Yes (हां)", "No (नहीं)"],
+  //   },
+  //   {
+  //     label: "Priority Crop (प्राथमिक फसल)",
+  //     value: [],
+  //     key: "crops",
+  //     type: "checkbox",
+  //     select_option: [
+  //       "Barley (जौ)",
+  //       "Wheat (गेहूँ)",
+  //       "Sunflower (सूरजमुखी)",
+  //       "Corn (मक्का)",
+  //       "Rice (चावल)",
+  //       "Soybean (सोयाबीन)",
+  //       "Oats (जई)",
+  //       "Potato (आलू)",
+  //       "Cotton (कपास)",
+  //       "Peanuts (मूँगफली)",
+  //       "Sorghum (ज्वार)",
+  //       "Canola (केनोला)",
+  //       "Flax (अलसी)",
+  //       "Millet (बाजरा)",
+  //       "Rye (राई)",
+  //       "Tobacco (तमाकू)",
+  //       "Tea (चाय)",
+  //       "Coffee (कॉफी)",
+  //       "Alfalfa (अल्फाल्फा)",
+  //       "Cabbage (पत्तागोभी)",
+  //       "Carrots (गाजर)",
+  //       "Broccoli (ब्रोकली)",
+  //       "Kale (केला)",
+  //       "Cauliflower (फूलगोभी)",
+  //       "Spinach (पालक)",
+  //       "Lettuce (लेट्यूस)",
+  //       "Cucumber (खीरा)",
+  //       "Tomato (टमाटर)",
+  //       "Pepper (मिर्च)",
+  //       "Eggplant (बैंगन)",
+  //     ],
+  //   },
+  // ];
+
+  const land_details_form = [
+    {
+      label: "Land Ownership Type",
+      value: "",
+      key: "land_ownership_type",
+      type: "select",
+      select_option: ["Own", "Rented"],
+    },
+    {
+      label: "Soil Type",
+      value: "",
+      key: "soil_type",
+      type: "select",
+      select_option: ["Loam", "Clay", "Silt", "Peat", "Sandy"],
+    },
+    {
+      label: "Land Area (in acres)",
+      value: "",
+      key: "land_area",
+      type: "input",
+    },
+    {
+      label: "Crop Type",
+      value: "",
+      key: "crop_type",
+      type: "select",
+      select_option: ["Wheat", "Rice", "Potato", "Tomato", "Coffee", "Coconut"],
+    },
+    // {
+    //   label: "Irrigation Type (सिंचाई प्रकार)",
+    //   value: "",
+    //   key: "irrigation_type",
+    //   type: "select",
+    //   select_option: [
+    //     "Drip Irrigation (ड्रिप सिंचाई)",
+    //     "Sprinkler Irrigation (स्प्रिंकलर सिंचाई)",
+    //     "Flood Irrigation (बाढ़ सिंचाई)",
+    //   ],
+    // },
+    // {
+    //   label: "Crop Rotation (फसल चक्रण)",
+    //   value: [],
+    //   key: "crop_rotation",
+    //   type: "checkbox",
+    //   select_option: [
+    //     "Corn (मक्का)",
+    //     "Wheat (गेहूँ)",
+    //     "Soybean (सोयाबीन)",
+    //     "Rice (चावल)",
+    //     "Barley (जौ)",
+    //   ],
+    // },
+    // {
+    //   label: "Soil Type (मृदा प्रकार)",
+    //   value: "",
+    //   key: "soil_type",
+    //   type: "select",
+    //   select_option: [
+    //     "Clay (मिट्टी)",
+    //     "Loam (लोम)",
+    //     "Sandy (रेतीला)",
+    //     "Silt (कीचड़ी)",
+    //     "Peat (टर्फ)",
+    //   ],
+    // },
+    // {
+    //   label:
+    //     "Average Annual Rainfall (in inches) (औसत वार्षिक वर्षा - इंच में)",
+    //   value: "",
+    //   key: "average_rainfall",
+    //   type: "input",
+    // },
+    // {
+    //   label:
+    //     "Previous Year's Crop Yield (in bushels/acre) (पिछले साल की फसल उत्पादन - एकड़ प्रति कुप्पी)",
+    //   value: "",
+    //   key: "previous_yield",
+    //   type: "input",
+    // },
+    // {
+    //   label: "Pest Control Measures (कीट प्रबंधन के उपाय)",
+    //   value: "",
+    //   key: "pest_control",
+    //   type: "textarea",
+    // },
+    // {
+    //   label: "Fertilization Methods (उर्वरक विधियाँ)",
+    //   value: "",
+    //   key: "fertilization",
+    //   type: "textarea",
+    // },
+    // {
+    //   label: "Equipment and Machinery (उपकरण और मशीनरी)",
+    //   value: [],
+    //   key: "equipment",
+    //   type: "checkbox",
+    //   select_option: [
+    //     "Tractor (ट्रैक्टर)",
+    //     "Plow (हल)",
+    //     "Seeder (बोना यंत्र)",
+    //     "Harvester (कटाईयाँ)",
+    //     "Irrigation System (सिंचाई प्रणाली)",
+    //   ],
+    // },
+  ];
+  // console.log("ren123", allValues["livestock_type"]);
+  const livestock_form = [
+    {
+      label: "Livestock Type",
+      value: "",
+      key: "livestock_type",
+      type: "select",
+      select_option: ["Cattle", "Fish", "Poultry"],
+    },
+    {
+      label: "Livestock Breed",
+      value: "",
+      key: "livestock_breed",
+      type: "select",
+      select_option:
+        allValues["livestock_type"] == "Cattle"
+          ? ["Gir", "Red Sindhi", "Sahiwal"]
+          : allValues["livestock_type"] == "Fish"
+          ? ["Catfish", "Carp", "Trout"]
+          : allValues["livestock_type"] == "Poultry"
+          ? ["Aseel", "Kadaknath", "Busra"]
+          : [],
+    },
+    {
+      label: "Number of Livestock",
+      value: "",
+      key: "livestock_count",
+      type: "input",
+      format: "number",
+    },
+    // {
+    //   label: "Livestock Health Status (पशु स्वास्थ्य स्थिति)",
+    //   value: "",
+    //   key: "health_status",
+    //   type: "select",
+    //   select_option: [
+    //     "Healthy (स्वस्थ)",
+    //     "Sick (बीमार)",
+    //     "Vaccinated (टीका लगाया गया)",
+    //     "Not Vaccinated (टीका नहीं लगाया गया)",
+    //   ],
+    // },
+    // {
+    //   label: "Livestock Feed Type (पशु खाद प्रकार)",
+    //   value: "",
+    //   key: "feed_type",
+    //   type: "select",
+    //   select_option: [
+    //     "Grass (घास)",
+    //     "Hay (सूखी घास)",
+    //     "Grain (अनाज)",
+    //     "Silage (साइलेज)",
+    //     "Concentrates (कंसेंट्रेट्स)",
+    //     "Other (अन्य)",
+    //   ],
+    // },
+    // {
+    //   label: "Livestock Shelter Type (पशु आवास प्रकार)",
+    //   value: "",
+    //   key: "shelter_type",
+    //   type: "select",
+    //   select_option: [
+    //     "Barn (बाड़)",
+    //     "Stable (गोदाम)",
+    //     "Pasture (पशुधन)",
+    //     "Shed (शेड)",
+    //     "Open Field (खुली जगह)",
+    //     "Other (अन्य)",
+    //   ],
+    // },
+    // {
+    //   label: "Livestock Breeding Method (पशु प्रजनन विधि)",
+    //   value: "",
+    //   key: "breeding_method",
+    //   type: "select",
+    //   select_option: [
+    //     "Natural (प्राकृतिक)",
+    //     "Artificial Insemination (कृत्रिम प्रवसन)",
+    //     "Selective Breeding (चयनात्मक प्रजनन)",
+    //   ],
+    // },
+    // {
+    //   label: "Livestock Vaccination Schedule (पशु टीकाकरण अनुसूची)",
+    //   value: "",
+    //   key: "vaccination_schedule",
+    //   type: "textarea",
+    // },
+    // {
+    //   label: "Livestock Medical History (पशु चिकित्सा इतिहास)",
+    //   value: "",
+    //   key: "medical_history",
+    //   type: "textarea",
+    // },
+    // {
+    //   label: "Livestock Special Care Instructions (पशु विशेष देखभाल निर्देश)",
+    //   value: "",
+    //   key: "special_care_instructions",
+    //   type: "textarea",
+    // },
+    // {
+    //   label: "Livestock Additional Comments (पशु अतिरिक्त टिप्पणियाँ)",
+    //   value: "",
+    //   key: "additional_comments",
+    //   type: "textarea",
+    // },
+  ];
+
   const items = [
     {
       key: "1",
       label: "PROFILE",
       data: initialForm,
     },
+    {
+      key: "2",
+      label: "LAND",
+      data: land_details_form,
+    },
+    {
+      key: "3",
+      label: "LIVESTOCK",
+      data: livestock_form,
+    },
   ];
+
+  const memosizedKey = useMemo(() => {
+    let key = {};
+    for (let i = 0; i < items.length; i++) {
+      for (let j = 0; j < items[i].data.length; j++) {
+        key[items[i].data[j].key] = "";
+      }
+    }
+    console.log(key, "key");
+    // setAllValues(key);
+  }, [JSON.stringify(items)]);
+
+  useEffect(() => {
+    let key = {};
+    for (let i = 0; i < items.length; i++) {
+      for (let j = 0; j < items[i].data.length; j++) {
+        key[items[i].data[j].key] = "";
+      }
+    }
+    console.log(key, "key");
+    setAllValues(key);
+  }, []);
 
   // useEffect(() => {
   //   setFormData(initialForm);
@@ -160,6 +512,19 @@ const FarmerProfile = (props) => {
     land_records_info: "land_records_info",
     livestock_info: "livestock_info",
     photo: "photo_data",
+    "Farming Type": "farming_type",
+    "National ID": "national_id",
+
+    // land
+    "Land Ownership type": "land_ownership_type",
+    "Soil type": "soil_type",
+    "Field Size (in acres)": "land_area",
+    "Crop type": "crop_type",
+
+    // livestock
+    "Livestock Count": "livestock_count",
+    "Livestock Type": "livestock_type",
+    "Livestock Breed": "livestock_breed",
   };
 
   const reversedKeyMapping = {
@@ -186,6 +551,7 @@ const FarmerProfile = (props) => {
     land_records_info: "land_records_info",
     livestock_info: "livestock_info",
     photo_data: "photo",
+    livestock_count: "Livestock Count",
   };
   function extractNumberInParentheses(inputString) {
     // Define a regex pattern to match numbers within parentheses
@@ -208,7 +574,7 @@ const FarmerProfile = (props) => {
     let baseUrl = "https://farmerchat.farmstack.co/upd-demo";
     let end_point = `/telegram_app/web_hook/update_farmer_profile/?chat_id=${queryParams.get(
       "chat_id"
-    )}`;
+    )}&task_id=${queryParams.get("task_id")}`;
     let url = baseUrl + end_point;
     let taskid = queryParams.get("task_id");
 
@@ -219,29 +585,40 @@ const FarmerProfile = (props) => {
     const keyMapping = {
       "First Name": allValues["first_name"],
       "Last Name": allValues["last_name"],
-      "Select Development Group": "development_group",
-      "Parent Organization ": "parent_organization",
+      "Select Development Group": allValues["development_group"],
+      "Parent Organization ": allValues["parent_organization"],
       "Date of Birth": allValues["date_of_birth"],
       Gender: allValues["gender"],
-      "Mobile Number (Should be unique)": extractNumberInParentheses(
-        allValues["mobile_number"]
-      ),
-      "Telegram/ Whatsapp Number": "telegram_number",
-      "Aadhar Number ": allValues["aadhar_number"],
-      "Village/Kebele": "village",
-      "Block / Taluk/ woreda": "block",
-      "District/ zone": "district",
-      "State/Region": "state",
-      "G drive link to copy of Aadhar front page": "aadhar_front_link",
-      "G drive link to copy of Aadhar back page": "aadhar_back_link",
-      "G drive link to copy of Land records": "land_records_link",
-      "G drive link to copy of bank passbook": "bank_passbook_link",
-      "G drive link to photo": "photo_link",
+      "Mobile Number (Should be unique)": allValues["mobile_number"],
+      "Telegram/ Whatsapp Number": allValues["telegram_number"],
+      "National ID": allValues["national_id"],
+      "Village/Kebele": allValues["village"],
+      "Block / Taluk/ woreda": allValues["block"],
+      "District/ zone": allValues["district"],
+      "State/Region": allValues["state"],
+      "G drive link to copy of Aadhar front page":
+        allValues["aadhar_front_link"],
+      "G drive link to copy of Aadhar back page": allValues["aadhar_back_link"],
+      "G drive link to copy of Land records": allValues["land_records_link"],
+      "G drive link to copy of bank passbook": allValues["bank_passbook_link"],
+      "G drive link to photo": allValues["photo_link"],
       task_id: queryParams.get("task_id"),
-      basic_profile_info: "basic_info",
-      land_records_info: "land_records_info",
-      livestock_info: "livestock_info",
+      basic_profile_info: allValues["basic_info"],
+      land_records_info: allValues["land_records_info"],
+      livestock_info: allValues["livestock_info"],
       photo: allValues["photo_data"],
+      "Farming Type": allValues["farming_type"],
+
+      // land
+      "Land Ownership type": allValues["land_ownership_type"],
+      "Soil type": allValues["soil_type"],
+      "Field Size (in acres)": allValues["land_area"],
+      "Crop type": allValues["crop_type"],
+
+      // livestock
+      "Livestock Count": allValues["livestock_count"],
+      "Livestock Type": allValues["livestock_type"],
+      "Livestock Breed": allValues["livestock_breed"],
     };
 
     // console.log(data, "data");
@@ -297,7 +674,8 @@ const FarmerProfile = (props) => {
         "🚀 ~ file: FarmerProfile.jsx:242 ~ get_farmer_profile ~ data:",
         data
       );
-      setAllValues(data);
+      data["livestock_count"] = 101;
+      setAllValues((prev) => ({ ...prev, ...data }));
       // setFormData(initialForm);
 
       // console.log()
@@ -327,19 +705,19 @@ const FarmerProfile = (props) => {
       {loading ? (
         <Skeleton active paragraph={{ rows: 4 }}></Skeleton>
       ) : (
-        // memoizedData?.length > 0 && (
-        //   <FormWithTabs
-        //     data={items}
-        //     tele={props.tele}
-        //     submitCall={submitCall}
-        //     submitCallLoader={submitLoader}
-        //   />
-        // )
-        <FarmerProfileC
-          farmers={memoizedData}
-          get_farmer_profile={get_farmer_profile}
-          submitCall={submitCall}
-        />
+        data?.length > 0 && (
+          <MultiStepForm
+            data={items}
+            tele={props.tele}
+            submitCall={submitCall}
+            submitCallLoader={submitLoader}
+          />
+        )
+        // <FarmerProfileC
+        //   farmers={memoizedData}
+        //   get_farmer_profile={get_farmer_profile}
+        //   submitCall={submitCall}
+        // />
       )}
     </>
   );

@@ -45,12 +45,16 @@ const CustomCamera = (props) => {
               type="primary"
               onClick={() => {
                 let value = camera.current.takePhoto();
+                console.log(
+                  "🚀 ~ file: CustomCamera.jsx:48 ~ CustomCamera ~ value:",
+                  value
+                );
                 setImage(value);
                 props.handleChangeTyping(
                   "",
                   props.element.key,
                   props.element.type,
-                  value
+                  value.split(",")[1]
                 );
                 props.setEnableCamera(false);
               }}
