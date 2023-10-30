@@ -523,6 +523,8 @@ const FarmerProfile = (props) => {
 
     // livestock
     "Livestock Count": "livestock_count",
+    "Livestock Type": "livestock_type",
+    "Livestock Breed": "livestock_breed",
   };
 
   const reversedKeyMapping = {
@@ -583,32 +585,40 @@ const FarmerProfile = (props) => {
     const keyMapping = {
       "First Name": allValues["first_name"],
       "Last Name": allValues["last_name"],
-      "Select Development Group": "development_group",
-      "Parent Organization ": "parent_organization",
+      "Select Development Group": allValues["development_group"],
+      "Parent Organization ": allValues["parent_organization"],
       "Date of Birth": allValues["date_of_birth"],
       Gender: allValues["gender"],
-      "Mobile Number (Should be unique)": extractNumberInParentheses(
-        allValues["mobile_number"]
-      ),
+      "Mobile Number (Should be unique)": allValues["mobile_number"],
       "Telegram/ Whatsapp Number": allValues["telegram_number"],
-      "Aadhar Number ": allValues["national_id"],
-      "Village/Kebele": "village",
-      "Block / Taluk/ woreda": "block",
-      "District/ zone": "district",
-      "State/Region": "state",
-      "G drive link to copy of Aadhar front page": "aadhar_front_link",
-      "G drive link to copy of Aadhar back page": "aadhar_back_link",
-      "G drive link to copy of Land records": "land_records_link",
-      "G drive link to copy of bank passbook": "bank_passbook_link",
-      "G drive link to photo": "photo_link",
+      "National ID": allValues["national_id"],
+      "Village/Kebele": allValues["village"],
+      "Block / Taluk/ woreda": allValues["block"],
+      "District/ zone": allValues["district"],
+      "State/Region": allValues["state"],
+      "G drive link to copy of Aadhar front page":
+        allValues["aadhar_front_link"],
+      "G drive link to copy of Aadhar back page": allValues["aadhar_back_link"],
+      "G drive link to copy of Land records": allValues["land_records_link"],
+      "G drive link to copy of bank passbook": allValues["bank_passbook_link"],
+      "G drive link to photo": allValues["photo_link"],
       task_id: queryParams.get("task_id"),
-      basic_profile_info: "basic_info",
-      land_records_info: "land_records_info",
-      livestock_info: "livestock_info",
+      basic_profile_info: allValues["basic_info"],
+      land_records_info: allValues["land_records_info"],
+      livestock_info: allValues["livestock_info"],
       photo: allValues["photo_data"],
       "Farming Type": allValues["farming_type"],
+
+      // land
       "Land Ownership type": allValues["land_ownership_type"],
       "Soil type": allValues["soil_type"],
+      "Field Size (in acres)": allValues["land_area"],
+      "Crop type": allValues["crop_type"],
+
+      // livestock
+      "Livestock Count": allValues["livestock_count"],
+      "Livestock Type": allValues["livestock_type"],
+      "Livestock Breed": allValues["livestock_breed"],
     };
 
     // console.log(data, "data");
