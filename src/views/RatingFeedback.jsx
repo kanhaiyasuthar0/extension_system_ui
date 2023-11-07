@@ -112,9 +112,7 @@ const RatingFeedback = (props) => {
   const [allTags, setAllTags] = useState([]);
   function getAllFeedbackTags() {
     axios
-      .get(
-        "https://farmerchat.farmstack.co/vistaar/telegram_app/get_feedback_tags/"
-      )
+      .get(`${queryParams.get("base_url")}telegram_app/get_feedback_tags/`)
       .then((response) => {
         console.log(response);
       })
@@ -205,10 +203,7 @@ const RatingFeedback = (props) => {
     );
 
     axios
-      .post(
-        "https://farmerchat.farmstack.co/vistaar/telegram_app/post_feedback/",
-        body
-      )
+      .post(`${queryParams.get("base_url")}telegram_app/post_feedback/`, body)
       .then((response) => {
         console.log(response);
         // sendMessageToUserOnBot();
