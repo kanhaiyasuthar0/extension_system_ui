@@ -1,19 +1,22 @@
-import { Chip } from "@mui/material";
+import { Chip, Divider } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { Button, Input, Modal } from "antd";
-import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
-import FileUploadIcon from "@mui/icons-material/FileUpload";
+// import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
+// import FileUploadIcon from "@mui/icons-material/FileUpload";
 const { TextArea } = Input;
 import { Upload, message } from "antd";
 import { useEffect, useState } from "react";
-import { ReactMic } from "react-mic";
+// import { ReactMic } from "react-mic";
 import { useSearchParams } from "react-router-dom";
 import recordImage from "../assets/record.svg";
 import uploadImage from "../assets/upload.svg";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import FileUploadIcon from "@mui/icons-material/FileUpload";
 // import AudioRecordingComponent from "../components/generic/AudioRecordingComponent";
 import { AudioRecorder, useAudioRecorder } from "react-audio-voice-recorder";
+import CustomCamera from "../components/camera/CustomCamera";
 
 const RatingFeedback = (props) => {
   const [queryParams, setSearchParams] = useSearchParams();
@@ -26,6 +29,9 @@ const RatingFeedback = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [base64Audio, setbase64Audio] = useState("");
   const [isLoading, setisLoading] = useState(false);
+  const [showModalCamera, setShowModalCamera] = useState(false);
+  const [image, setImage] = useState(null);
+
   console.log(
     "🚀 ~ file: RatingFeedback.jsx:27 ~ RatingFeedback ~ base64Audio:",
     base64Audio
@@ -40,6 +46,24 @@ const RatingFeedback = (props) => {
 
   const handleCancel = () => {
     setIsModalOpen(false);
+  };
+  const handleShowModalCamera = () => {
+    setShowModalCamera(true);
+    setPreviewOpen(false);
+    setPreviewImage("");
+    setPreviewTitle("");
+    setFileList([]);
+    let button = document.getElementsByClassName("ant-upload-list-item-action");
+    button[0]?.click();
+  };
+  const handleClickedImage = (some, key, type, value) => {
+    // console.log(
+    //   "🚀 ~ file: RatingFeedback.jsx:52 ~ handleClickedImage ~ key:",
+    //   key,
+    //   type,
+    //   value
+    // );
+    setbase64Audio(value);
   };
   const [feedbackData, setFeedbackData] = useState({
     message_id: "",
@@ -98,6 +122,8 @@ const RatingFeedback = (props) => {
         // Save the base64 image to the imageObject
         const base64Data = reader.result.split(",")[1];
         setImageObject({ image: base64Data });
+        setImage(null);
+        setShowModalCamera(false);
       };
 
       // Add the file to the fileList for display in the UI
@@ -371,6 +397,18 @@ const RatingFeedback = (props) => {
   useEffect(() => {
     getAllFeedbackTags();
   }, []);
+  useEffect(() => {
+    let main_audio_recorder = document.getElementById("main_audio_recorder");
+    if (main_audio_recorder) {
+      // Find the img element inside the div
+      const imgElement = main_audio_recorder.querySelector("img");
+
+      if (imgElement) {
+        // Update the src attribute of the img element
+        imgElement.src = recordImage;
+      }
+    }
+  });
   return (
     <div className="feedback-form">
       {/* <div> */}
@@ -470,33 +508,151 @@ const RatingFeedback = (props) => {
             <div
               style={{
                 display: "flex",
+                alignItems: "center",
+                gap: "20px",
+                justifyContent: "left",
+                cursor: "pointer",
+              }}
+              onClick={showModal}
+            >
+              <Typography
+                component="legend"
+                style={{ margin: "15px 0px 10px 0px" }}
+              >
+                Upload/Add Image
+              </Typography>
+              <img src={uploadImage} alt="uploadImage" />
+            </div>
+
+            <Modal
+              title="Upload / Add Image"
+              open={isModalOpen}
+              onOk={handleOk}
+              onCancel={handleCancel}
+              // style={{ height: "400px" }}
+              width={"350px"}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-evenly",
+                  flexDirection: "column",
+                  gap: "25px",
+                  alignItems: "center",
+                  // height: showModalCamera ? "300px" : "150px",
+                  padding: "20px",
+                }}
+              >
+                {true && (
+                  <div style={{ cursor: "pointer", textAlign: "center" }}>
+                    <Upload
+                      accept=".jpg, .jpeg, image/jpeg, image/jpg"
+                      maxCount={1}
+                      // fileList={fileList}
+                      customRequest={() => false} // Disable default upload request
+                      beforeUpload={handleBeforeUpload}
+                      onRemove={(file) => {
+                        const index = fileList.indexOf(file);
+                        const newFileList = fileList.slice();
+                        newFileList.splice(index, 1);
+                        setFileList(newFileList);
+                      }}
+                      onPreview={handlePreview}
+                      listType="picture"
+                      // style={{ height: "10px" }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "20px",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Typography
+                          component="legend"
+                          style={{
+                            margin: "15px 0px 10px 0px",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "10px",
+                            border: "1px solid",
+                            borderRadius: "5px",
+                            padding: "10px",
+                          }}
+                        >
+                          <div>Upload</div>
+                          <FileUploadIcon />
+                        </Typography>
+                        {/* <img src={uploadImage} alt="uploadImage" /> */}
+                      </div>
+                    </Upload>
+                  </div>
+                )}
+                {true && (
+                  <Divider
+                    orientation="vertical"
+                    flexItem
+                    style={{ border: "1px solid" }}
+                  />
+                )}
+                <div
+                  style={{
+                    cursor: "pointer",
+                  }}
+                >
+                  {!showModalCamera ? (
+                    <Typography
+                      component="legend"
+                      style={{
+                        margin: "15px 0px 10px 0px",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                        border: "1px solid",
+                        borderRadius: "5px",
+                        padding: "10px",
+                      }}
+                      onClick={handleShowModalCamera}
+                    >
+                      <div>Camera</div>
+                      <CameraAltIcon />
+                    </Typography>
+                  ) : (
+                    <CustomCamera
+                      enableCamera={showModalCamera}
+                      handleChangeTyping={handleClickedImage}
+                      setEnableCamera={
+                        () => {
+                          console.log("resetting pther");
+                          // setShowModalCamera(false);
+                          setPreviewOpen(false);
+                          setPreviewImage("");
+                          setPreviewTitle("");
+                          setFileList([]);
+                          let button = document.getElementsByClassName(
+                            "ant-upload-list-item-action"
+                          );
+                          button[0]?.click();
+                        }
+                        // setImageObject({})
+                      }
+                      element={{ key: "clicked_image", type: "upload" }}
+                      setImage={setImage}
+                      image={image}
+                    />
+                  )}
+                </div>
+              </div>
+            </Modal>
+            <div
+              style={{
+                display: "flex",
                 justifyContent: "left",
                 alignItems: "center",
                 cursor: "pointer",
               }}
             >
-              <Upload
-                accept=".jpg, .jpeg, image/jpeg, image/jpg"
-                maxCount={1}
-                // fileList={fileList}
-                customRequest={() => false} // Disable default upload request
-                beforeUpload={handleBeforeUpload}
-                onRemove={(file) => {
-                  const index = fileList.indexOf(file);
-                  const newFileList = fileList.slice();
-                  newFileList.splice(index, 1);
-                  setFileList(newFileList);
-                }}
-                onPreview={handlePreview}
-                listType="picture"
-                // style={{ height: "10px" }}
-              >
-                <div>
-                  {/* <FileUploadIcon /> */}
-                  <img src={uploadImage} alt="uploadImage" />
-                </div>
-              </Upload>
-
               {/* Display the uploaded image */}
               {/* {imageObject.image && (
                 <div>
@@ -509,17 +665,25 @@ const RatingFeedback = (props) => {
               )} */}
             </div>
           </div>
-          <div onClick={showModal} style={{ cursor: "pointer" }}>
+          <div style={{ cursor: "pointer" }}>
             {/* <KeyboardVoiceIcon /> */}
-            <img src={recordImage} alt="recordImage" />
-          </div>
-          <Modal
-            title="Basic Modal"
-            open={isModalOpen}
-            onOk={handleOk}
-            onCancel={handleCancel}
-          >
-            <div>
+            {/* <img src={recordImage} alt="recordImage" /> */}
+            <div
+              id="main_audio_recorder"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "20px",
+                justifyContent: "left",
+              }}
+            >
+              <Typography
+                component="legend"
+                style={{ margin: "15px 0px 10px 0px" }}
+              >
+                Record voice/audio
+              </Typography>
+
               <AudioRecorder
                 onRecordingComplete={(blob) => addAudioElement(blob)}
                 recorderControls={recorderControls}
@@ -527,14 +691,21 @@ const RatingFeedback = (props) => {
                 // downloadFileExtension="mp3"
                 showVisualizer={true}
               />
-              <br />
-              <button onClick={recorderControls.stopRecording}>
-                Stop recording
-              </button>
-              <br />
+              {/* <br />
+            <button onClick={recorderControls.stopRecording}>
+              Stop recording
+            </button>
+            <br /> */}
             </div>
+          </div>
+          {/* <Modal
+            title="Basic Modal"
+            open={isModalOpen}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          > */}
 
-            {/* <div style={{ maxWidth: "100%" }}>
+          {/* <div style={{ maxWidth: "100%" }}>
               <ReactMic
                 record={audio.isRecording}
                 onData={onData}
@@ -562,7 +733,7 @@ const RatingFeedback = (props) => {
             {audio.audioBlob && (
               <audio controls src={audio.audioBlob.blobURL} />
             )} */}
-          </Modal>
+          {/* </Modal> */}
           <div id="audio_track"></div>
           {/* {audio.audioBlob && <audio controls src={audio.audioBlob.blobURL} />} */}
         </div>
