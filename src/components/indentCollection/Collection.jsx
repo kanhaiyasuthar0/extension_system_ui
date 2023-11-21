@@ -1,8 +1,17 @@
 import { Typography } from "@mui/material";
 import Chip from "@mui/material/Chip";
-import { Input, Select, Button, Badge, Avatar } from "antd";
+import { Input, Badge, Avatar } from "antd";
 // import Button from "@mui/material/Button";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+
+//mui imports
+import Button from "@mui/material/Button";
+import Select from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import TextField from "@mui/material/TextField";
+import Heading from "../generic/Heading";
 const Collection = ({
   loading,
   farmers,
@@ -70,20 +79,75 @@ const Collection = ({
   return (
     <>
       <div style={{ textAlign: "left" }}>
-        <h3>
+        {/* <h3>
           {window.location.pathname.includes("collection")
             ? "Create an Indent"
             : "Record Distributtion"}{" "}
-        </h3>
-        <Typography> Please select a farmer</Typography>
+        </h3> */}
+        <Heading
+          value={
+            window.location.pathname.includes("collection")
+              ? "Create an Indent"
+              : "Record Distributtion"
+          }
+        />
+        <div className="each_mui_component">
+          <FormControl fullWidth>
+            <InputLabel style={{}} id="demo-simple-select-label">
+              Please select a farmer
+            </InputLabel>
+            <Select
+              fullWidth
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={ongoingData["farmer"]}
+              label={"Please select a farmer"}
+              onChange={(e) => handleChangeSelect("farmer", e.target.value, 0)}
+            >
+              {farmers?.map((each, index) => {
+                return (
+                  <MenuItem key={index} value={each}>
+                    {each}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+        </div>
+
+        {/* <Typography> Please select a farmer</Typography>
         <Select
           value={ongoingData["farmer"]}
           style={{ width: "300px" }}
           onChange={(e) => handleChangeSelect("farmer", e, 0)}
           options={farmers?.map((each) => ({ value: each, label: each }))}
-        />
-        <div className="mtop25">
-          {categories.map((each) => {
+        /> */}
+        <div className="mtop25 each_mui_component">
+          <FormControl fullWidth>
+            <InputLabel style={{}} id="demo-simple-select-label">
+              Type of Input
+            </InputLabel>
+            <Select
+              // fullWidth
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={ongoingData["category"]}
+              label={"Type of Input"}
+              onChange={(e) =>
+                handleChangeSelect("category", e.target.value, 1)
+              }
+            >
+              {categories?.map((each, index) => {
+                return (
+                  <MenuItem key={index} value={each}>
+                    {each}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+
+          {/* {categories.map((each) => {
             return (
               <Chip
                 disabled={!ongoingData["farmer"]}
@@ -96,62 +160,118 @@ const Collection = ({
                 label={each}
               />
             );
-          })}
+          })} */}
         </div>
         {/* product: "", uom: "", variety: "", quanity: "", category: "", */}
-        <div className="mtop25">
-          <Typography> Please select product category</Typography>
+        <div className="mtop25 each_mui_component">
+          <FormControl fullWidth>
+            <InputLabel style={{}} id="demo-simple-select-label">
+              Please select product category
+            </InputLabel>
 
-          <Select
-            // open={ongoingData["category"]}
-            value={ongoingData["product"]}
-            style={{ width: 300 }}
-            onChange={(e) => handleChangeSelect("product", e, 2)}
-            options={
-              ongoingData["category"]
-                ? list("Product Category", "category", "Product Name")
-                : []
-            }
-          />
+            <Select
+              label={"Please select product category"}
+              // open={ongoingData["category"]}
+              value={ongoingData["product"]}
+              // style={{ width: 300 }}
+              onChange={(e) => handleChangeSelect("product", e.target.value, 2)}
+              // options={
+              //   ongoingData["category"]
+              //     ? list("Product Category", "category", "Product Name")
+              //     : []
+              // }
+            >
+              {console.log(
+                list("Product Category", "category", "Product Name")
+              )}
+
+              {list("Product Category", "category", "Product Name")?.map(
+                (each, index) => {
+                  return (
+                    <MenuItem key={index} value={each.value}>
+                      {each.label}
+                    </MenuItem>
+                  );
+                }
+              )}
+            </Select>
+          </FormControl>
         </div>
-        <div className="mtop25">
-          <Typography> Please select product variety</Typography>
+        <div className="mtop25 each_mui_component">
+          <FormControl fullWidth>
+            <InputLabel style={{}} id="demo-simple-select-label">
+              Please select product variety
+            </InputLabel>
 
-          <Select
-            value={ongoingData["variety"]}
-            style={{ width: 300 }}
-            onChange={(e) => handleChangeSelect("variety", e, 3)}
-            options={
-              ongoingData["product"]
-                ? list("Product Name", "product", "Product Variety")
-                : []
-            }
-          />
+            <Select
+              fullWidth
+              label="Please select product variety"
+              value={ongoingData["variety"]}
+              onChange={(e) => handleChangeSelect("variety", e.target.value, 3)}
+              // options={
+              //   ongoingData["product"]
+              //     ? list("Product Name", "product", "Product Variety")
+              //     : []
+              // }
+            >
+              {list("Product Name", "product", "Product Variety")?.map(
+                (each, index) => {
+                  return (
+                    <MenuItem key={index} value={each.value}>
+                      {each.label}
+                    </MenuItem>
+                  );
+                }
+              )}
+            </Select>
+          </FormControl>
         </div>
-        <div className="mtop25">
-          <Typography> Please select product unit of measurement</Typography>
-
-          <Select
-            value={ongoingData["uom"]}
-            style={{ width: 300 }}
-            onChange={(e) => handleChangeSelect("uom", e, 4)}
-            options={
-              ongoingData["variety"]
-                ? list("Product Variety", "variety", "UOM")
-                : []
-            }
-          />
+        <div className="mtop25 each_mui_component">
+          <FormControl fullWidth>
+            <InputLabel style={{}} id="demo-simple-select-label">
+              Please select product unit of measurement
+            </InputLabel>
+            <Select
+              label="Please select product unit of measurement"
+              value={ongoingData["uom"]}
+              // style={{ width: 300 }}
+              onChange={(e) => handleChangeSelect("uom", e.target.value, 4)}
+              // options={
+              //   ongoingData["variety"]
+              //     ? list("Product Variety", "variety", "UOM")
+              //     : []
+              // }
+            >
+              {list("Product Variety", "variety", "UOM")?.map((each, index) => {
+                return (
+                  <MenuItem key={index} value={each.value}>
+                    {each.label}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
         </div>
-        <div className="mtop25" style={{ width: "300px" }}>
-          <Typography> Please provide product quantity</Typography>
-
-          <Input
+        <div className="mtop25 each_mui_component">
+          {/* <Typography> Please provide product quantity</Typography> */}
+          <TextField
+            fullWidth
+            id="outlined-basic"
+            disabled={!ongoingData["uom"]}
+            onChange={(e) => handleChangeSelect("quantity", e.target.value, 5)}
+            type="number"
+            placeholder="Provide the no"
+            label="Please provide product quantity"
+            variant="outlined"
+            value={ongoingData["quantity"]}
+          />
+          {/* <Input
             value={ongoingData["quantity"]}
             placeholder="Provide the no"
             type="number"
             disabled={!ongoingData["uom"]}
             onChange={(e) => handleChangeSelect("quantity", e.target.value, 5)}
-          />
+          /> */}
         </div>
       </div>
       <div
@@ -164,6 +284,7 @@ const Collection = ({
         }}
       >
         <Button
+          className="secondary_button"
           disabled={!ongoingData["quantity"]}
           variant="outlined"
           onClick={handleAdd}
@@ -174,7 +295,7 @@ const Collection = ({
             alignSelf: "end",
           }}
         >
-          <AddCircleOutlineIcon /> Add more product
+          + Add more product
         </Button>
         <Badge count={savedData.length} showZero>
           {/* <Avatar shape="square" size="large" /> */}
@@ -185,6 +306,7 @@ const Collection = ({
       </div>
       <div className="mtop25">
         <Button
+          className="primary_button main_button"
           //   disabled={!savedData.length > 0}
           loading={loading}
           variant="contained"

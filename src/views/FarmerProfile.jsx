@@ -60,7 +60,7 @@ const FarmerProfile = (props) => {
       key: "first_name",
       label: "Farmer's first name",
       type: "input",
-      required: "TRUE",
+      required: "FALSE",
     },
     {
       format: "",
@@ -73,7 +73,7 @@ const FarmerProfile = (props) => {
       key: "date_of_birth",
       label: "Date of birth",
       type: "date",
-      required: "TRUE",
+      required: "FALSE",
     },
     {
       format: "",
@@ -81,7 +81,7 @@ const FarmerProfile = (props) => {
       label: "Gender",
       select_option: ["Female", "Male"],
       type: "select",
-      required: "TRUE",
+      required: "FALSE",
       clearFn: () => {
         console.log("called gender clear", sheetData);
         setAllValues({ ...allValues, gender: sheetData["gender"] });
@@ -92,21 +92,22 @@ const FarmerProfile = (props) => {
       key: "photo_data",
       label: "Add farmers photo",
       type: "upload",
-      required: "TRUE",
+      required: "FALSE",
+      showLabel: true,
     },
     {
       format: "number",
       key: "national_id",
       label: "Farmer's Aadhaar Number",
       type: "input",
-      required: "TRUE",
+      required: "FALSE",
     },
     {
       format: "",
       key: "farming_type",
       label: "Farming Type",
       type: "select",
-      required: "TRUE",
+      required: "FALSE",
       select_option: ["Crop only", "Livestock only", "Mixed"],
       clearFn: () =>
         setAllValues({ ...allValues, farming_type: sheetData["farming_type"] }),
@@ -708,6 +709,10 @@ const FarmerProfile = (props) => {
   }
 
   async function get_farmer_profile(farmer_name_no_string) {
+    console.log(
+      "🚀 ~ file: FarmerProfile.jsx:711 ~ get_farmer_profile ~ farmer_name_no_string:",
+      farmer_name_no_string
+    );
     // setSubmitLoader(true);
     let baseUrl = "https://farmerchat.farmstack.co/upd-demo";
     let end_point = `/telegram_app/web_hook/get_farmer_profile/?farmer_mobile_number=${extractNumberInParentheses(

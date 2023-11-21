@@ -5,6 +5,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import ContentRenderForFarmerProfile from "./ContentRenderForFarmerProfile";
+import Heading from "../generic/Heading";
 
 const MultiStepForm = ({ data, tele, submitCall, submitCallLoader }) => {
   const [loading, setLoading] = useState(false);
@@ -227,14 +228,18 @@ const MultiStepForm = ({ data, tele, submitCall, submitCallLoader }) => {
         theme={{
           components: {
             Tabs: {
-              inkBarColor: "#0088cc",
-              itemActiveColor: "#0088cc",
-              itemColor: "#0088cc",
-              itemSelectedColor: "#0088cc",
+              inkBarColor: "",
+              itemActiveColor: "#6750a4",
+              itemColor: "#6750a4",
+              itemSelectedColor: "#6750a4",
+
+              // cardBg: "yellow",
             },
           },
         }}
       >
+        <Heading value={"Farmer Profile"} />
+
         <Tabs
           in
           defaultActiveKey={tabValueSelected}

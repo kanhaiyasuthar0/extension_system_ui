@@ -4,8 +4,8 @@ import {
   Input,
   DatePicker,
   Select,
-  Checkbox,
-  Radio,
+  // Checkbox,
+  // Radio,
   Space,
   Button,
 } from "antd";
@@ -16,6 +16,14 @@ import { ReactMic } from "react-mic";
 import { useRef, useState } from "react";
 import CustomCamera from "../camera/CustomCamera";
 import CustomButton from "./CustomButton";
+
+//mui imports
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import { indigo } from "@mui/material/colors";
+import TextField from "@mui/material/TextField";
+import RadioGroup from "@mui/material/RadioGroup";
+import Radio from "@mui/material/Radio";
 const ContentRenderer = (props) => {
   const formRef = useRef();
 
@@ -28,7 +36,7 @@ const ContentRenderer = (props) => {
     setAudio({ ...audio, isRecording: true });
   };
 
-  const [enableCamera, setEnableCamera] = useState(true);
+  const [enableCamera, setEnableCamera] = useState(false);
 
   const stopRecording = () => {
     setAudio({ ...audio, isRecording: false });
@@ -59,6 +67,7 @@ const ContentRenderer = (props) => {
         {props.data.map((element, index) => (
           <Form.Item
             key={index}
+            className="each_form_item"
             label={index + 1 + ". " + element.label}
             name={element.key}
             // initialValue={allValues[element.key]}
@@ -70,12 +79,14 @@ const ContentRenderer = (props) => {
                 message: `Please enter ${element.label}!`,
               },
             ]}
+            // className="each_mui_component_for_farmer_profile"
           >
             {element.type === "input" ? (
-              <Input
-                type={element.format ?? "string"}
-                size="large"
-                placeholder={element.label}
+              <TextField
+                style={{ width: "100%" }}
+                id="outlined-basic"
+                label={element.label}
+                variant="outlined"
                 onChange={(e) =>
                   props.handleChangeTyping(
                     e,
@@ -84,10 +95,29 @@ const ContentRenderer = (props) => {
                     e.target.value
                   )
                 }
+                placeholder={element.label}
+                type={element.format ?? "string"}
+                size="large"
                 name={element.key}
                 defaultValue={element.value}
+                className="each_input_in_form"
               />
-            ) : element.type === "date" ? (
+            ) : // <Input
+            //   type={element.format ?? "string"}
+            //   size="large"
+            //   placeholder={element.label}
+            //   onChange={(e) =>
+            //     props.handleChangeTyping(
+            //       e,
+            //       element.key,
+            //       element.type,
+            //       e.target.value
+            //     )
+            //   }
+            //   name={element.key}
+            //   defaultValue={element.value}
+            // />
+            element.type === "date" ? (
               <DatePicker
                 format="YYYY-MM-DD"
                 onChange={(date, dateString) => {
@@ -116,12 +146,15 @@ const ContentRenderer = (props) => {
                 ))}
               </Select>
             ) : element.type === "checkbox" ? (
-              <div style={{ maxHeight: "300px", overflow: "auto" }}>
+              <div
+                className="checkboxes_inside_the_form"
+                style={{ maxHeight: "300px", overflow: "auto" }}
+              >
                 {element.select_option?.map((option, optionIndex) => {
                   return (
                     <div
                       style={{
-                        width: element.mode === "examination" ? "50%" : "100%",
+                        width: element.mode === "examination" ? "100%" : "100%",
                         display:
                           element.mode === "examination"
                             ? "inline-block"
@@ -129,8 +162,40 @@ const ContentRenderer = (props) => {
                         overflow: "hidden",
                       }}
                       key={optionIndex}
+                      className="each_checkboxes_inside_the_form"
                     >
-                      <Checkbox
+                      <FormControlLabel
+                        key={option}
+                        defaultChecked={
+                          props.allValues[element.key]
+                            ? props.allValues[element.key][element.key]
+                            : false
+                        }
+                        name={element.key}
+                        control={
+                          <Checkbox
+                            sx={{
+                              color: indigo[800],
+                              "&.Mui-checked": {
+                                color: indigo[500],
+                              },
+                            }}
+                            onChange={(e) =>
+                              props.handleChangeTyping(
+                                e,
+                                element.key,
+                                element.type,
+                                option
+                              )
+                            }
+                          />
+                        }
+                        label={option}
+                        labelPlacement="start"
+                      />
+
+                      {/* <Checkbox
+                      
                         name={element.key}
                         key={option}
                         defaultChecked={
@@ -148,17 +213,23 @@ const ContentRenderer = (props) => {
                         }
                       >
                         {option}
-                      </Checkbox>
+                      </Checkbox> */}
                       {/* </Form.Item>{" "} */}
                     </div>
                   );
                 })}
               </div>
             ) : element.type === "textarea" ? (
-              <Input.TextArea
+              <TextField
+                // style={{ background: "white" }}
+                fullWidth
+                id="outlined-multiline-static"
+                label={"Note..."}
+                multiline
+                rows={4}
+                // defaultValue="Default Value"
+                placeholder={"Note..."}
                 name={element.key}
-                rows={4} // You can adjust the number of rows as needed
-                placeholder={element.label}
                 onChange={(e) =>
                   props.handleChangeTyping(
                     e,
@@ -168,7 +239,20 @@ const ContentRenderer = (props) => {
                   )
                 }
               />
-            ) : element.type == "audio" ? (
+            ) : // <Input.TextArea
+            //   name={element.key}
+            //   rows={4} // You can adjust the number of rows as needed
+            //   placeholder={element.label}
+            //   onChange={(e) =>
+            //     props.handleChangeTyping(
+            //       e,
+            //       element.key,
+            //       element.type,
+            //       e.target.value
+            //     )
+            //   }
+            // />
+            element.type == "audio" ? (
               <div style={{ maxWidth: "100%" }}>
                 <ReactMic
                   record={audio.isRecording}
@@ -194,6 +278,7 @@ const ContentRenderer = (props) => {
                   element={element}
                   setEnableCamera={setEnableCamera}
                   enableCamera={enableCamera}
+                  allValues={allValues}
                 />
                 {/* ) : (
                   <Button onClick={() => setEnableCamera(true)}>
@@ -203,6 +288,41 @@ const ContentRenderer = (props) => {
               </>
             ) : element?.type == "radio" ? (
               <div style={{ maxHeight: "300px", overflow: "auto" }}>
+                <RadioGroup
+                  className="radio_group_in_form"
+                  aria-labelledby="demo-form-control-label-placement"
+                  name="position"
+                  defaultValue="top"
+                  onChange={(e) =>
+                    props.handleChangeTyping(
+                      e,
+                      element?.key,
+                      element?.type,
+                      e.target?.value
+                    )
+                  }
+                >
+                  {element.select_option?.map((option, optionIndex) => {
+                    return (
+                      <FormControlLabel
+                        value={option}
+                        control={
+                          <Radio
+                            sx={{
+                              color: indigo[800],
+                              "&.Mui-checked": {
+                                color: indigo[500],
+                              },
+                            }}
+                          />
+                        }
+                        label={option}
+                        labelPlacement="end"
+                      />
+                    );
+                  })}
+                </RadioGroup>
+                {/* 
                 <Radio.Group
                   onChange={(e) =>
                     props.handleChangeTyping(
@@ -212,7 +332,6 @@ const ContentRenderer = (props) => {
                       e.target?.value
                     )
                   }
-                  // value={value}
                 >
                   <Space direction="vertical">
                     {element.select_option?.map((option, optionIndex) => {
@@ -254,7 +373,7 @@ const ContentRenderer = (props) => {
                       );
                     })}
                   </Space>
-                </Radio.Group>
+                </Radio.Group> */}
               </div>
             ) : null}
           </Form.Item>
@@ -269,7 +388,7 @@ const ContentRenderer = (props) => {
                   type={button.value == "next" ? "primary" : "button"}
                   text={button.label}
                   key={index}
-                  classes={"main_button"}
+                  classes={"primary_button main_button"}
                   id="main_form_button"
                   value={button.value}
                 ></CustomButton>

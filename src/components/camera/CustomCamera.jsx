@@ -1,10 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { Camera } from "react-camera-pro";
 import { useMyContext } from "../../contexts/ExtensionSysytemContext";
-import { Button } from "antd";
+// import { Button } from "antd";
+
+//mui imports
+import Button from "@mui/material/Button";
 
 const CustomCamera = (props) => {
-  const { setAllValues, allValues } = useMyContext();
+  const { allValues } = useMyContext();
   const camera = useRef(null);
   const [image, setImage] = useState(null);
 
@@ -42,8 +45,11 @@ const CustomCamera = (props) => {
         >
           {props.enableCamera && (
             <Button
-              type="primary"
-              onClick={() => {
+              className="primary_button"
+              // type="primary"
+              onClick={(event) => {
+                event.preventDefault();
+
                 let value = camera.current.takePhoto();
                 console.log(
                   "🚀 ~ file: CustomCamera.jsx:48 ~ CustomCamera ~ value:",
@@ -64,9 +70,11 @@ const CustomCamera = (props) => {
           )}
           {props.enableCamera && (
             <Button
+              className="secondary_button"
               danger
               type="primary"
-              onClick={() => {
+              onClick={(event) => {
+                event.preventDefault();
                 if (camera.current) {
                   const result = camera.current.switchCamera();
                   console.log(result);
@@ -80,7 +88,7 @@ const CustomCamera = (props) => {
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "start",
             alignItems: "center",
             width: "300px",
             flexDirection: "column",
@@ -92,12 +100,14 @@ const CustomCamera = (props) => {
           )}
           {!props.enableCamera && (
             <Button
-              type="dashed"
+              className="camera_retake_click_picture_button primary_button"
+              variant="contained"
+              // type="dashed"
               onClick={() => {
                 props.setEnableCamera(true);
               }}
             >
-              Retake
+              {allValues[props.element.key] ? "Retake" : "Click Picture"}
             </Button>
           )}
         </div>

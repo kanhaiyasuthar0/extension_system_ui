@@ -39,7 +39,7 @@ label {
 }
 
 .mtop25 {
-  margin-top: 25px;
+  margin-top: 10px;
 }
 
 .m12 {
@@ -58,7 +58,9 @@ label {
 .dark-mode .MuiChip-label,
 .dark-mode .ant-form-item-label label {
   color: #ffffff !important;
+  /* color: black !important; */
 }
+
 button:disabled {
   color: #333333 !important;
 }
@@ -78,4 +80,130 @@ button:disabled {
 .dark-mode .ant-checkbox-wrapper span,
 .dark-mode .ant-radio-wrapper span {
   color: white !important;
+}
+.heading_above_form {
+  /* font-family: Roboto; */
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  padding: 20px;
+  margin: 20px auto;
+  border-bottom: 1px solid #e7e7e7;
+}
+.hide_the_tabs .ant-tabs-nav {
+  display: none !important;
+}
+.checkboxes_inside_the_form {
+  background-color: #f6f6f6;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+.each_checkboxes_inside_the_form {
+  border-bottom: 0.5px solid;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.each_checkboxes_inside_the_form:hover {
+  background-color: white !important;
+}
+.MuiFormControlLabel-labelPlacementStart {
+  display: flex;
+  justify-content: start;
+  gap: 20px;
+}
+.MuiFormControlLabel-labelPlacementStart .MuiTypography-body1 {
+  width: 350px !important;
+  overflow: hidden;
+}
+.pad10 {
+  padding: 10px;
+}
+.each_input_in_form {
+}
+/* .ant-form-item-control-input {
+  width: 90%;
+  margin: auto;
+} */
+.each_form_item {
+  /* border-bottom: 0.5px solid; */
+  /* padding-bottom: 10px; */
+}
+.MuiInputBase-root {
+  background-color: white !important;
+}
+.primary_button {
+  background-color: #6750a4 !important;
+  border-radius: 4px;
+  color: white !important;
+}
+.secondary_button {
+  border: 1px solid #6750a4 !important;
+  border-radius: 4px;
+  color: #6750a4 !important;
+}
+.camera_retake_click_picture_button {
+  width: 200px;
+  height: 40px;
+  border-radius: 4px;
+}
+.radio_group_in_form {
+  background-color: #f6f6f6;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 10px;
+}
+.main_button {
+  width: 100%;
+}
+.each_mui_component {
+  background-color: white !important;
+  padding: 10px;
+  border-radius: 8px;
+}
+.MuiInputBase-colorPrimary legend {
+  border: 0px solid !important;
+}
+.date_fixer {
+  width: 100% !important;
+}
+.ant-tabs-nav-list {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+.ant-tabs .ant-tabs-tab {
+  /* text-align: center !important; */
+  width: 100% !important;
+  border: 1px solid !important;
+  margin: 0 !important;
+}
+.ant-tabs .ant-tabs-tab-active {
+  background-color: #6750a4 !important;
+  text-align: center !important;
+  /* width: 100px !important; */
+  margin: 0px !important;
+}
+.ant-tabs-tab-btn {
+  text-align: center !important;
+  margin: auto;
+}
+.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: white !important;
+  margin: auto;
+  background-color: #6750a4 !important;
+}
+.ant-tabs .ant-tabs-nav-wrap {
+  display: flex !important;
+}
+.ant-tabs-nav-list {
+  width: 100% !important;
+}
+.each_mui_component_for_farmer_profile {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: white !important;
+}
+.each_mui_component_for_farmer_profile .ant-form-item-label label {
+  color: black !important;
 }

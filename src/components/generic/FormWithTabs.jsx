@@ -5,8 +5,15 @@ import ContentRenderer from "./ContentRenderer";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
+import Heading from "./Heading";
 
-const FormWithTabs = ({ data, tele, submitCall, submitCallLoader }) => {
+const FormWithTabs = ({
+  data,
+  tele,
+  submitCall,
+  submitCallLoader,
+  heading,
+}) => {
   const [loading, setLoading] = useState(false);
   const [submitLoader, setSubmitLoader] = useState(false);
   console.log("🚀 ~ file: FormWithTabs.jsx:10 ~ FormWithTabs ~ data:", data);
@@ -228,11 +235,14 @@ const FormWithTabs = ({ data, tele, submitCall, submitCallLoader }) => {
           },
         }}
       >
+        {heading && <Heading value={heading} />}
+
         <Tabs
           in
           defaultActiveKey={tabValueSelected}
           activeKey={tabValueSelected}
           onChange={setTabValueSelected}
+          rootClassName={data?.length == 1 ? "hide_the_tabs" : ""}
         >
           {loading ? "" : tabs}
         </Tabs>
