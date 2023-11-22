@@ -10,7 +10,6 @@ import Heading from "../generic/Heading";
 const MultiStepForm = ({ data, tele, submitCall, submitCallLoader }) => {
   const [loading, setLoading] = useState(false);
   const [submitLoader, setSubmitLoader] = useState(false);
-  console.log("🚀 ~ file: FormWithTabs.jsx:10 ~ FormWithTabs ~ data:", data);
   //the values are stored in the context
   const { allValues, setAllValues, setAudioBlob, setAudio, audio, darkMode } =
     useMyContext();
@@ -32,11 +31,6 @@ const MultiStepForm = ({ data, tele, submitCall, submitCallLoader }) => {
       onClick: () => handleNextOrSubmit(1),
     },
   ];
-  console.log(
-    "🚀 ~ file: MultiStepForm.jsx:30 ~ MultiStepForm ~ tabValueSelected:",
-    tabValueSelected,
-    data
-  );
 
   const mapping = {
     input: "input",
@@ -61,7 +55,6 @@ const MultiStepForm = ({ data, tele, submitCall, submitCallLoader }) => {
         "आपका उत्तर सबमिट किया गया है! धन्यवाद आपके सहयोग के लिए, यह हमारे कार्यक्रम को और भी बेहतर बनाने में मदद करेगा।";
       // You can add your logic here
     }
-    console.log(tabValueSelected, data, "inside");
 
     if (tabValueSelected == data.length) {
       axios
@@ -83,7 +76,6 @@ const MultiStepForm = ({ data, tele, submitCall, submitCallLoader }) => {
       tele.close();
     } else {
       setTabValueSelected((prevValue) => {
-        console.log(prevValue, "prevValue");
         return (parseInt(prevValue) + first).toString();
       });
     }
@@ -99,10 +91,7 @@ const MultiStepForm = ({ data, tele, submitCall, submitCallLoader }) => {
     }&chat_id=${queryParams.get("chat_id")}`;
     let url = baseUrl + end_point;
     let taskid = queryParams.get("task_id");
-    console.log(
-      "🚀 ~ file: FormWithTabs.jsx:94 ~ dumpingDataInSheet ~ queryParams:",
-      queryParams
-    );
+
     let data = { ...allValues };
 
     if (taskid) {
@@ -148,7 +137,6 @@ const MultiStepForm = ({ data, tele, submitCall, submitCallLoader }) => {
         console.log(tele.close());
       })
       .catch(() => {
-        // alert("Some error occured!");
         console.log("error");
       });
 
@@ -168,7 +156,6 @@ const MultiStepForm = ({ data, tele, submitCall, submitCallLoader }) => {
   };
 
   const handleChangeTyping = (e, name, type, value) => {
-    console.log("called");
     setAllValues((prev) => {
       if (type === "checkbox") {
         let exist = prev[name] ?? {};
@@ -187,7 +174,6 @@ const MultiStepForm = ({ data, tele, submitCall, submitCallLoader }) => {
           [name]: value,
         };
       } else if (type == "audio") {
-        console.log("value", value);
         setAudio(value);
       } else if (type == "upload") {
         return {
@@ -195,7 +181,6 @@ const MultiStepForm = ({ data, tele, submitCall, submitCallLoader }) => {
           [name]: value,
         };
       } else if (type == "radio") {
-        console.log("value", value);
         return {
           ...prev,
           [name]: value,

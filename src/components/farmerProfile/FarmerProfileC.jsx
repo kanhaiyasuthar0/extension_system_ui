@@ -21,13 +21,8 @@ import CustomButton from "../generic/CustomButton";
 // import CustomButton from "./CustomButton";
 const FarmerProfileC = (props) => {
   const formRef = useRef();
-  console.log("🚀 ~ file: FarmerProfileC.jsx:24 ~ FarmerProfileC ~ formRef:");
 
   const { audio, setAudio, allValues, setAllValues } = useMyContext();
-  console.log(
-    "🚀 ~ file: ContentRenderer.jsx:23 ~ ContentRenderer ~ allValues:",
-    allValues
-  );
   const startRecording = () => {
     setAudio({ ...audio, isRecording: true });
   };
@@ -187,11 +182,6 @@ const FarmerProfileC = (props) => {
             // mode={element.format == "multiple" ? "multiple" : ""}
             // name={element?.key}
             onChange={(e) => {
-              console.log(
-                "🚀 ~ file: FarmerProfileC.jsx:170 ~ FarmerProfileC ~ e:",
-                e
-              );
-
               //   props.handleChangeTyping(e, element.key, element.type, e)
 
               setAllValues((prev) => ({ ...prev, gender: e }));

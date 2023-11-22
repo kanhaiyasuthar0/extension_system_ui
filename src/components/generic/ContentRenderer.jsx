@@ -28,10 +28,7 @@ const ContentRenderer = (props) => {
   const formRef = useRef();
 
   const { audio, setAudio, allValues } = useMyContext();
-  console.log(
-    "🚀 ~ file: ContentRenderer.jsx:23 ~ ContentRenderer ~ allValues:",
-    allValues
-  );
+
   const startRecording = () => {
     setAudio({ ...audio, isRecording: true });
   };

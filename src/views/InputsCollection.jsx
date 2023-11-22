@@ -14,7 +14,7 @@ const InputsCollection = ({ tele, purpose }) => {
   async function getAllFarmers() {
     setLoading(true);
     let baseUrl = "https://farmerchat.farmstack.co/upd-demo";
-    let end_point = `/telegram_app/web_hook/get_farmer_list/?ea_mobile_number=${queryParams.get(
+    let end_point = `/telegram_app/task/farmer/?ea_mobile_number=${queryParams.get(
       "ea_tg_number"
     )}`;
     let url = baseUrl + end_point;
@@ -34,9 +34,10 @@ const InputsCollection = ({ tele, purpose }) => {
   async function getAllProductList() {
     setLoading(true);
     let baseUrl = "https://farmerchat.farmstack.co/upd-demo";
-    let end_point = `/telegram_app/web_hook/get_product_list/?ea_mobile_number=${queryParams.get(
+    let end_point = `/telegram_app/task/product/?ea_mobile_number=${queryParams.get(
       "ea_tg_number"
     )}`;
+
     let url = baseUrl + end_point;
     try {
       let response = await axios.get(url);
@@ -60,13 +61,10 @@ const InputsCollection = ({ tele, purpose }) => {
 
   // Use useMemo to memoize the data
   const memoizedData = useMemo(() => data, [data]);
-  console.log(
-    "🚀 ~ file: InputsCollection.jsx:61 ~ InputsCollection ~ memoizedData:",
-    memoizedData
-  );
+
   const memoizedallProductsData = useMemo(() => allProducts, [allProducts]);
   const memoizedCategory = useMemo(() => {
-    return [...new Set(allProducts.map((each) => each["Product Category"]))];
+    return [...new Set(allProducts.map((each) => each["product_category"]))]; // new key changed
   }, [allProducts]);
 
   const formData = [
@@ -231,7 +229,7 @@ const InputsCollection = ({ tele, purpose }) => {
   const handleSubmit = async (url) => {
     setsubmitLoader(true);
     let baseurl = `https://farmerchat.farmstack.co/upd-demo`;
-    let endPoint = `/telegram_app/web_hook/post_indent/?chat_id=${queryParams.get(
+    let endPoint = `/telegram_app/task/indent_task/?chat_id=${queryParams.get(
       "chat_id"
     )}&indent_purpose=${purpose}`;
     url = baseurl + endPoint;
@@ -246,6 +244,7 @@ const InputsCollection = ({ tele, purpose }) => {
           product_variety: each["variety"],
           product_uom: each["uom"],
           qty: each["quantity"],
+          product_id: each["uom"],
         };
       }),
     };
@@ -261,6 +260,7 @@ const InputsCollection = ({ tele, purpose }) => {
         product_variety: ongoingData["variety"],
         product_uom: ongoingData["uom"],
         qty: ongoingData["quantity"],
+        product_id: ongoingData["uom"],
       });
     }
     console.log(

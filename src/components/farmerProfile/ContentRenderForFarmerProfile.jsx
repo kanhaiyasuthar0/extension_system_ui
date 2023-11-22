@@ -36,10 +36,10 @@ const ContentRenderForFarmerProfile = (props) => {
   const formRef = useRef();
 
   const { audio, setAudio, allValues, setAllValues } = useMyContext();
-  console.log(
-    "🚀 ~ file: ContentRenderer.jsx:23 ~ ContentRenderer ~ allValues:",
-    allValues
-  );
+  // console.log(
+  //   "🚀 ~ file: ContentRenderer.jsx:23 ~ ContentRenderer ~ allValues:",
+  //   allValues
+  // );
   const startRecording = () => {
     setAudio({ ...audio, isRecording: true });
   };
@@ -129,6 +129,7 @@ const ContentRenderForFarmerProfile = (props) => {
               />
             ) : element.type === "date" ? (
               <LocalizationProvider dateAdapter={AdapterDayjs}>
+                {console.log(element, new Date(allValues[element.key]), "345")}
                 <DatePicker
                   format="YYYY-MM-DD"
                   // defaultValue={dayjs(element.value)}
@@ -142,7 +143,7 @@ const ContentRenderForFarmerProfile = (props) => {
                     );
                   }}
                   className="date_fixer"
-                  defaultValue={element.value}
+                  defaultValue={new Date(allValues[element.key])}
                   renderInput={(params) => <TextField {...params} />}
                 />
               </LocalizationProvider>

@@ -207,3 +207,46 @@ button:disabled {
 .each_mui_component_for_farmer_profile .ant-form-item-label label {
   color: black !important;
 }
+
+.MuiRating-root {
+  /* width: 100%; */
+  /* text-align: center; */
+}
+.MuiRating-root label {
+  font-size: 50px !important;
+  color: #6750a4 !important;
+}
+.dark-mode .ant-upload-list-item-name {
+  color: white !important;
+}
+.audio-recorder {
+  width: unset !important;
+  background-color: unset !important;
+  box-shadow: unset !important;
+  max-width: 285px !important;
+}
+.audio-recorder img:first-child {
+  padding: 0px;
+  height: 31px;
+}
+.chip_in_feedback_form {
+  /* display: grid; */
+  /* grid-template-columns: auto auto; */
+  /* margin: auto; */
+  /* width: 300px; */
+  /* border: 1px solid; */
+}
+.ant-modal-content .ant-modal-footer .ant-btn {
+  background-color: #6750a4 !important;
+  border-radius: 4px;
+  color: white !important;
+}
+.audio-recorder-visualizer {
+  width: 100px !important;
+}
+.audio-recorder {
+  max-width: 196px !important;
+}
+.audio-recorder canvas {
+  max-width: 60px !important;
+}
