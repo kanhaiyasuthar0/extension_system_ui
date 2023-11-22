@@ -28,7 +28,7 @@ function App() {
     if (tele.backgroundColor == "#ffffff") {
       document.body.classList.remove("dark-mode");
       setDarkMode(false);
-    } else if (tele.backgroundColor == "#212121") {
+    } else if (tele.backgroundColor == "#333333") {
       document.body.classList.add("dark-mode");
       setDarkMode(true);
     } else {
