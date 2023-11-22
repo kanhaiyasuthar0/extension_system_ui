@@ -58,23 +58,13 @@ const Collection = ({
         final.push({
           value: memoizedallProductsData[i][cur],
           label: memoizedallProductsData[i][cur],
+          id: memoizedallProductsData[i]["id"],
         });
         finalObj[memoizedallProductsData[i][cur]] = true;
       }
     }
-    console.log(finalObj, "finalObj");
 
-    // console.log(memoizedallProductsData, "memoizedallProductsData");
-    // let final = memoizedallProductsData.map((each) => {
-    //   //   console.log(each["Product Category"], ongoingData);
-    //   if (each["Product Category"] == ongoingData["category"]) {
-    //     return { value: each["Product Name"], label: each["Product Name"] };
-    //   }
-    // });
-    console.log("🚀 ~ file: Collection.jsx:44 ~ listOfProduct ~ final:", final);
     return [...new Set(final)];
-    // console.log("🚀 ~ file: Collection.jsx:42 ~ final ~ final:", final);
-    // return [{ value: "p1", label: "p1" }];
   };
   return (
     <>
@@ -181,11 +171,7 @@ const Collection = ({
               //     : []
               // }
             >
-              {console.log(
-                list("Product Category", "category", "Product Name")
-              )}
-
-              {list("Product Category", "category", "Product Name")?.map(
+              {list("product_category", "category", "product_name")?.map(
                 (each, index) => {
                   return (
                     <MenuItem key={index} value={each.value}>
@@ -214,7 +200,18 @@ const Collection = ({
               //     : []
               // }
             >
-              {list("Product Name", "product", "Product Variety")?.map(
+              {memoizedallProductsData?.map((each, index) => {
+                console.log(each, ongoingData, "123");
+                return (
+                  each["product_name"] == ongoingData["product"] && (
+                    <MenuItem key={index} value={each.product_variety_name}>
+                      {each.product_variety_name}
+                    </MenuItem>
+                  )
+                );
+              })}
+
+              {/* {list("product_name", "product", "product_variety_name")?.map(
                 (each, index) => {
                   return (
                     <MenuItem key={index} value={each.value}>
@@ -222,7 +219,7 @@ const Collection = ({
                     </MenuItem>
                   );
                 }
-              )}
+              )} */}
             </Select>
           </FormControl>
         </div>
@@ -242,11 +239,13 @@ const Collection = ({
               //     : []
               // }
             >
-              {list("Product Variety", "variety", "UOM")?.map((each, index) => {
+              {memoizedallProductsData?.map((each, index) => {
                 return (
-                  <MenuItem key={index} value={each.value}>
-                    {each.label}
-                  </MenuItem>
+                  each["product_variety_name"] == ongoingData["variety"] && (
+                    <MenuItem key={index} value={each.id}>
+                      {each.uom}
+                    </MenuItem>
+                  )
                 );
               })}
             </Select>

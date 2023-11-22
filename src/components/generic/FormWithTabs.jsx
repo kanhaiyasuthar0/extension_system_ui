@@ -16,7 +16,6 @@ const FormWithTabs = ({
 }) => {
   const [loading, setLoading] = useState(false);
   const [submitLoader, setSubmitLoader] = useState(false);
-  console.log("🚀 ~ file: FormWithTabs.jsx:10 ~ FormWithTabs ~ data:", data);
   //the values are stored in the context
   const { allValues, setAllValues, setAudioBlob, setAudio, audio, darkMode } =
     useMyContext();
@@ -91,17 +90,16 @@ const FormWithTabs = ({
   async function dumpingDataInSheet() {
     setSubmitLoader(true);
     let baseUrl = "https://farmerchat.farmstack.co/upd-demo";
-    let end_point = `/telegram_app/web_hook/update_task/?task_category=${
+
+    let end_point = `/telegram_app/task/advisory_task/?task_category=${
       window.location.href.includes("advisory-dissemination")
         ? "Advisory Dissemination"
         : "Record Advisory Adoption"
     }&chat_id=${queryParams.get("chat_id")}`;
+
     let url = baseUrl + end_point;
     let taskid = queryParams.get("task_id");
-    console.log(
-      "🚀 ~ file: FormWithTabs.jsx:94 ~ dumpingDataInSheet ~ queryParams:",
-      queryParams
-    );
+
     let data = { ...allValues };
 
     if (taskid) {
@@ -167,7 +165,6 @@ const FormWithTabs = ({
   };
 
   const handleChangeTyping = (e, name, type, value) => {
-    console.log("called");
     setAllValues((prev) => {
       if (type === "checkbox") {
         let exist = prev[name] ?? {};
@@ -186,7 +183,6 @@ const FormWithTabs = ({
           [name]: value,
         };
       } else if (type == "audio") {
-        console.log("value", value);
         setAudio(value);
       } else if (type == "upload") {
         return {
@@ -194,7 +190,6 @@ const FormWithTabs = ({
           [name]: value,
         };
       } else if (type == "radio") {
-        console.log("value", value);
         return {
           ...prev,
           [name]: value,

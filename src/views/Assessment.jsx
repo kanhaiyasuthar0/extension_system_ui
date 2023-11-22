@@ -8,7 +8,6 @@ const Assessment = (props) => {
   const [index, setIndex] = useState(2);
   const [items, setItem] = useState([]);
   const { id } = useParams();
-  console.log("🚀 ~ file: Assessment.jsx:6 ~ Assessment ~ id:", id);
 
   useEffect(() => {
     // if (id) {

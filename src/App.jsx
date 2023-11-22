@@ -16,6 +16,7 @@ import FarmLevelDemand from "./views/FarmLevelDemand";
 import { useMyContext } from "./contexts/ExtensionSysytemContext";
 import InputsCollection from "./views/InputsCollection";
 import { Switch } from "antd";
+import RatingFeedback from "./views/RatingFeedback";
 // 3️⃣ Router singleton created
 function App() {
   const { setDarkMode } = useMyContext();
@@ -36,7 +37,7 @@ function App() {
   });
 
   const handleChange = (checked) => {
-    console.log("🚀 ~ file: App.jsx:73 ~ handleChange ~ checked:", checked);
+    // console.log("🚀 ~ file: App.jsx:73 ~ handleChange ~ checked:", checked);
     // document.body.style.backgroundColor = checked ? "#333333" : "#ffffff";
     if (checked) {
       document.body.classList.add("dark-mode");
@@ -54,6 +55,10 @@ function App() {
         ""
       )}
       <Routes>
+        <Route
+          path="/feedback-form"
+          element={<RatingFeedback tele={tele} />}
+        ></Route>
         <Route path="/farmer-profile">
           <Route index element={<FarmerProfile tele={tele} />}></Route>
           <Route path=":type" element={<Feedback />}></Route>

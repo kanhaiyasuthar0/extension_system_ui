@@ -14,7 +14,7 @@ const Adoption = (props) => {
   async function getAllFarmers() {
     setLoading(true);
     let baseUrl = "https://farmerchat.farmstack.co/upd-demo";
-    let end_point = `/telegram_app/web_hook/get_farmer_list/?ea_mobile_number=${queryParams.get(
+    let end_point = `/telegram_app/task/farmer/?ea_mobile_number=${queryParams.get(
       "ea_tg_number"
     )}`;
     let url = baseUrl + end_point;
@@ -39,21 +39,21 @@ const Adoption = (props) => {
   const formData = [
     {
       format: "",
-      key: "farmers_who_adopted",
+      key: "farmers_advisory_adoption",
       label: "Select the farmers who adopted the advisory",
       required: "TRUE",
       select_option: memoizedData ?? [],
       type: "checkbox",
     },
     {
-      format: "",
+      format: "number",
       key: "male_farmer_count",
       label: "Count of male farmers",
       required: "TRUE",
       type: "input",
     },
     {
-      format: "",
+      format: "number",
       key: "female_farmer_count",
       label: "Count of female farmers",
       required: "TRUE",

@@ -11,7 +11,7 @@ const CustomCamera = (props) => {
   const camera = useRef(null);
   const [image, setImage] = useState(null);
 
-  console.log("🚀 ~ file: CustomCamera.jsx:7 ~ CustomCamera ~ g:", image);
+  // console.log("🚀 ~ file: CustomCamera.jsx:7 ~ CustomCamera ~ g:", image);
 
   return (
     <div
@@ -51,11 +51,16 @@ const CustomCamera = (props) => {
                 event.preventDefault();
 
                 let value = camera.current.takePhoto();
-                console.log(
-                  "🚀 ~ file: CustomCamera.jsx:48 ~ CustomCamera ~ value:",
-                  value
-                );
+                // console.log(
+                //   "🚀 ~ file: CustomCamera.jsx:48 ~ CustomCamera ~ value:",
+                //   value
+                // );
                 setImage(value);
+                if (props.setImageToShow) {
+                  props.setImageToShow(value);
+                }
+                // props.setImage(value);
+                // console.log(props, "props");
                 props.handleChangeTyping(
                   "",
                   props.element.key,
@@ -77,7 +82,7 @@ const CustomCamera = (props) => {
                 event.preventDefault();
                 if (camera.current) {
                   const result = camera.current.switchCamera();
-                  console.log(result);
+                  // console.log(result);
                 }
               }}
             >
