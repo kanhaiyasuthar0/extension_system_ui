@@ -475,7 +475,7 @@ const RatingFeedback = (props) => {
               onOk={handleOk}
               onCancel={handleCancel}
               // style={{ height: "400px" }}
-              width={"350px"}
+              width={"290px"}
             >
               <div
                 style={{

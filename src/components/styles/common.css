@@ -1,5 +1,6 @@
 .farmer_profile_main_box {
   /* color: white !important; */
+  max-width: 400px !important;
 }
 .ant-tabs-tab {
   color: #808a8e !important;
@@ -114,7 +115,7 @@ button:disabled {
   gap: 20px;
 }
 .MuiFormControlLabel-labelPlacementStart .MuiTypography-body1 {
-  width: 350px !important;
+  width: 290px !important;
   overflow: hidden;
 }
 .pad10 {
