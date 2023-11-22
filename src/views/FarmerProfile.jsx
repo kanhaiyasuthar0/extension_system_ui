@@ -19,7 +19,7 @@ const FarmerProfile = (props) => {
   async function getAllFarmers() {
     setLoading(true);
     let baseUrl = "https://farmerchat.farmstack.co/upd-demo";
-    let end_point = `/telegram_app/web_hook/get_farmer_list/?ea_mobile_number=${queryParams.get(
+    let end_point = `/telegram_app/task/farmer/?ea_mobile_number=${queryParams.get(
       "ea_tg_number"
     )}`;
     let url = baseUrl + end_point;
@@ -60,7 +60,7 @@ const FarmerProfile = (props) => {
       key: "first_name",
       label: "Farmer's first name",
       type: "input",
-      required: "TRUE",
+      required: "FALSE",
     },
     {
       format: "",
@@ -73,7 +73,7 @@ const FarmerProfile = (props) => {
       key: "date_of_birth",
       label: "Date of birth",
       type: "date",
-      required: "TRUE",
+      required: "FALSE",
     },
     {
       format: "",
@@ -81,9 +81,8 @@ const FarmerProfile = (props) => {
       label: "Gender",
       select_option: ["Female", "Male"],
       type: "select",
-      required: "TRUE",
+      required: "FALSE",
       clearFn: () => {
-        console.log("called gender clear", sheetData);
         setAllValues({ ...allValues, gender: sheetData["gender"] });
       },
     },
@@ -92,21 +91,22 @@ const FarmerProfile = (props) => {
       key: "photo_data",
       label: "Add farmers photo",
       type: "upload",
-      required: "TRUE",
+      required: "FALSE",
+      showLabel: true,
     },
     {
       format: "number",
       key: "national_id",
       label: "Farmer's Aadhaar Number",
       type: "input",
-      required: "TRUE",
+      required: "FALSE",
     },
     {
       format: "",
       key: "farming_type",
       label: "Farming Type",
       type: "select",
-      required: "TRUE",
+      required: "FALSE",
       select_option: ["Crop only", "Livestock only", "Mixed"],
       clearFn: () =>
         setAllValues({ ...allValues, farming_type: sheetData["farming_type"] }),
@@ -346,7 +346,6 @@ const FarmerProfile = (props) => {
     //   ],
     // },
   ];
-  // console.log("ren123", allValues["livestock_type"]);
   const livestock_form = [
     {
       label: "Livestock Type",
@@ -500,7 +499,6 @@ const FarmerProfile = (props) => {
         key[items[i].data[j].key] = "";
       }
     }
-    console.log(key, "key");
     setAllValues(key);
   }, []);
 
@@ -516,19 +514,19 @@ const FarmerProfile = (props) => {
   // }, [initialForm]);
 
   const keyMapping = {
-    "First Name": "first_name",
-    "Last Name": "last_name",
-    "Select Development Group": "development_group",
+    first_name: "first_name",
+    last_name: "last_name",
+    development_group: "development_group",
     "Parent Organization ": "parent_organization",
-    "Date of Birth": "date_of_birth",
-    Gender: "gender",
-    "Mobile Number (Should be unique)": "mobile_number",
-    "Telegram/ Whatsapp Number": "telegram_number",
+    date_of_birth: "date_of_birth",
+    gender: "gender",
+    mobile_number: "mobile_number",
+    telegram_or_whatsapp_number: "telegram_number",
     "Aadhar Number ": "aadhar_number",
-    "Village/Kebele": "village",
-    "Block / Taluk/ woreda": "block",
-    "District/ zone": "district",
-    "State/Region": "state",
+    village: "village",
+    block: "block",
+    district: "district",
+    state: "state",
     "G drive link to copy of Aadhar front page": "aadhar_front_link",
     "G drive link to copy of Aadhar back page": "aadhar_back_link",
     "G drive link to copy of Land records": "land_records_link",
@@ -539,35 +537,35 @@ const FarmerProfile = (props) => {
     land_records_info: "land_records_info",
     livestock_info: "livestock_info",
     photo: "photo_data",
-    "Farming Type": "farming_type",
-    "National ID": "national_id",
+    farming_type: "farming_type",
+    national_id: "national_id",
 
     // land
-    "Land Ownership type": "land_ownership_type",
-    "Soil type": "soil_type",
-    "Field Size (in acres)": "land_area",
-    "Crop type": "crop_type",
+    land_ownership_type: "land_ownership_type",
+    soil_type: "soil_type",
+    field_size: "land_area",
+    crop_type: "crop_type",
 
     // livestock
-    "Livestock Count": "livestock_count",
-    "Livestock Type": "livestock_type",
-    "Livestock Breed": "livestock_breed",
+    livestock_count: "livestock_count",
+    livestock_type: "livestock_type",
+    livestock_breed: "livestock_breed",
   };
 
   const reversedKeyMapping = {
-    first_name: "First Name",
-    last_name: "Last Name",
-    development_group: "Select Development Group",
+    first_name: "first_name",
+    last_name: "last_name",
+    development_group: "development_group",
     parent_organization: "Parent Organization ",
-    date_of_birth: "Date of Birth",
-    gender: "Gender",
-    mobile_number: "Mobile Number (Should be unique)",
-    telegram_number: "Telegram/ Whatsapp Number",
+    date_of_birth: "date_of_birth",
+    gender: "gender",
+    mobile_number: "mobile_number",
+    telegram_number: "telegram_or_whatsapp_number",
     aadhar_number: "Aadhar Number ",
-    village: "Village/Kebele",
-    block: "Block / Taluk/ woreda",
-    district: "District/ zone",
-    state: "State/Region",
+    village: "village",
+    block: "block",
+    district: "district",
+    state: "state",
     aadhar_front_link: "G drive link to copy of Aadhar front page",
     aadhar_back_link: "G drive link to copy of Aadhar back page",
     land_records_link: "G drive link to copy of Land records",
@@ -578,15 +576,15 @@ const FarmerProfile = (props) => {
     land_records_info: "land_records_info",
     livestock_info: "livestock_info",
     photo_data: "photo",
-    farming_type: "Farming Type",
-    national_id: "National ID",
-    land_ownership_type: "Land Ownership type",
-    soil_type: "Soil type",
-    land_area: "Field Size (in acres)",
-    crop_type: "Crop type",
-    livestock_count: "Livestock Count",
-    livestock_type: "Livestock Type",
-    livestock_breed: "Livestock Breed",
+    farming_type: "farming_type",
+    national_id: "national_id",
+    land_ownership_type: "land_ownership_type",
+    soil_type: "soil_type",
+    land_area: "field_size",
+    crop_type: "crop_type",
+    livestock_count: "livestock_count",
+    livestock_type: "livestock_type",
+    livestock_breed: "livestock_breed",
   };
 
   // const reversedKeyMapping = {
@@ -621,7 +619,6 @@ const FarmerProfile = (props) => {
 
     // Use the `exec` method to find the match
     const match = regex.exec(inputString);
-
     if (match) {
       // The extracted number is in the first capturing group (index 1)
       return match[1];
@@ -634,9 +631,13 @@ const FarmerProfile = (props) => {
   async function dumpingDataInSheet() {
     setSubmitLoader(true);
     let baseUrl = "https://farmerchat.farmstack.co/upd-demo";
-    let end_point = `/telegram_app/web_hook/update_farmer_profile/?chat_id=${queryParams.get(
+
+    `telegram_app/task/update_farmer_profile/?chat_id=1769447199&task_id=3&farmer_id=ae7ca33b-07c0-477f-bba7-b35a5729e82e`;
+    let end_point = `/telegram_app/task/update_farmer_profile/?chat_id=${queryParams.get(
       "chat_id"
-    )}&task_id=${queryParams.get("task_id")}`;
+    )}&task_id=${queryParams.get("task_id")}&farmer_id=${localStorage.getItem(
+      "farmer_id"
+    )}`;
     let url = baseUrl + end_point;
     let taskid = queryParams.get("task_id");
 
@@ -710,27 +711,21 @@ const FarmerProfile = (props) => {
   async function get_farmer_profile(farmer_name_no_string) {
     // setSubmitLoader(true);
     let baseUrl = "https://farmerchat.farmstack.co/upd-demo";
-    let end_point = `/telegram_app/web_hook/get_farmer_profile/?farmer_mobile_number=${extractNumberInParentheses(
+    let end_point = `/telegram_app/task/farmer_profile/?farmer_mobile_number=${extractNumberInParentheses(
       farmer_name_no_string
     )}`;
     let url = baseUrl + end_point;
 
     try {
       let response = await axios.get(url);
-      console.log(
-        "🚀 ~ file: FarmerProfile.jsx:234 ~ get_farmer_profile ~ response:",
-        response.data
-      );
+
       let data = {};
+      localStorage.setItem("farmer_id", response.data["id"]);
       for (var key in response.data) {
         // data[key] = allValues[key] ?? "";
         data[keyMapping[key]] = response.data[key];
         let element = document.getElementById(keyMapping[key]);
-        console.log(
-          "🚀 ~ file: FarmerProfile.jsx:255 ~ get_farmer_profile ~ keyMapping:",
-          keyMapping[key],
-          response.data[key]
-        );
+
         setSheetData(data);
         if (element) {
           // element.value = response.data[key];
@@ -738,15 +733,11 @@ const FarmerProfile = (props) => {
         // console.log(element, "element");
         // document.getElementById(keyMapping[key]) = response.data[key];
       }
-      console.log(
-        "🚀 ~ file: FarmerProfile.jsx:242 ~ get_farmer_profile ~ data:",
-        data
-      );
+
       // data["livestock_count"] = 101;
       setAllValues((prev) => ({ ...prev, ...data }));
       // setFormData(initialForm);
 
-      // console.log()
       // setSubmitLoader(false);
     } catch (error) {
       console.log(error, "Error");
@@ -756,7 +747,6 @@ const FarmerProfile = (props) => {
   }
 
   function submitCall() {
-    console.log("submitCall");
     dumpingDataInSheet();
   }
 

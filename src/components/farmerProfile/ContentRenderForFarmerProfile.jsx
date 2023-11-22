@@ -2,14 +2,14 @@
 import {
   Form,
   Input,
-  DatePicker,
-  Select,
-  Checkbox,
-  Radio,
+  // DatePicker,
+  // Select,
+  // Checkbox,
+  // Radio,
   Space,
   Button,
 } from "antd";
-const { Option } = Select;
+// const { Option } = Select;
 // import dayjs from "dayjs";
 import { useMyContext } from "../../contexts/ExtensionSysytemContext";
 import { ReactMic } from "react-mic";
@@ -17,19 +17,34 @@ import { useEffect, useRef, useState } from "react";
 import CustomCamera from "../camera/CustomCamera";
 import CustomButton from "../generic/CustomButton";
 import moment from "moment";
+
+//mui imports
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import { indigo } from "@mui/material/colors";
+import TextField from "@mui/material/TextField";
+import RadioGroup from "@mui/material/RadioGroup";
+import Radio from "@mui/material/Radio";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 const ContentRenderForFarmerProfile = (props) => {
   const formRef = useRef();
 
   const { audio, setAudio, allValues, setAllValues } = useMyContext();
-  console.log(
-    "🚀 ~ file: ContentRenderer.jsx:23 ~ ContentRenderer ~ allValues:",
-    allValues
-  );
+  // console.log(
+  //   "🚀 ~ file: ContentRenderer.jsx:23 ~ ContentRenderer ~ allValues:",
+  //   allValues
+  // );
   const startRecording = () => {
     setAudio({ ...audio, isRecording: true });
   };
 
-  const [enableCamera, setEnableCamera] = useState(true);
+  const [enableCamera, setEnableCamera] = useState(false);
 
   const stopRecording = () => {
     setAudio({ ...audio, isRecording: false });
@@ -73,7 +88,7 @@ const ContentRenderForFarmerProfile = (props) => {
         {props.data.map((element, index) => (
           <Form.Item
             key={index}
-            label={index + 1 + ". " + element.label}
+            label={element.showLabel ? element.label : false}
             name={element.key}
             // initialValue={allValues[element.key]}
             value={allValues[element.key]}
@@ -84,12 +99,18 @@ const ContentRenderForFarmerProfile = (props) => {
                 message: `Please enter ${element.label}!`,
               },
             ]}
+            className="each_mui_component_for_farmer_profile"
           >
             {element.type === "input" ? (
-              <Input
+              <TextField
+                key={element.key}
+                style={{ width: "100%" }}
+                id="outlined-basic123"
+                label={element.label}
+                variant="outlined"
+                placeholder={element.label}
                 type={element.format ?? "string"}
                 size="large"
-                placeholder={element.label}
                 onChange={(e) =>
                   props.handleChangeTyping(
                     e,
@@ -99,46 +120,85 @@ const ContentRenderForFarmerProfile = (props) => {
                   )
                 }
                 name={element.key}
-                defaultValue={element.value}
+                // aria-selected={allValues[element.key]}
+                // focused={allValues[element.key]}
+                // defaultValue={allValues[element.key]}
+                value={allValues[element.key]}
+                className="each_input_in_form"
+                focused={allValues[element.key]}
               />
             ) : element.type === "date" ? (
-              <DatePicker
-                format="YYYY-MM-DD"
-                onChange={(date, dateString) => {
-                  props.handleChangeTyping(
-                    "",
-                    element.key,
-                    element.type,
-                    dateString
-                  );
-                }}
-                // defaultValue={dayjs(element.value)}
-              />
-            ) : element.type === "select" ? (
-              <Select
-                onClear={
-                  () => (element.clearFn ? element.clearFn() : "")
-                  // element.clearFn
-                  //   ? element.clearFn
-                  //   : () => console.log("cleared")
-                }
-                allowClear
-                mode={element.format == "multiple" ? "multiple" : ""}
-                name={element?.key}
-                onChange={(e) => {
-                  props.handleChangeTyping(e, element.key, element.type, e);
-                  if (element.afterChange) {
-                    element.afterChange(e);
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                {console.log(element, new Date(allValues[element.key]), "345")}
+                <DatePicker
+                  format="YYYY-MM-DD"
+                  // defaultValue={dayjs(element.value)}
+                  onChange={(date, dateString) => {
+                    let mainValue = date.toISOString().split("T")[0];
+                    props.handleChangeTyping(
+                      "",
+                      element.key,
+                      element.type,
+                      mainValue
+                    );
+                  }}
+                  className="date_fixer"
+                  defaultValue={new Date(allValues[element.key])}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+            ) : // <DatePicker
+            //   format="YYYY-MM-DD"
+            //   onChange={(date, dateString) => {
+            //     props.handleChangeTyping(
+            //       "",
+            //       element.key,
+            //       element.type,
+            //       dateString
+            //     );
+            //   }}
+            //   // defaultValue={dayjs(element.value)}
+            // />
+            element.type === "select" ? (
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  {element.label}
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label={element.label}
+                  onClear={
+                    () => (element.clearFn ? element.clearFn() : "")
+                    // element.clearFn
+                    //   ? element.clearFn
+                    //   : () => console.log("cleared")
                   }
-                }}
-                maxTagCount={"responsive"}
-              >
-                {element.select_option?.map((option, optionIndex) => (
-                  <Option key={optionIndex} value={option}>
-                    {option}
-                  </Option>
-                ))}
-              </Select>
+                  allowClear
+                  mode={element.format == "multiple" ? "multiple" : ""}
+                  name={element?.key}
+                  onChange={(e) => {
+                    props.handleChangeTyping(
+                      e,
+                      element.key,
+                      element.type,
+                      e.target.value
+                    );
+                    if (element.afterChange) {
+                      element.afterChange(e.target.value);
+                    }
+                  }}
+                  maxTagCount={"responsive"}
+                  value={allValues[element.key]}
+                  renderValue={() => allValues[element.key]}
+                >
+                  {element.select_option?.map((option, optionIndex) => (
+                    <MenuItem key={optionIndex} value={option}>
+                      {option}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             ) : element.type === "checkbox" ? (
               <div style={{ maxHeight: "300px", overflow: "auto" }}>
                 {element.select_option?.map((option, optionIndex) => {
@@ -293,7 +353,7 @@ const ContentRenderForFarmerProfile = (props) => {
                   type={button.value == "next" ? "primary" : "button"}
                   text={button.label}
                   key={index}
-                  classes={"main_button"}
+                  classes={"primary_button main_button"}
                   id="main_form_button"
                   value={button.value}
                 ></CustomButton>

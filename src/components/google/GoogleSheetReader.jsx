@@ -8,10 +8,7 @@ const GoogleSheetReader = () => {
     apiKey: "AIzaSyA08g6Yz7fFPmSrq0_P1WdoFqfmNEiPn4Y",
     sheetId: "1X9SFwF3mehoXUEMtraKUR8ArDQieUNp6IHqYpUUeVzo",
   });
-  console.log(
-    "🚀 ~ file: GoogleSheetReader.jsx:8 ~ GoogleSheetReader ~ data:",
-    data
-  );
+
   useEffect(() => {
     if (data) {
       setDb(data);
@@ -24,7 +21,6 @@ const GoogleSheetReader = () => {
   if (error) {
     return <div>Error!</div>;
   }
-  console.log(db, "db");
   return <></>;
 };
 

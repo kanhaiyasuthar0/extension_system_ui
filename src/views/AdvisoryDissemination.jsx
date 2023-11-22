@@ -15,7 +15,7 @@ const AdvisoryDissemination = ({ tele }) => {
   async function getAllFarmers() {
     setLoading(true);
     let baseUrl = "https://farmerchat.farmstack.co/upd-demo";
-    let end_point = `/telegram_app/web_hook/get_farmer_list/?ea_mobile_number=${queryParams.get(
+    let end_point = `/telegram_app/task/farmer/?ea_mobile_number=${queryParams.get(
       "ea_tg_number"
     )}`;
     let url = baseUrl + end_point;
@@ -27,7 +27,6 @@ const AdvisoryDissemination = ({ tele }) => {
       setLoading(false);
     } catch (error) {
       console.log(error, "Error");
-      // setData(["ASDSF"]);
 
       setLoading(false);
     }
@@ -44,7 +43,7 @@ const AdvisoryDissemination = ({ tele }) => {
   const formData = [
     {
       format: "",
-      key: "farmers_attended_mobile_number",
+      key: "farmers_attended",
       label: "Select the farmers who attended the session",
       required: "TRUE",
       select_option: memoizedData ?? [],
@@ -66,7 +65,7 @@ const AdvisoryDissemination = ({ tele }) => {
     },
     {
       format: "",
-      key: "adoption_anticipated_farmers_mobile_number",
+      key: "farmers_advisory_adoption",
       label: "Select the farmers who stated that they would adopt the advisory",
       required: "TRUE",
       select_option: memoizedData ?? [],
@@ -114,7 +113,13 @@ const AdvisoryDissemination = ({ tele }) => {
       {loading ? (
         <Skeleton active paragraph={{ rows: 4 }}></Skeleton>
       ) : (
-        memoizedData?.length > 0 && <FormWithTabs data={items} tele={tele} />
+        memoizedData?.length > 0 && (
+          <FormWithTabs
+            data={items}
+            tele={tele}
+            heading={"Record Dissemination "}
+          />
+        )
       )}
     </>
   );
