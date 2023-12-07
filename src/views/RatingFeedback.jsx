@@ -510,7 +510,7 @@ const RatingFeedback = (props) => {
             )}
 
             <Modal
-              title={allLabels.upload_add_image ?? "Upload / Add Image"}
+              title={allLabels?.upload_add_image ?? "Upload / Add Image"}
               open={isModalOpen}
               onOk={handleOk}
               onCancel={handleCancel}
@@ -638,22 +638,9 @@ const RatingFeedback = (props) => {
                 alignItems: "center",
                 cursor: "pointer",
               }}
-            >
-              {/* Display the uploaded image */}
-              {/* {imageObject.image && (
-                <div>
-                  <img
-                    src={imageObject.image}
-                    alt="Uploaded"
-                    style={{ maxWidth: "100%" }}
-                  />
-                </div>
-              )} */}
-            </div>
+            ></div>
           </div>
           <div style={{ cursor: "pointer" }}>
-            {/* <KeyboardVoiceIcon /> */}
-            {/* <img src={recordImage} alt="recordImage" /> */}
             <div
               id="main_audio_recorder"
               style={{
@@ -662,7 +649,6 @@ const RatingFeedback = (props) => {
                 gap: "20px",
                 justifyContent: "left",
                 transition: "all 1s ease-in",
-                // flexDirection: "column",
               }}
             >
               <Typography
