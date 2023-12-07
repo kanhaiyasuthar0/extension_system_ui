@@ -136,11 +136,18 @@ const RatingFeedback = (props) => {
     }
   };
   const [allTags, setAllTags] = useState([]);
-  function getAllFeedbackTags() {
+  const [allLabels, setAllLabels] = useState(null);
+  function getAlllabels() {
     axios
-      .get(`${queryParams.get("base_url")}telegram_app/get_feedback_tags/`)
+      .get(
+        `${queryParams.get(
+          "base_url"
+        )}telegram_app/get_feedback_labels/?chat_id=${queryParams.get(
+          "chatid"
+        )}`
+      )
       .then((response) => {
-        console.log(response);
+        setAllLabels(response.data);
       })
       .catch((error) => {
         console.log(
@@ -148,24 +155,43 @@ const RatingFeedback = (props) => {
           error
         );
       });
-    setAllTags([
-      {
-        id: 1,
-        name: "Incorrect Information",
-      },
-      {
-        id: 2,
-        name: "Incomplete Content",
-      },
-      {
-        id: 3,
-        name: "No Relavant Answers",
-      },
-      {
-        id: 4,
-        name: "Difficulty Level",
-      },
-    ]);
+  }
+
+  function getAllFeedbackTags() {
+    axios
+      .get(
+        `${queryParams.get(
+          "base_url"
+        )}telegram_app/get_feedback_tags/?chat_id=${queryParams.get("chatid")}`
+      )
+      .then((response) => {
+        console.log(response);
+        setAllTags(response.data);
+      })
+      .catch((error) => {
+        console.log(
+          "🚀 ~ file: RatingFeedback.jsx:19 ~ getAllFeedbackTags ~ error:",
+          error
+        );
+      });
+    // setAllTags([
+    //   {
+    //     id: 1,
+    //     name: "Incorrect Information",
+    //   },
+    //   {
+    //     id: 2,
+    //     name: "Incomplete Content",
+    //   },
+    //   {
+    //     id: 3,
+    //     name: "No Relavant Answers",
+    //   },
+    //   {
+    //     id: 4,
+    //     name: "Difficulty Level",
+    //   },
+    // ]);
   }
 
   function handleClick(eachTag) {
@@ -395,6 +421,7 @@ const RatingFeedback = (props) => {
   };
 
   useEffect(() => {
+    getAlllabels();
     getAllFeedbackTags();
   }, []);
   useEffect(() => {
@@ -413,8 +440,8 @@ const RatingFeedback = (props) => {
     <div className="feedback-form">
       {/* <div> */}
       <Typography style={{ margin: "15px 0px 10px 0px" }} component="legend">
-        How would you rate this{" "}
-        {queryParams.get("message_id") ? "answer" : "video"}?
+        {allLabels?.how_would_you_rate_this_answer ?? "How would you rate this"}
+        {queryParams.get("message_id") ? " answer" : " video"}?
       </Typography>
       <Rating
         name="simple-controlled"
@@ -437,15 +464,22 @@ const RatingFeedback = (props) => {
             component="legend"
             style={{ margin: "15px 0px 10px 0px" }}
           >
-            Please select one or more issues.
+            {allLabels?.please_select_one_or_more_issues ??
+              "Please select one or more issues."}
           </Typography>
           {allTags.map((eachTag, index) => {
             console.log(eachTag, "eachTag");
             return (
-              <div style={{ margin: "5px 10px", display: "inline-block" }}>
+              <div
+                key={index}
+                style={{ margin: "5px 10px", display: "inline-block" }}
+              >
                 <Chip
-                  onClick={() => handleClick(eachTag)}
-                  key={index}
+                  onClick={() =>
+                    index == allTags.length - 1
+                      ? setOther(!other)
+                      : handleClick(eachTag)
+                  }
                   label={eachTag.name}
                   variant={
                     selectedTag.includes(eachTag?.id) ? "outlined" : "outlined"
@@ -460,7 +494,7 @@ const RatingFeedback = (props) => {
             );
           })}
 
-          <Chip
+          {/* <Chip
             onClick={() => setOther(!other)}
             key={"other"}
             label={"Other"}
@@ -470,7 +504,7 @@ const RatingFeedback = (props) => {
               background: other ? "#B7B7B7" : "",
               color: other,
             }}
-          />
+          /> */}
           {other && (
             <Input
               style={{ marginTop: "10px" }}
@@ -486,7 +520,8 @@ const RatingFeedback = (props) => {
 
       <div>
         <Typography component="legend" style={{ margin: "15px 0px 10px 0px" }}>
-          Please provide details (Optional)
+          {allLabels?.please_provide_details_optional ??
+            "Please provide details (Optional)"}
         </Typography>
         <TextArea
           rows={4}
@@ -519,7 +554,7 @@ const RatingFeedback = (props) => {
                 component="legend"
                 style={{ margin: "15px 0px 10px 0px" }}
               >
-                Upload/Add Image
+                {allLabels?.upload_add_image ?? "Upload/Add Image"}
               </Typography>
               <img src={uploadImage} alt="uploadImage" />
             </div>
@@ -681,7 +716,7 @@ const RatingFeedback = (props) => {
                 component="legend"
                 style={{ margin: "15px 0px 10px 0px" }}
               >
-                Record voice/audio
+                {allLabels?.record_voice_audio ?? "Record voice/audio"}
               </Typography>
 
               <AudioRecorder
@@ -756,7 +791,7 @@ const RatingFeedback = (props) => {
           // onClick={button.value == "next" ? () => null : button.onClick}
           onClick={clearForm}
         >
-          {"CLEAR"}
+          {allLabels?.clear ?? "CLEAR"}
         </Button>
         {console.log(!otherConcern, selectedTag)}
         <Button
@@ -791,7 +826,7 @@ const RatingFeedback = (props) => {
           // onClick={button.value == "next" ? () => null : button.onClick}
           onClick={submitFeedbackData}
         >
-          {"SUBMIT"}
+          {allLabels?.submit ?? "SUBMIT"}
         </Button>
 
         <Modal
