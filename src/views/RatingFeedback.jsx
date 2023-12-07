@@ -419,7 +419,7 @@ const RatingFeedback = (props) => {
               <TextField
                 fullWidth
                 id="outlined-basic"
-                label="Please describe it"
+                label={allLabels?.please_describe_it ?? "Please describe it"}
                 variant="outlined"
                 style={{ marginTop: "10px" }}
                 value={otherConcern}
@@ -514,6 +514,8 @@ const RatingFeedback = (props) => {
               open={isModalOpen}
               onOk={handleOk}
               onCancel={handleCancel}
+              okText={allLabels?.ok ?? "OK"}
+              cancelText={allLabels?.cancel ?? "CANCEL"}
               // style={{ height: "400px" }}
               width={"350px"}
             >
@@ -566,7 +568,7 @@ const RatingFeedback = (props) => {
                             padding: "10px",
                           }}
                         >
-                          <div>Upload</div>
+                          <div>{allLabels?.upload ?? "Upload"}</div>
                           <FileUploadIcon />
                         </Typography>
                         {/* <img src={uploadImage} alt="uploadImage" /> */}
@@ -600,7 +602,7 @@ const RatingFeedback = (props) => {
                       }}
                       onClick={handleShowModalCamera}
                     >
-                      <div>Camera</div>
+                      <div>{allLabels?.camera ?? "Camera"}</div>
                       <CameraAltIcon />
                     </Typography>
                   ) : (
