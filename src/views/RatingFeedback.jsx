@@ -321,7 +321,7 @@ const RatingFeedback = (props) => {
     <div className="feedback-form">
       {/* <div> */}
 
-      <Heading value="Feedback form" />
+      <Heading value={allLabels?.feedback_form ?? "Feedback form"} />
       <Typography style={{ margin: "15px 0px 10px 0px" }} component="legend">
         {allLabels?.how_would_you_rate_this_answer ?? "How would you rate this"}
         {queryParams.get("message_id") ? " answer" : " video"}?
@@ -384,7 +384,7 @@ const RatingFeedback = (props) => {
                     }}
                     label={eachTag.name}
                     variant={
-                      selectedTag.includes(eachTag?.id)
+                      selectedTag.includes(eachTag?.id) || other
                         ? "outlined"
                         : "outlined"
                     }
@@ -510,7 +510,7 @@ const RatingFeedback = (props) => {
             )}
 
             <Modal
-              title="Upload / Add Image"
+              title={allLabels.upload_add_image ?? "Upload / Add Image"}
               open={isModalOpen}
               onOk={handleOk}
               onCancel={handleCancel}
