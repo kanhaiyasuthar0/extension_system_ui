@@ -302,6 +302,7 @@ const RatingFeedback = (props) => {
   };
 
   useEffect(() => {
+    getAlllabels();
     getAllFeedbackTags();
   }, []);
   useEffect(() => {
