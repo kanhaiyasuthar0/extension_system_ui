@@ -133,34 +133,62 @@ const RatingFeedback = (props) => {
     }
   };
   const [allTags, setAllTags] = useState([]);
-  function getAllFeedbackTags() {
+
+  const [allLabels, setAllLabels] = useState(null);
+  function getAlllabels() {
     axios
-      .get(`${queryParams.get("base_url")}telegram_app/get_feedback_tags/`)
-      .then((response) => {})
+      .get(
+        `${queryParams.get(
+          "base_url"
+        )}telegram_app/get_feedback_labels/?chat_id=${queryParams.get(
+          "chatid"
+        )}`
+      )
+      .then((response) => {
+        setAllLabels(response.data);
+      })
       .catch((error) => {
         console.log(
           "🚀 ~ file: RatingFeedback.jsx:19 ~ getAllFeedbackTags ~ error:",
           error
         );
       });
-    setAllTags([
-      {
-        id: 1,
-        name: "Incorrect Information",
-      },
-      {
-        id: 2,
-        name: "Incomplete Content",
-      },
-      {
-        id: 3,
-        name: "No Relavant Answers",
-      },
-      {
-        id: 4,
-        name: "Difficulty Level",
-      },
-    ]);
+  }
+
+  function getAllFeedbackTags() {
+    axios
+      .get(
+        `${queryParams.get(
+          "base_url"
+        )}telegram_app/get_feedback_tags/?chat_id=${queryParams.get("chatid")}`
+      )
+      .then((response) => {
+        setAllTags(response.data);
+      })
+      .catch((error) => {
+        console.log(
+          "🚀 ~ file: RatingFeedback.jsx:19 ~ getAllFeedbackTags ~ error:",
+          error
+        );
+      });
+    // setAllTags([
+    //   {
+    //     id: 1,
+    //     name: "Incorrect Information",
+    //   },
+    //   {
+    //     id: 2,
+    //     name: "Incomplete Content",
+    //   },
+    //   {
+    //     id: 3,
+    //     name: "No Relavant Answers",
+    //   },
+    //   {
+    //     id: 4,
+    //     name: "Difficulty Level",
+    //   },
+    // ]);
   }
 
   function handleClick(eachTag) {
@@ -294,8 +322,8 @@ const RatingFeedback = (props) => {
 
       <Heading value="Feedback form" />
       <Typography style={{ margin: "15px 0px 10px 0px" }} component="legend">
-        How would you rate this{" "}
-        {queryParams.get("message_id") ? "answer" : "video"}?
+        {allLabels?.how_would_you_rate_this_answer ?? "How would you rate this"}
+        {queryParams.get("message_id") ? " answer" : " video"}?
       </Typography>
       <Rating
         name="simple-controlled"
@@ -327,7 +355,8 @@ const RatingFeedback = (props) => {
             component="legend"
             style={{ margin: "15px 0px 10px 0px" }}
           >
-            Please select one or more issues.
+            {allLabels?.please_select_one_or_more_issues ??
+              "Please select one or more issues."}
           </Typography>
           <div
             style={{
@@ -344,7 +373,14 @@ const RatingFeedback = (props) => {
                   //   style={{ margin: "5px 10px", display: "inline-block" }}
                 >
                   <Chip
-                    onClick={() => handleClick(eachTag)}
+                    onClick={() => {
+                      if (index === allTags.length - 1) {
+                        setOtherConcern("");
+                        setOther(!other);
+                      } else {
+                        handleClick(eachTag);
+                      }
+                    }}
                     label={eachTag.name}
                     variant={
                       selectedTag.includes(eachTag?.id)
@@ -361,7 +397,7 @@ const RatingFeedback = (props) => {
                 </div>
               );
             })}
-            <Chip
+            {/* <Chip
               onClick={() => {
                 setOtherConcern("");
                 setOther(!other);
@@ -374,7 +410,7 @@ const RatingFeedback = (props) => {
                 background: other ? "#B7B7B7" : "",
                 color: other,
               }}
-            />
+            /> */}
           </div>
 
           {other && (
@@ -411,7 +447,10 @@ const RatingFeedback = (props) => {
             // style={{ width: "80%" }}
             fullWidth
             id="outlined-multiline-static"
-            label="Please provide details (Optional) "
+            label={
+              allLabels?.please_provide_details_optional ??
+              "Please provide details (Optional)"
+            }
             multiline
             rows={4}
             //   defaultValue="Default Value"
@@ -445,7 +484,7 @@ const RatingFeedback = (props) => {
                 component="legend"
                 style={{ margin: "15px 0px 10px 0px" }}
               >
-                Upload/Add Image
+                {allLabels?.upload_add_image ?? "Upload/Add Image"}
               </Typography>
               <img src={uploadImage} alt="uploadImage" />
             </div>
@@ -627,7 +666,7 @@ const RatingFeedback = (props) => {
                 component="legend"
                 style={{ margin: "15px 0px 10px 0px" }}
               >
-                Record voice/audio
+                {allLabels?.record_voice_audio ?? "Record voice/audio"}
               </Typography>
               <div>
                 <AudioRecorder
@@ -704,7 +743,7 @@ const RatingFeedback = (props) => {
           onClick={clearForm}
           className="secondary_button"
         >
-          {"CLEAR"}
+          {allLabels?.clear ?? "CLEAR"}
         </Button>
         {/* {console.log(!otherConcern, selectedTag)} */}
         <Button
@@ -740,7 +779,7 @@ const RatingFeedback = (props) => {
           onClick={submitFeedbackData}
           className="primary_button"
         >
-          {"SUBMIT"}
+          {allLabels?.submit ?? "SUBMIT"}
         </Button>
 
         <Modal
