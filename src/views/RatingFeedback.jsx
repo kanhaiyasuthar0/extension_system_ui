@@ -318,87 +318,89 @@ const RatingFeedback = (props) => {
     }
   });
   return (
-    <div className="feedback-form">
-      {/* <div> */}
+    allTags?.length && (
+      <div className="feedback-form">
+        {/* <div> */}
 
-      <Heading value={allLabels?.feedback_form ?? "Feedback form"} />
-      <Typography style={{ margin: "15px 0px 10px 0px" }} component="legend">
-        {allLabels?.how_would_you_rate_this_answer ?? "How would you rate this"}
-        {queryParams.get("message_id") ? " answer" : " video"}?
-      </Typography>
-      <Rating
-        name="simple-controlled"
-        value={value}
-        onChange={(event, newValue) => {
-          console.log(
-            "🚀 ~ file: RatingFeedback.jsx:304 ~ RatingFeedback ~ newValue:",
-            newValue
-          );
-          if (newValue == 5) {
-            setOtherConcern("");
-            setOther(false);
-            setSelectedTags([]);
-          }
-          setValue(newValue);
-        }}
-        size="large"
-      />
-      {/* </div> */}
-      {value <= 4 && (
-        <div
-          style={{
-            margin: "10px 0px",
-            transition: "all 0.1s",
-            //   visibility: value <= 4 ? "visible" : "hidden",
+        <Heading value={allLabels?.feedback_form ?? "Feedback form"} />
+        <Typography style={{ margin: "15px 0px 10px 0px" }} component="legend">
+          {allLabels?.how_would_you_rate_this_answer ??
+            "How would you rate this"}
+          {queryParams.get("message_id") ? " answer" : " video"}?
+        </Typography>
+        <Rating
+          name="simple-controlled"
+          value={value}
+          onChange={(event, newValue) => {
+            console.log(
+              "🚀 ~ file: RatingFeedback.jsx:304 ~ RatingFeedback ~ newValue:",
+              newValue
+            );
+            if (newValue == 5) {
+              setOtherConcern("");
+              setOther(false);
+              setSelectedTags([]);
+            }
+            setValue(newValue);
           }}
-        >
-          <Typography
-            component="legend"
-            style={{ margin: "15px 0px 10px 0px" }}
-          >
-            {allLabels?.please_select_one_or_more_issues ??
-              "Please select one or more issues."}
-          </Typography>
+          size="large"
+        />
+        {/* </div> */}
+        {value <= 4 && (
           <div
             style={{
-              display: "grid",
-              gridTemplateColumns: "auto auto",
-              gap: "10px",
-              padding: "10px",
+              margin: "10px 0px",
+              transition: "all 0.1s",
+              //   visibility: value <= 4 ? "visible" : "hidden",
             }}
           >
-            {allTags.map((eachTag, index) => {
-              return (
-                <div
-                  key={index}
-                  //   style={{ margin: "5px 10px", display: "inline-block" }}
-                >
-                  <Chip
-                    onClick={() => {
-                      if (index === allTags.length - 1) {
-                        setOtherConcern("");
-                        setOther(!other);
-                      } else {
-                        handleClick(eachTag);
+            <Typography
+              component="legend"
+              style={{ margin: "15px 0px 10px 0px" }}
+            >
+              {allLabels?.please_select_one_or_more_issues ??
+                "Please select one or more issues."}
+            </Typography>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "auto auto",
+                gap: "10px",
+                padding: "10px",
+              }}
+            >
+              {allTags.map((eachTag, index) => {
+                return (
+                  <div
+                    key={index}
+                    //   style={{ margin: "5px 10px", display: "inline-block" }}
+                  >
+                    <Chip
+                      onClick={() => {
+                        if (index === allTags.length - 1) {
+                          setOtherConcern("");
+                          setOther(!other);
+                        } else {
+                          handleClick(eachTag);
+                        }
+                      }}
+                      label={eachTag.name}
+                      variant={
+                        selectedTag.includes(eachTag?.id) || other
+                          ? "outlined"
+                          : "outlined"
                       }
-                    }}
-                    label={eachTag.name}
-                    variant={
-                      selectedTag.includes(eachTag?.id) || other
-                        ? "outlined"
-                        : "outlined"
-                    }
-                    style={{
-                      background: selectedTag.includes(eachTag?.id)
-                        ? "#B7B7B7"
-                        : "",
-                      width: "100%",
-                    }}
-                  />
-                </div>
-              );
-            })}
-            {/* <Chip
+                      style={{
+                        background: selectedTag.includes(eachTag?.id)
+                          ? "#B7B7B7"
+                          : "",
+                        width: "100%",
+                      }}
+                    />
+                  </div>
+                );
+              })}
+              {/* <Chip
               onClick={() => {
                 setOtherConcern("");
                 setOther(!other);
@@ -412,275 +414,275 @@ const RatingFeedback = (props) => {
                 color: other,
               }}
             /> */}
-          </div>
-
-          {other && (
-            <div className="each_mui_component">
-              <TextField
-                fullWidth
-                id="outlined-basic"
-                label={allLabels?.please_describe_it ?? "Please describe it"}
-                variant="outlined"
-                style={{ marginTop: "10px" }}
-                value={otherConcern}
-                onChange={(e) => setOtherConcern(e.target.value)}
-                placeholder="Please describe it"
-                maxLength={50}
-                //   size="large"
-              />
             </div>
-            // <Input
-            // //   style={{ marginTop: "10px" }}
-            // //   value={otherConcern}
-            // //   onChange={(e) => setOtherConcern(e.target.value)}
-            // //   placeholder="Please describe it"
-            // />
-          )}
-        </div>
-      )}
 
-      <div>
-        {/* <Typography component="legend" style={{ margin: "15px 0px 10px 0px" }}>
+            {other && (
+              <div className="each_mui_component">
+                <TextField
+                  fullWidth
+                  id="outlined-basic"
+                  label={allLabels?.please_describe_it ?? "Please describe it"}
+                  variant="outlined"
+                  style={{ marginTop: "10px" }}
+                  value={otherConcern}
+                  onChange={(e) => setOtherConcern(e.target.value)}
+                  placeholder="Please describe it"
+                  maxLength={50}
+                  //   size="large"
+                />
+              </div>
+              // <Input
+              // //   style={{ marginTop: "10px" }}
+              // //   value={otherConcern}
+              // //   onChange={(e) => setOtherConcern(e.target.value)}
+              // //   placeholder="Please describe it"
+              // />
+            )}
+          </div>
+        )}
+
+        <div>
+          {/* <Typography component="legend" style={{ margin: "15px 0px 10px 0px" }}>
           Please provide details (Optional)
         </Typography> */}
-        <div className="each_mui_component">
-          <TextField
-            // style={{ width: "80%" }}
-            fullWidth
-            id="outlined-multiline-static"
-            label={
-              allLabels?.please_provide_details_optional ??
-              "Please provide details (Optional)"
-            }
-            multiline
-            rows={4}
-            //   defaultValue="Default Value"
-            onChange={(e) => setTextAreaContent(e.target.value)}
-            value={textAreaContent}
-            // size="large"
-          />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "flex-start",
-            gap: "10px",
-            margin: "10px 0px",
-            flexDirection: "column",
-          }}
-        >
-          <div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "20px",
-                justifyContent: "left",
-                cursor: "pointer",
-              }}
-              onClick={showModal}
-            >
-              <Typography
-                component="legend"
-                style={{ margin: "15px 0px 10px 0px" }}
-              >
-                {allLabels?.upload_add_image ?? "Upload/Add Image"}
-              </Typography>
-              <img src={uploadImage} alt="uploadImage" />
-            </div>
-            {imageToShow && (
-              <div
-                style={{
-                  border: "1px solid",
-                  borderRadius: "5px",
-                  textAlign: "left",
-                  padding: "5px",
-                  width: "100%",
-                }}
-              >
-                <Image
-                  src={imageToShow}
-                  height={50}
-                  width={50}
-                  alt="setImageToShow"
-                />
-                <span style={{ margin: "5px" }}>Attached file</span>
-              </div>
-            )}
-
-            <Modal
-              title={allLabels?.upload_add_image ?? "Upload / Add Image"}
-              open={isModalOpen}
-              onOk={handleOk}
-              onCancel={handleCancel}
-              okText={allLabels?.ok ?? "OK"}
-              cancelText={allLabels?.cancel ?? "CANCEL"}
-              // style={{ height: "400px" }}
-              width={"350px"}
-            >
+          <div className="each_mui_component">
+            <TextField
+              // style={{ width: "80%" }}
+              fullWidth
+              id="outlined-multiline-static"
+              label={
+                allLabels?.please_provide_details_optional ??
+                "Please provide details (Optional)"
+              }
+              multiline
+              rows={4}
+              //   defaultValue="Default Value"
+              onChange={(e) => setTextAreaContent(e.target.value)}
+              value={textAreaContent}
+              // size="large"
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "flex-start",
+              gap: "10px",
+              margin: "10px 0px",
+              flexDirection: "column",
+            }}
+          >
+            <div>
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "space-evenly",
-                  flexDirection: "column",
-                  gap: "25px",
                   alignItems: "center",
-                  // height: showModalCamera ? "300px" : "150px",
-                  padding: "20px",
+                  gap: "20px",
+                  justifyContent: "left",
+                  cursor: "pointer",
                 }}
+                onClick={showModal}
               >
-                {true && (
-                  <div style={{ cursor: "pointer", textAlign: "center" }}>
-                    <Upload
-                      accept=".jpg, .jpeg, image/jpeg, image/jpg"
-                      maxCount={1}
-                      // fileList={fileList}
-                      customRequest={() => false} // Disable default upload request
-                      beforeUpload={handleBeforeUpload}
-                      onRemove={(file) => {
-                        const index = fileList.indexOf(file);
-                        const newFileList = fileList.slice();
-                        newFileList.splice(index, 1);
-                        setFileList(newFileList);
-                      }}
-                      onPreview={handlePreview}
-                      listType="picture"
-                      // style={{ height: "10px" }}
-                    >
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "20px",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <Typography
-                          component="legend"
-                          style={{
-                            margin: "15px 0px 10px 0px",
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "10px",
-                            border: "1px solid",
-                            borderRadius: "5px",
-                            padding: "10px",
-                          }}
-                        >
-                          <div>{allLabels?.upload ?? "Upload"}</div>
-                          <FileUploadIcon />
-                        </Typography>
-                        {/* <img src={uploadImage} alt="uploadImage" /> */}
-                      </div>
-                    </Upload>
-                  </div>
-                )}
-                {true && (
-                  <Divider
-                    orientation="vertical"
-                    flexItem
-                    style={{ border: "1px solid" }}
-                  />
-                )}
+                <Typography
+                  component="legend"
+                  style={{ margin: "15px 0px 10px 0px" }}
+                >
+                  {allLabels?.upload_add_image ?? "Upload/Add Image"}
+                </Typography>
+                <img src={uploadImage} alt="uploadImage" />
+              </div>
+              {imageToShow && (
                 <div
                   style={{
-                    cursor: "pointer",
+                    border: "1px solid",
+                    borderRadius: "5px",
+                    textAlign: "left",
+                    padding: "5px",
+                    width: "100%",
                   }}
                 >
-                  {!showModalCamera ? (
-                    <Typography
-                      component="legend"
-                      style={{
-                        margin: "15px 0px 10px 0px",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "10px",
-                        border: "1px solid",
-                        borderRadius: "5px",
-                        padding: "10px",
-                      }}
-                      onClick={handleShowModalCamera}
-                    >
-                      <div>{allLabels?.camera ?? "Camera"}</div>
-                      <CameraAltIcon />
-                    </Typography>
-                  ) : (
-                    <CustomCamera
-                      enableCamera={showModalCamera}
-                      handleChangeTyping={handleClickedImage}
-                      setEnableCamera={
-                        () => {
-                          setPreviewOpen(false);
-                          setPreviewImage("");
-                          setPreviewTitle("");
-                          setFileList([]);
-                          let button = document.getElementsByClassName(
-                            "ant-upload-list-item-action"
-                          );
-                          button[0]?.click();
-                        }
-                        // setImageObject({})
-                      }
-                      element={{ key: "clicked_image", type: "upload" }}
-                      setImage={setImage}
-                      image={image}
-                      setImageToShow={setImageToShow}
+                  <Image
+                    src={imageToShow}
+                    height={50}
+                    width={50}
+                    alt="setImageToShow"
+                  />
+                  <span style={{ margin: "5px" }}>Attached file</span>
+                </div>
+              )}
+
+              <Modal
+                title={allLabels?.upload_add_image ?? "Upload / Add Image"}
+                open={isModalOpen}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                okText={allLabels?.ok ?? "OK"}
+                cancelText={allLabels?.cancel ?? "CANCEL"}
+                // style={{ height: "400px" }}
+                width={"350px"}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-evenly",
+                    flexDirection: "column",
+                    gap: "25px",
+                    alignItems: "center",
+                    // height: showModalCamera ? "300px" : "150px",
+                    padding: "20px",
+                  }}
+                >
+                  {true && (
+                    <div style={{ cursor: "pointer", textAlign: "center" }}>
+                      <Upload
+                        accept=".jpg, .jpeg, image/jpeg, image/jpg"
+                        maxCount={1}
+                        // fileList={fileList}
+                        customRequest={() => false} // Disable default upload request
+                        beforeUpload={handleBeforeUpload}
+                        onRemove={(file) => {
+                          const index = fileList.indexOf(file);
+                          const newFileList = fileList.slice();
+                          newFileList.splice(index, 1);
+                          setFileList(newFileList);
+                        }}
+                        onPreview={handlePreview}
+                        listType="picture"
+                        // style={{ height: "10px" }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "20px",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <Typography
+                            component="legend"
+                            style={{
+                              margin: "15px 0px 10px 0px",
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "10px",
+                              border: "1px solid",
+                              borderRadius: "5px",
+                              padding: "10px",
+                            }}
+                          >
+                            <div>{allLabels?.upload ?? "Upload"}</div>
+                            <FileUploadIcon />
+                          </Typography>
+                          {/* <img src={uploadImage} alt="uploadImage" /> */}
+                        </div>
+                      </Upload>
+                    </div>
+                  )}
+                  {true && (
+                    <Divider
+                      orientation="vertical"
+                      flexItem
+                      style={{ border: "1px solid" }}
                     />
                   )}
+                  <div
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  >
+                    {!showModalCamera ? (
+                      <Typography
+                        component="legend"
+                        style={{
+                          margin: "15px 0px 10px 0px",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "10px",
+                          border: "1px solid",
+                          borderRadius: "5px",
+                          padding: "10px",
+                        }}
+                        onClick={handleShowModalCamera}
+                      >
+                        <div>{allLabels?.camera ?? "Camera"}</div>
+                        <CameraAltIcon />
+                      </Typography>
+                    ) : (
+                      <CustomCamera
+                        enableCamera={showModalCamera}
+                        handleChangeTyping={handleClickedImage}
+                        setEnableCamera={
+                          () => {
+                            setPreviewOpen(false);
+                            setPreviewImage("");
+                            setPreviewTitle("");
+                            setFileList([]);
+                            let button = document.getElementsByClassName(
+                              "ant-upload-list-item-action"
+                            );
+                            button[0]?.click();
+                          }
+                          // setImageObject({})
+                        }
+                        element={{ key: "clicked_image", type: "upload" }}
+                        setImage={setImage}
+                        image={image}
+                        setImageToShow={setImageToShow}
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-            </Modal>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "left",
-                alignItems: "center",
-                cursor: "pointer",
-              }}
-            ></div>
-          </div>
-          <div style={{ cursor: "pointer" }}>
-            <div
-              id="main_audio_recorder"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "20px",
-                justifyContent: "left",
-                transition: "all 1s ease-in",
-              }}
-            >
-              <Typography
-                component="legend"
-                style={{ margin: "15px 0px 10px 0px" }}
+              </Modal>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "left",
+                  alignItems: "center",
+                  cursor: "pointer",
+                }}
+              ></div>
+            </div>
+            <div style={{ cursor: "pointer" }}>
+              <div
+                id="main_audio_recorder"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "20px",
+                  justifyContent: "left",
+                  transition: "all 1s ease-in",
+                }}
               >
-                {allLabels?.record_voice_audio ?? "Record voice/audio"}
-              </Typography>
-              <div>
-                <AudioRecorder
-                  onRecordingComplete={(blob) => addAudioElement(blob)}
-                  recorderControls={recorderControls}
-                  // downloadOnSavePress={true}
-                  // downloadFileExtension="mp3"
-                  showVisualizer={true}
-                />
-              </div>
-              {/* <br />
+                <Typography
+                  component="legend"
+                  style={{ margin: "15px 0px 10px 0px" }}
+                >
+                  {allLabels?.record_voice_audio ?? "Record voice/audio"}
+                </Typography>
+                <div>
+                  <AudioRecorder
+                    onRecordingComplete={(blob) => addAudioElement(blob)}
+                    recorderControls={recorderControls}
+                    // downloadOnSavePress={true}
+                    // downloadFileExtension="mp3"
+                    showVisualizer={true}
+                  />
+                </div>
+                {/* <br />
             <button onClick={recorderControls.stopRecording}>
               Stop recording
             </button>
             <br /> */}
+              </div>
             </div>
-          </div>
-          {/* <Modal
+            {/* <Modal
             title="Basic Modal"
             open={isModalOpen}
             onOk={handleOk}
             onCancel={handleCancel}
           > */}
 
-          {/* <div style={{ maxWidth: "100%" }}>
+            {/* <div style={{ maxWidth: "100%" }}>
               <ReactMic
                 record={audio.isRecording}
                 onData={onData}
@@ -708,80 +710,81 @@ const RatingFeedback = (props) => {
             {audio.audioBlob && (
               <audio controls src={audio.audioBlob.blobURL} />
             )} */}
-          {/* </Modal> */}
-          <div id="audio_track"></div>
-          {/* {audio.audioBlob && <audio controls src={audio.audioBlob.blobURL} />} */}
+            {/* </Modal> */}
+            <div id="audio_track"></div>
+            {/* {audio.audioBlob && <audio controls src={audio.audioBlob.blobURL} />} */}
+          </div>
         </div>
-      </div>
 
-      {/* <AudioRecordingComponent /> */}
-      <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
-        <Button
-          key={"submit"}
-          type={"submit"}
-          style={{
-            marginRight: "10px",
-            margin: "auto",
-            display: "block",
-            width: "100%",
-            border: "1px solid #0088CC",
-            color: "#0088CC",
-          }}
-          htmlType="submit"
-          // onClick={button.value == "next" ? () => null : button.onClick}
-          onClick={clearForm}
-          className="secondary_button"
-        >
-          {allLabels?.clear ?? "CLEAR"}
-        </Button>
-        {/* {console.log(!otherConcern, selectedTag)} */}
-        <Button
-          loading={isLoading}
-          disabled={
-            value < 0
-              ? true
-              : value != 5 && other && !otherConcern
-              ? true
-              : value != 5 && !other && selectedTag.length <= 0
-              ? true
-              : false
-          }
-          key={"submit"}
-          type={"submit"}
-          style={{
-            marginRight: "10px",
-            margin: "auto",
-            display: "block",
-            width: "100%",
-            color: "white",
-            background:
+        {/* <AudioRecordingComponent /> */}
+        <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+          <Button
+            key={"submit"}
+            type={"submit"}
+            style={{
+              marginRight: "10px",
+              margin: "auto",
+              display: "block",
+              width: "100%",
+              border: "1px solid #0088CC",
+              color: "#0088CC",
+            }}
+            htmlType="submit"
+            // onClick={button.value == "next" ? () => null : button.onClick}
+            onClick={clearForm}
+            className="secondary_button"
+          >
+            {allLabels?.clear ?? "CLEAR"}
+          </Button>
+          {/* {console.log(!otherConcern, selectedTag)} */}
+          <Button
+            loading={isLoading}
+            disabled={
               value < 0
                 ? true
                 : value != 5 && other && !otherConcern
                 ? true
                 : value != 5 && !other && selectedTag.length <= 0
                 ? true
-                : "#0088CC",
-          }}
-          htmlType="submit"
-          // onClick={button.value == "next" ? () => null : button.onClick}
-          onClick={submitFeedbackData}
-          className="primary_button"
-        >
-          {allLabels?.submit ?? "SUBMIT"}
-        </Button>
+                : false
+            }
+            key={"submit"}
+            type={"submit"}
+            style={{
+              marginRight: "10px",
+              margin: "auto",
+              display: "block",
+              width: "100%",
+              color: "white",
+              background:
+                value < 0
+                  ? true
+                  : value != 5 && other && !otherConcern
+                  ? true
+                  : value != 5 && !other && selectedTag.length <= 0
+                  ? true
+                  : "#0088CC",
+            }}
+            htmlType="submit"
+            // onClick={button.value == "next" ? () => null : button.onClick}
+            onClick={submitFeedbackData}
+            className="primary_button"
+          >
+            {allLabels?.submit ?? "SUBMIT"}
+          </Button>
 
-        <Modal
-          className="modal_in_feedback_form"
-          open={previewOpen}
-          title={previewTitle}
-          footer={null}
-          onCancel={handleCancelPreview}
-        >
-          <img alt="example" style={{ width: "100%" }} src={previewImage} />
-        </Modal>
+          <Modal
+            className="modal_in_feedback_form"
+            open={previewOpen}
+            title={previewTitle}
+            footer={null}
+            onCancel={handleCancelPreview}
+          >
+            <img alt="example" style={{ width: "100%" }} src={previewImage} />
+          </Modal>
+        </div>
       </div>
-    </div>
+    )
   );
 };
 RatingFeedback.propTypes = {
