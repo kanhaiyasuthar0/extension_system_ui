@@ -440,8 +440,10 @@ const RatingFeedback = (props) => {
     <div className="feedback-form">
       {/* <div> */}
       <Typography style={{ margin: "15px 0px 10px 0px" }} component="legend">
-        {allLabels?.how_would_you_rate_this_answer ?? "How would you rate this"}
-        {queryParams.get("message_id") ? " answer" : " video"}?
+        {allLabels?.how_would_you_rate_this_answer ??
+          `How would you rate this ${
+            queryParams.get("message_id") ? "answer" : "video"
+          }`}
       </Typography>
       <Rating
         name="simple-controlled"
